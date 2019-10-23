@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace Laep.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
-    {
-        public Page1()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class PaginaPrincipal : ContentPage
+	{
+		public PaginaPrincipal ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

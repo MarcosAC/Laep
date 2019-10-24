@@ -9,6 +9,6 @@ namespace Laep
 		public AppShell ()
 		{
 			InitializeComponent ();
-		}
+        }
 	}
 }

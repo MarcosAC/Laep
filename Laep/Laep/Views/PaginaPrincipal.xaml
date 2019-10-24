@@ -3,6 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.PaginaPrincipal"
              Title="LA ep Projetos">
+
+    <Shell.TitleView>
+        <StackLayout Padding="10">
+            <Label Text="LA ep Projetos"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="White"                   
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+        
+    </Shell.TitleView>
+
     <ContentPage.Content>
         <Grid Padding="15" VerticalOptions="Center" RowSpacing="15">
             <Grid.RowDefinitions>
@@ -15,9 +27,26 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Text="Projeto Elétrico" Grid.Row="0" Grid.Column="0" BackgroundColor="LightGreen" />
-            <Button Text="Projeto de Prevenção e Combate a Incêndio" Grid.Row="1" Grid.Column="0" BackgroundColor="LightGreen" />
-            <Button Text="Padrão CEMIG" Grid.Row="2" Grid.Column="0" BackgroundColor="LightGreen" />
+            <Button Text="Projeto Elétrico" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    BackgroundColor="LightGreen" />
+            
+            <Button Text="Projeto de Prevenção e Combate a Incêndio" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    Grid.Row="1" 
+                    Grid.Column="0" 
+                    BackgroundColor="LightGreen" />
+            
+            <Button Text="Padrão CEMIG" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Grid.Row="2" 
+                    Grid.Column="0" 
+                    BackgroundColor="LightGreen" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

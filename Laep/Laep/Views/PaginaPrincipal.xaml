@@ -1,16 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Laep.Views.PaginaPrincipal">
+             x:Class="Laep.Views.PaginaPrincipal"
+             Title="LA ep Projetos">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <Grid Padding="15" VerticalOptions="Center" RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
 
-            <Label Text="App com Shell!!! :D"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Projeto Elétrico" Grid.Row="0" Grid.Column="0" BackgroundColor="LightGreen" />
+            <Button Text="Projeto de Prevenção e Combate a Incêndio" Grid.Row="1" Grid.Column="0" BackgroundColor="LightGreen" />
+            <Button Text="Padrão CEMIG" Grid.Row="2" Grid.Column="0" BackgroundColor="LightGreen" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

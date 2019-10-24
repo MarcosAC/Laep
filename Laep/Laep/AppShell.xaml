@@ -5,10 +5,10 @@
        x:Class="Laep.AppShell">
 
     <TabBar>
-        <Tab>
-            <ShellContent>
+        <Tab Title="Projeto Eletrico">
+            <ShellContent>                
                 <Views:PaginaPrincipal />
-            </ShellContent>
-        </Tab>
+            </ShellContent>            
+        </Tab>        
     </TabBar>
 </Shell>

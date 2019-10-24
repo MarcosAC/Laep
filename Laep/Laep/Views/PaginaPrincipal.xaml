@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.PaginaPrincipal"
-             Title="LA ep Projetos">
+             Title="LA ep Projetos"
+             BackgroundColor="LightGreen">
 
     <Shell.TitleView>
         <StackLayout Padding="10">
@@ -32,21 +33,30 @@
                     FontAttributes="Bold"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen" />
+                    BackgroundColor="LightGreen" 
+                    BorderColor="Green" 
+                    BorderWidth="2"
+                    CornerRadius="10" />
             
             <Button Text="Projeto de Prevenção e Combate a Incêndio" 
                     TextColor="White" 
                     FontAttributes="Bold"
                     Grid.Row="1" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen" />
+                    BackgroundColor="LightGreen"
+                    BorderColor="Green" 
+                    BorderWidth="2"
+                    CornerRadius="10" />
             
             <Button Text="Padrão CEMIG" 
                     TextColor="White"
                     FontAttributes="Bold"
                     Grid.Row="2" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen" />
+                    BackgroundColor="LightGreen"
+                    BorderColor="Green" 
+                    BorderWidth="2"
+                    CornerRadius="10" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

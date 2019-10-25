@@ -8,12 +8,11 @@
     <Shell.TitleView>
         <StackLayout Padding="10">
             <Label Text="LA ep Projetos"
+                   TextColor="White"
                    FontSize="Large"
-                   FontAttributes="Bold"
-                   TextColor="White"                   
+                   FontAttributes="Bold"                                      
                    HorizontalTextAlignment="Center" />
-        </StackLayout>
-        
+        </StackLayout>        
     </Shell.TitleView>
 
     <ContentPage.Content>
@@ -33,8 +32,8 @@
                     FontAttributes="Bold"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen" 
-                    BorderColor="Green" 
+                    BackgroundColor="#206805" 
+                    BorderColor="#206805" 
                     BorderWidth="2"
                     CornerRadius="10" />
             
@@ -43,8 +42,8 @@
                     FontAttributes="Bold"
                     Grid.Row="1" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen"
-                    BorderColor="Green" 
+                    BackgroundColor="#206805"
+                    BorderColor="#206805" 
                     BorderWidth="2"
                     CornerRadius="10" />
             
@@ -53,8 +52,8 @@
                     FontAttributes="Bold"
                     Grid.Row="2" 
                     Grid.Column="0" 
-                    BackgroundColor="LightGreen"
-                    BorderColor="Green" 
+                    BackgroundColor="#206805"
+                    BorderColor="#206805" 
                     BorderWidth="2"
                     CornerRadius="10" />
         </Grid>

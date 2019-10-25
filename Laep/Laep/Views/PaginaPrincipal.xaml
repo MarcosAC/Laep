@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.PaginaPrincipal"
              Title="LA ep Projetos"
-             BackgroundColor="LightGreen">
+             BackgroundColor="#D2F8D2">
 
     <Shell.TitleView>
         <StackLayout Padding="10">
             <Label Text="LA ep Projetos"
-                   TextColor="White"
+                   TextColor="Black"
                    FontSize="Large"
                    FontAttributes="Bold"                                      
                    HorizontalTextAlignment="Center" />
@@ -28,32 +28,32 @@
             </Grid.ColumnDefinitions>
 
             <Button Text="Projeto Elétrico" 
-                    TextColor="White"
+                    TextColor="Black"
                     FontAttributes="Bold"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    BackgroundColor="#206805" 
+                    BackgroundColor="LightGreen" 
                     BorderColor="#206805" 
                     BorderWidth="2"
                     CornerRadius="10" />
             
             <Button Text="Projeto de Prevenção e Combate a Incêndio" 
-                    TextColor="White" 
+                    TextColor="Black" 
                     FontAttributes="Bold"
                     Grid.Row="1" 
                     Grid.Column="0" 
-                    BackgroundColor="#206805"
-                    BorderColor="#206805" 
+                     BackgroundColor="LightGreen" 
+                    BorderColor="#206805"  
                     BorderWidth="2"
                     CornerRadius="10" />
             
             <Button Text="Padrão CEMIG" 
-                    TextColor="White"
+                    TextColor="Black"
                     FontAttributes="Bold"
                     Grid.Row="2" 
                     Grid.Column="0" 
-                    BackgroundColor="#206805"
-                    BorderColor="#206805" 
+                     BackgroundColor="LightGreen" 
+                    BorderColor="#206805"  
                     BorderWidth="2"
                     CornerRadius="10" />
         </Grid>

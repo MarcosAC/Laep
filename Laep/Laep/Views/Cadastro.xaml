@@ -4,13 +4,12 @@
              x:Class="Laep.Views.Cadastro">
 
     <Shell.TitleView>
-        <StackLayout Padding="10">
-            <Label Text="LA ep Projetos"
-                   TextColor="#206805"
-                   FontSize="Large"
-                   FontAttributes="Bold"                                      
-                   HorizontalTextAlignment="Center" />
-        </StackLayout>
+        <Label Text="Cadastro"
+               TextColor="White"
+               FontSize="Large"
+               FontAttributes="Bold"                                      
+               HorizontalTextAlignment="Center"
+               Padding="10" />
     </Shell.TitleView>
     
     <ContentPage.Content>

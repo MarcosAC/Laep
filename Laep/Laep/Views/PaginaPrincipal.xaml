@@ -10,8 +10,7 @@
             <Label Text="LA ep Projetos"
                    TextColor="Black"
                    FontSize="Large"
-                   FontAttributes="Bold"                                      
-                   HorizontalTextAlignment="Center" />
+                   FontAttributes="Bold" />
         </StackLayout>        
     </Shell.TitleView>
 

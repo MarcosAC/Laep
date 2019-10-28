@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.Cadastro"
-             BackgroundColor="#D2F8D2">
+             BackgroundColor="DarkGray">
 
     <Shell.TitleView>
         <StackLayout Padding="10">
@@ -13,25 +13,31 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="15">
-                <Entry Placeholder="Nome" />
-                <Entry Placeholder="Telefone" />
-                <Entry Placeholder="E-mail" />
-                <Entry Placeholder="Cidade" />
-                <Entry Placeholder="Endereço" />
-                <Entry Placeholder="No." />
-                <Entry Placeholder="Ponto de Referência" />
+            <StackLayout Padding="10">
+                <Frame HasShadow="True" 
+                       CornerRadius="5" 
+                       BorderColor="#F7F7F7" 
+                       BackgroundColor="#F7F7F7" 
+                       VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Entry Placeholder="Nome" />
+                        <Entry Placeholder="Telefone" />
+                        <Entry Placeholder="E-mail" />
+                        <Entry Placeholder="Cidade" />
+                        <Entry Placeholder="Endereço" />
+                        <Entry Placeholder="No." />
+                        <Entry Placeholder="Ponto de Referência" />
 
-                <Button Style="{StaticResource styleBaseButton}"
-                        Text="Enviar"
-                        Margin="0,10,0,0"
-                        HeightRequest="60" />
+                        <Button Style="{StaticResource styleBaseButton}"
+                                Text="Enviar"
+                                HeightRequest="60" />
 
-                <Button Text="Cancelar"
-                        Style="{StaticResource styleBaseButton}"
-                        Margin="0,20,0,0"
-                        HeightRequest="60" />
-            </StackLayout>  
+                        <Button Style="{StaticResource styleBaseButton}"
+                                Text="Cancelar"                                
+                                HeightRequest="60" />
+                    </StackLayout>                    
+                </Frame>
+            </StackLayout>
         </ScrollView>        
     </ContentPage.Content>
 </ContentPage>

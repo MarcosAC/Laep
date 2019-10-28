@@ -6,10 +6,8 @@
 
     <Shell.TitleView>
         <StackLayout Padding="10">
-            <Label Text="Cadastro"
-                   TextColor="Black"
-                   FontSize="Large"
-                   FontAttributes="Bold" />
+            <Label Style="{StaticResource styleLabelTitleView}"
+                   Text="LA ep Projetos" />
         </StackLayout>
     </Shell.TitleView>
     
@@ -24,25 +22,15 @@
                 <Entry Placeholder="No." />
                 <Entry Placeholder="Ponto de Referência" />
 
-                <Button Text="Enviar"
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        BackgroundColor="LightGreen" 
-                        BorderColor="#206805" 
-                        BorderWidth="2"                    
-                        CornerRadius="10"
+                <Button Style="{StaticResource styleBaseButton}"
+                        Text="Enviar"
                         Margin="0,10,0,0"
                         HeightRequest="60" />
 
                 <Button Text="Cancelar"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    BackgroundColor="LightGreen" 
-                    BorderColor="#206805"
-                    BorderWidth="2"
-                    CornerRadius="10"
-                    Margin="0,20,0,0"
-                    HeightRequest="60" />
+                        Style="{StaticResource styleBaseButton}"
+                        Margin="0,20,0,0"
+                        HeightRequest="60" />
             </StackLayout>  
         </ScrollView>        
     </ContentPage.Content>

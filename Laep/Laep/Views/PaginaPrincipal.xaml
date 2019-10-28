@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.PaginaPrincipal"
              Title="LA ep Projetos"
-             BackgroundColor="#D2F8D2">
+             BackgroundColor="DarkGray">
 
     <Shell.TitleView>
         <StackLayout Padding="10">
-            <Label Text="LA ep Projetos"
-                   TextColor="Black"
-                   FontSize="Large"
-                   FontAttributes="Bold" />
+            <Label Style="{StaticResource styleLabelTitleView}" 
+                   Text="LA ep Projetos" />
         </StackLayout>        
     </Shell.TitleView>
 
@@ -26,35 +24,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Text="Projeto Elétrico" 
-                    TextColor="Black"
-                    FontAttributes="Bold"
+            <Button Style="{StaticResource styleBaseButton}" 
+                    Text="Projeto Elétrico"
                     Grid.Row="0" 
-                    Grid.Column="0" 
-                    BackgroundColor="LightGreen" 
-                    BorderColor="#206805" 
-                    BorderWidth="2"
-                    CornerRadius="10" />
-            
-            <Button Text="Projeto de Prevenção e Combate a Incêndio" 
-                    TextColor="Black" 
-                    FontAttributes="Bold"
+                    Grid.Column="0" />
+
+            <Button Style="{StaticResource styleBaseButton}" 
+                    Text="Projeto de Prevenção e Combate a Incêndio"
                     Grid.Row="1" 
-                    Grid.Column="0" 
-                     BackgroundColor="LightGreen" 
-                    BorderColor="#206805"  
-                    BorderWidth="2"
-                    CornerRadius="10" />
-            
-            <Button Text="Padrão CEMIG" 
-                    TextColor="Black"
-                    FontAttributes="Bold"
+                    Grid.Column="0" />
+
+            <Button Style="{StaticResource styleBaseButton}" 
+                    Text="Padrão CEMIG"
                     Grid.Row="2" 
-                    Grid.Column="0" 
-                     BackgroundColor="LightGreen" 
-                    BorderColor="#206805"  
-                    BorderWidth="2"
-                    CornerRadius="10" />
+                    Grid.Column="0" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

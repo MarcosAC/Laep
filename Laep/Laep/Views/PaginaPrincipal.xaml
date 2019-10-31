@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Views.PaginaPrincipal"
              Title="LA ep Projetos"
-             BackgroundColor="DarkGray">
+             BackgroundColor="DarkGray"
+             Shell.TabBarIsVisible="false">
 
     <Shell.TitleView>
         <StackLayout Padding="10">
@@ -27,7 +28,8 @@
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto Elétrico"
                     Grid.Row="0" 
-                    Grid.Column="0" />
+                    Grid.Column="0" 
+                    Clicked="OnClicked"/>
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto de Prevenção e Combate a Incêndio"

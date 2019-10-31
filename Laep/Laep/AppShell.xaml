@@ -7,9 +7,15 @@
 
     <TabBar>
         <Tab>
-            <ShellContent>                
-                <Views:Cadastro />
+            <ShellContent Route="paginaInicial">
+                <Views:PaginaPrincipal />
             </ShellContent>            
-        </Tab>        
+        </Tab>
+
+        <Tab>
+            <ShellContent Route="cadastro">
+                <Views:Cadastro />
+            </ShellContent>
+        </Tab>
     </TabBar>
 </Shell>

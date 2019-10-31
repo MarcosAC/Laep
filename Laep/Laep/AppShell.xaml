@@ -13,8 +13,8 @@
         </Tab>
 
         <Tab>
-            <ShellContent Route="cadastro">
-                <Views:Cadastro />
+            <ShellContent Route="cadastroProjetoEletrico">
+                <Views:CadastroProjetoEletrico />
             </ShellContent>
         </Tab>
     </TabBar>

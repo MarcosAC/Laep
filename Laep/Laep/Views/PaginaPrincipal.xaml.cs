@@ -19,7 +19,7 @@ namespace Laep.Views
 
         private async void OnClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//cadastro");
+            await Shell.Current.GoToAsync("//cadastroProjetoEletrico");
         }
     }
 }

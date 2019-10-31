@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace Laep.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Cadastro : ContentView
+	public partial class CadastroProjetoEletrico : ContentPage
     {
-		public Cadastro ()
+		public CadastroProjetoEletrico ()
 		{
 			InitializeComponent ();
 		}

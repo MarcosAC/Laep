@@ -40,7 +40,8 @@
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"
                     Grid.Row="2" 
-                    Grid.Column="0" />
+                    Grid.Column="0" 
+                    Clicked="OnClickedCemig" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

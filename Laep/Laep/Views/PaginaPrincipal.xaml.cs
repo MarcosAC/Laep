@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Laep.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PaginaPrincipal : ContentPage
 	{
 		public PaginaPrincipal ()
@@ -25,6 +20,11 @@ namespace Laep.Views
         private async void OnClickedPrevencaoCombatIcendio(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//cadastroProjetoPrevencaoIncendio");
+        }
+
+        private void OnClickedCemig(object sender, EventArgs e)
+        {
+            App.Current.MainPage.DisplayAlert("", "Voce é Eletricista?", "Sim", "Não");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Laep.Views
 			InitializeComponent ();
 		}
 
-        private async void OnClicked(object sender, EventArgs e)
+        private async void OnClickedProjetoEletrico(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//cadastroProjetoEletrico");
         }

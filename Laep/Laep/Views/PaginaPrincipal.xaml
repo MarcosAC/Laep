@@ -29,12 +29,13 @@
                     Text="Projeto Elétrico"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    Clicked="OnClicked"/>
+                    Clicked="OnClickedProjetoEletrico" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto de Prevenção e Combate a Incêndio"
                     Grid.Row="1" 
-                    Grid.Column="0" />
+                    Grid.Column="0"
+                    Clicked="OnClickedPrevencaoCombatIcendio" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"

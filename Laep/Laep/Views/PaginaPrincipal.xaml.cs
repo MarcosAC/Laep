@@ -21,5 +21,10 @@ namespace Laep.Views
         {
             await Shell.Current.GoToAsync("//cadastroProjetoEletrico");
         }
+
+        private async void OnClickedPrevencaoCombatIcendio(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//cadastroProjetoPrevencaoIncendio");
+        }
     }
 }

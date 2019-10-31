@@ -17,5 +17,11 @@
                 <Views:CadastroProjetoEletrico />
             </ShellContent>
         </Tab>
+
+        <Tab>
+            <ShellContent Route="cadastroProjetoPrevencaoIncendio">
+                <Views:CadastroProjetoPrevencaoIncendio />
+            </ShellContent>
+        </Tab>
     </TabBar>
 </Shell>

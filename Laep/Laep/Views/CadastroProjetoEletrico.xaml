@@ -6,14 +6,13 @@
              Shell.TabBarIsVisible="{Binding TabBarIsVisible}">
 
     <Shell.TitleView>
-        <StackLayout Padding="10" Orientation="Horizontal">
+        <StackLayout Padding="0,10" Orientation="Horizontal">
             <ImageButton Source="btnVoltar.png" 
-                         BackgroundColor="Transparent"                         
-                         WidthRequest="40"
-                         HeightRequest="30"
-                         VerticalOptions="CenterAndExpand" />
+                         BackgroundColor="Transparent"
+                         WidthRequest="30"
+                         HeightRequest="30" />
             
-            <Label Style="{StaticResource styleLabelTitleView}"
+            <Label Style="{StaticResource styleLabelTitleView}"                   
                    Text="Projeto Elétrico" />
         </StackLayout>
     </Shell.TitleView>

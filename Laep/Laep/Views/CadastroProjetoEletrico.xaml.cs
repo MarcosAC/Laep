@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Laep.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Laep.Views
@@ -9,6 +10,8 @@ namespace Laep.Views
 		public CadastroProjetoEletrico ()
 		{
 			InitializeComponent ();
+
+            BindingContext = new ProjetoEletricoViewModel();
 		}
 	}
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Views="clr-namespace:Laep.Views"
              x:Class="Laep.Views.CadastroProjetoEletrico"
-             Shell.TabBarIsVisible="false">
+             Shell.TabBarIsVisible="{Binding TabBarIsVisible}">
 
     <Shell.TitleView>
         <StackLayout Padding="10">

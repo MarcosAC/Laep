@@ -23,6 +23,13 @@ namespace Prodfy.ViewModels
             set => SetProperty(ref _isBusy, value);            
         }
 
+        private bool _tabBarIsVisible;
+        public bool TabBarIsVisible
+        {
+            get => _tabBarIsVisible;
+            set => SetProperty(ref _tabBarIsVisible, value);
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 

@@ -7,7 +7,7 @@
              Shell.TabBarIsVisible="false">
 
     <Shell.TitleView>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10" Orientation="Horizontal">
             <Label Style="{StaticResource styleLabelTitleView}" 
                    Text="LA ep Projetos" />
         </StackLayout>        

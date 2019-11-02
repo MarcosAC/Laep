@@ -2,19 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Views="clr-namespace:Laep.Views"
+             xmlns:Controls="clr-namespace:Laep.Controls"
              x:Class="Laep.Views.CadastroProjetoEletrico"
              Shell.TabBarIsVisible="{Binding TabBarIsVisible}">
 
     <Shell.TitleView>
-        <StackLayout Padding="0,10" Orientation="Horizontal">
-            <ImageButton Source="btnVoltar.png" 
-                         BackgroundColor="Transparent"
-                         WidthRequest="30"
-                         HeightRequest="30" />
-            
-            <Label Style="{StaticResource styleLabelTitleView}"                   
-                   Text="Projeto Elétrico" />
-        </StackLayout>
+        <Controls:TitleViewControl />
     </Shell.TitleView>
 
     <Views:Cadastro />

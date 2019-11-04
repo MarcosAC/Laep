@@ -8,7 +8,8 @@
     <Shell.TitleView>
         <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
             <ImageButton Source="btnVoltar.png" 
-                         BackgroundColor="Transparent" />
+                         BackgroundColor="Transparent"
+                         Command="{Binding BotaoVoltarTitleViewCommand}" />
 
             <Label Style="{StaticResource styleLabelTitleView}"                   
                Text="Projeto Prevenção a Incêndio" />

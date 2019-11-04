@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="styleLabelTitleView">
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>

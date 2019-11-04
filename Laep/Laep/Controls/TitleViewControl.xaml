@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laep.Controls.TitleViewControl">
 
-    <StackLayout Padding="0,10" Orientation="Horizontal">
+    <StackLayout Padding="0,12" Orientation="Horizontal">
         <ImageButton Source="btnVoltar.png" 
-                         BackgroundColor="Transparent"
-                         WidthRequest="30"
-                         HeightRequest="30" />
+                     BackgroundColor="Transparent" />
 
         <Label Style="{StaticResource styleLabelTitleView}"                   
-                   Text="Projeto Elétrico" />
+               Text="Projeto Elétrico" />
     </StackLayout>
 </ContentView>

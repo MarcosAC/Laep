@@ -79,9 +79,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Laep\Laep.csproj">
       <Project>{43ABD469-1549-428B-B3B0-F86F6CC471B8}</Project>
@@ -107,6 +105,9 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>4.3.0.908675</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btnVoltar.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\btnVoltar.png" />

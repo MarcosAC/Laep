@@ -6,7 +6,7 @@ namespace Laep.ViewModels
     {
         public CadastroViewModel()
         {
-            TabBarIsVisible = false;
+            //TabBarIsVisible = false;
         }
     }
 }

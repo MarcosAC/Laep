@@ -4,6 +4,11 @@
              x:Class="Laep.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="styleStackLayoutTitleView">
+                <Setter Property="Padding" Value="0,12" />
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+            
             <Style TargetType="Label" x:Key="styleLabelTitleView">
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="FontSize" Value="Medium" />

@@ -6,7 +6,7 @@
              Shell.TabBarIsVisible="false">
 
     <Shell.TitleView>
-        <StackLayout Padding="0,12" Orientation="Horizontal">
+        <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
             <ImageButton Source="btnVoltar.png" 
                      BackgroundColor="Transparent" />
 

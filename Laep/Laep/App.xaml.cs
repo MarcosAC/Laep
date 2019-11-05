@@ -12,7 +12,7 @@ namespace Laep
 
             #if DEBUG
                 HotReloader.Current.Start(this);
-#endif
+            #endif
 
             MainPage = new AppShell();
         }

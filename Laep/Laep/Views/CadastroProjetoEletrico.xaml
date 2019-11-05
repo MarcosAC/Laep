@@ -12,7 +12,7 @@
                          Command="{Binding BotaoVoltarTitleViewCommand}" />
 
             <Label Style="{StaticResource styleLabelTitleView}"                   
-               Text="Projeto Elétrico" />
+                   Text="Projeto Elétrico" />
         </StackLayout>
     </Shell.TitleView>
 

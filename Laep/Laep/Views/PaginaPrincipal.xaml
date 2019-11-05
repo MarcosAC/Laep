@@ -14,7 +14,10 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid Padding="15" VerticalOptions="Center" RowSpacing="15">
+        <Grid Padding="15" 
+              VerticalOptions="Center" 
+              RowSpacing="15">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />

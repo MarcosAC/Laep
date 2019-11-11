@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Laep.ViewModels;
+using Xamarin.Forms;
 
 namespace Laep.Views
 {
@@ -7,6 +8,8 @@ namespace Laep.Views
 		public PaginaPrincipal ()
 		{
 			InitializeComponent ();
-		}
+
+            BindingContext = new PaginaPrincipalViewModel();
+        }
     }
 }

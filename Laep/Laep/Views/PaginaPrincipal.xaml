@@ -5,14 +5,7 @@
              Title="LA ep Projetos"
              BackgroundColor="DarkGray"
              Shell.TabBarIsVisible="false">
-
-    <Shell.TitleView>
-        <StackLayout Padding="0,10" Orientation="Horizontal">
-            <Label Style="{StaticResource styleLabelTitleView}" 
-                   Text="LA ep Projetos" />
-        </StackLayout>        
-    </Shell.TitleView>
-
+  
     <ContentPage.Content>
         <Grid Padding="15" 
               VerticalOptions="Center" 
@@ -32,19 +25,18 @@
                     Text="Projeto Elétrico"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    Clicked="OnClickedProjetoEletrico" />
+                    Command="{Binding ProjetoEletricoCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto de Prevenção e Combate a Incêndio"
                     Grid.Row="1" 
-                    Grid.Column="0"
-                    Clicked="OnClickedPrevencaoCombatIcendio" />
+                    Grid.Column="0" 
+                    Command="{Binding ProjetoPrevecaoIncendioCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"
                     Grid.Row="2" 
-                    Grid.Column="0" 
-                    Clicked="OnClickedCemig" />
+                    Grid.Column="0" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

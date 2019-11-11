@@ -14,7 +14,7 @@
             <Label Style="{StaticResource styleLabelTitleView}"                   
                    Text="Projeto Elétrico" />
         </StackLayout>
-    </Shell.TitleView>
+    </Shell.TitleView>    
 
     <Views:Cadastro />
 </ContentPage>

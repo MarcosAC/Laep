@@ -36,7 +36,8 @@
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"
                     Grid.Row="2" 
-                    Grid.Column="0" />
+                    Grid.Column="0" 
+                    Command="{Binding MostrarMensagemCommand}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

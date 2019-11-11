@@ -16,5 +16,11 @@ namespace Laep.ViewModels
             _projetoPrevecaoIncendioCommand ?? (_projetoPrevecaoIncendioCommand = new Command(async () => await ExecuteProjetoPrevecaoIncendioCommand()));
 
         private async Task ExecuteProjetoPrevecaoIncendioCommand() => await Shell.Current.GoToAsync("//cadastroProjetoPrevencaoIncendio");
+
+        private Command _mostrarMensagemCommand;
+        public Command MostrarMensagemCommand =>
+            _mostrarMensagemCommand ?? (_mostrarMensagemCommand = new Command(async () => await ExecuteMostrarMensagemCommand()));
+
+        private async Task ExecuteMostrarMensagemCommand() => await Shell.Current.DisplayAlert("", "Voce é Eletricista?", "Sim", "Não");
     }
 }

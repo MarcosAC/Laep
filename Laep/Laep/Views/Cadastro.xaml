@@ -7,11 +7,7 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout Padding="10">
-                <Frame HasShadow="True" 
-                       CornerRadius="5" 
-                       BorderColor="#F7F7F7" 
-                       BackgroundColor="#F7F7F7" 
-                       VerticalOptions="FillAndExpand">
+                <Frame Style="{StaticResource styleFrame}">
                     <StackLayout>
                         <Entry Placeholder="Nome" />
                         <Entry Placeholder="Telefone" />

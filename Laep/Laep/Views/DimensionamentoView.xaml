@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Laep.Views.DimensionamentoView"
+             Shell.TabBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="styleBaseLabel">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="styleLabelTitulo" BasedOn="{StaticResource styleBaseLabel}">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="styleLabelGrid" BasedOn="{StaticResource styleBaseLabel}">
+                <Setter Property="FontSize" Value="Subtitle" />
+            </Style>
+            
+            <Style TargetType="BoxView" x:Key="styleBoxView">
+                <Setter Property="WidthRequest" Value="1" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
+            <ImageButton Source="btnVoltar.png" 
+                         BackgroundColor="Transparent" 
+                         Command="{Binding BotaoVoltarTitleViewCommand}" />
+
+            <Label Style="{StaticResource styleLabelTitleView}"                   
+                   Text="Caracteristica do Padrão" />
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentView>
+        <Frame Style="{StaticResource styleFrame}">
+            <StackLayout>
+                <Label Text="Dimensionamento"  Style="{StaticResource styleLabelTitulo}" />
+                <BoxView Style="{StaticResource styleBoxView}" />
+                <Label Style="{StaticResource styleBaseLabel}" Text="Ramal de ligação aereo cabo multiplex Q16" />
+                <Label Style="{StaticResource styleBaseLabel}" Text="Ramal de entrada 3 fases de 6mm e um neutro de 10mm" />
+                <BoxView Style="{StaticResource styleBoxView}" />
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />                        
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Poteção:" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Eletroduto PVC:" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="0" />
+                    <Label Text="Eletroduto Aço:" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="0" />
+                    <Label Text="Número de Eletrodos:" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="0" />
+                    <Label Text="Condutor do Aterramento:" Style="{StaticResource styleLabelGrid}" Grid.Row="4" Grid.Column="0" />
+
+                    <Label Text="10mm" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="2" />
+                    <Label Text="32mm" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="2" />
+                    <Label Text="25mm" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="2" />
+                    <Label Text="3" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="2" />
+                    <Label Text="16mm" Style="{StaticResource styleLabelGrid}" Grid.Row="4" Grid.Column="2" />
+                </Grid>
+            </StackLayout>            
+        </Frame>
+    </ContentView>
+</ContentPage>

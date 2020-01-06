@@ -15,8 +15,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\CaracteristicaPadrao.xaml.cs">
-      <DependentUpon>CaracteristicaPadrao.xaml</DependentUpon>
+    <Compile Update="Views\CadastroProjetoEletricoView.xaml.cs">
+      <DependentUpon>CadastroProjetoEletricoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CadastroProjetoPrevencaoIncendioView.xaml.cs">
+      <DependentUpon>CadastroProjetoPrevencaoIncendioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CadastroView.xaml.cs">
+      <DependentUpon>CadastroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CaracteristicaPadraoView.xaml.cs">
+      <DependentUpon>CaracteristicaPadraoView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -24,16 +33,16 @@
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Cadastro.xaml">
+    <EmbeddedResource Update="Views\CadastroView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CaracteristicaPadrao.xaml">
+    <EmbeddedResource Update="Views\CaracteristicaPadraoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CadastroProjetoEletrico.xaml">
+    <EmbeddedResource Update="Views\CadastroProjetoEletricoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CadastroProjetoPrevencaoIncendio.xaml">
+    <EmbeddedResource Update="Views\CadastroProjetoPrevencaoIncendioView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DimensionamentoView.xaml">

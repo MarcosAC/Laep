@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Laep.Views.CaracteristicaPadraoView"
+             Shell.TabBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker" x:Key="stylePicker">
+                <Setter Property="Margin" Value="0,0,0,20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Shell.TitleView>
+        <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
+            <ImageButton Source="btnVoltar.png" 
+                         BackgroundColor="Transparent" 
+                         Command="{Binding BotaoVoltarTitleViewCommand}" />
+
+            <Label Style="{StaticResource styleLabelTitleView}"                   
+                   Text="Caracteristica do Padrão" />            
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentView>
+        <StackLayout Padding="10">
+            <Frame Style="{StaticResource styleFrame}">
+                <StackLayout>
+                    <!--Escolha da Tensão-->
+                    <Picker Title="Tensão">
+                        <Picker.Items>
+                            <x:String>Sistema Trifásico 127/220V</x:String>
+                            <x:String>Sistema Monofásico 120/240V</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!-- Qtd de Caixas-->
+                    <Picker Style="{StaticResource stylePicker}" Title="Quantidade de Caixas">
+                        <Picker.Items>
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>
+                            <x:String>3</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
+                        <!-- Inicio Picker -->
+                        <!-- Modelo de Caixa -->
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 1ª Caixa">
+                            <Picker.Items>
+                                <x:String>Monofasico</x:String>
+                                <x:String>Bifasico</x:String>
+                                <x:String>Trifasico</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Disjuntor -->
+                        <Picker Title="Disjuntor" Margin="0,0,0,20">
+                            <Picker.Items>
+                                <x:String>40A</x:String>
+                                <x:String>50A</x:String>
+                                <x:String>60A</x:String>
+                                <x:String>70A</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Modelo de Caixa -->
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 2ª Caixa">
+                            <Picker.Items>
+                                <x:String>Monofasico</x:String>
+                                <x:String>Bifasico</x:String>
+                                <x:String>Trifasico</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Disjuntor -->
+                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor">
+                            <Picker.Items>
+                                <x:String>40A</x:String>
+                                <x:String>50A</x:String>
+                                <x:String>60A</x:String>
+                                <x:String>70A</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Modelo de Caixa -->
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 3ª Caixa">
+                            <Picker.Items>
+                                <x:String>Monofasico</x:String>
+                                <x:String>Bifasico</x:String>
+                                <x:String>Trifasico</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Disjuntor -->
+                        <Picker Title="Disjuntor">
+                            <Picker.Items>
+                                <x:String>40A</x:String>
+                                <x:String>50A</x:String>
+                                <x:String>60A</x:String>
+                                <x:String>70A</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <!-- Fim Pickers -->
+                    </FlexLayout>
+
+                    <Button Style="{StaticResource styleBaseButton}"                            
+                            Text="Dimensionamento"
+                            VerticalOptions="CenterAndExpand"
+                            Command="{Binding MostrarMensagemCommand}"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView>
+    
+</ContentPage>

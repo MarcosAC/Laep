@@ -65,7 +65,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Poteção:" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Proteção:" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="0" />
                     <Label Text="Eletroduto PVC:" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="0" />
                     <Label Text="Eletroduto Aço:" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="0" />
                     <Label Text="Número de Eletrodos:" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="0" />

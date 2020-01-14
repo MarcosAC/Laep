@@ -79,5 +79,10 @@ namespace Laep.Views
             else
                 ListaDisjuntor();
         }
+
+        private void ButtonDimensionamento(object sender, System.EventArgs e)
+        {
+            Shell.Current.GoToAsync("//dimensionamento");
+        }
     }
 }

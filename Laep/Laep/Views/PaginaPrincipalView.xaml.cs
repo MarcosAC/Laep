@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Laep.Views
 {
-    public partial class PaginaPrincipal : ContentPage
+    public partial class PaginaPrincipalView : ContentPage
 	{
-		public PaginaPrincipal ()
+		public PaginaPrincipalView ()
 		{
 			InitializeComponent ();
 

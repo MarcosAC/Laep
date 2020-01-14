@@ -8,7 +8,7 @@
     <TabBar>
         <Tab>
             <ShellContent Route="paginaInicial">
-                <Views:CaracteristicaPadraoView />
+                <Views:PaginaPrincipalView />
             </ShellContent>            
         </Tab>
 
@@ -23,5 +23,17 @@
                 <Views:CadastroProjetoPrevencaoIncendioView />
             </ShellContent>
         </Tab>
+        
+        <Tab>
+            <ShellContent Route="caracteriscaPadrao">
+                <Views:CaracteristicaPadraoView />
+            </ShellContent>
+        </Tab>
+
+        <Tab>
+            <ShellContent Route="dimensionamento">
+                <Views:DimensionamentoView />
+            </ShellContent>
+        </Tab>        
     </TabBar>
 </Shell>

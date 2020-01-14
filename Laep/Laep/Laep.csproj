@@ -27,6 +27,9 @@
     <Compile Update="Views\CaracteristicaPadraoView.xaml.cs">
       <DependentUpon>CaracteristicaPadraoView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PaginaPrincipalView.xaml.cs">
+      <DependentUpon>PaginaPrincipalView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +51,7 @@
     <EmbeddedResource Update="Views\DimensionamentoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PaginaPrincipal.xaml">
+    <EmbeddedResource Update="Views\PaginaPrincipalView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

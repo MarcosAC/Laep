@@ -10,8 +10,10 @@ namespace Laep.Views
 			InitializeComponent ();
 
             ListaModeloCaixa();
-            ListaDisjuntor();
 		}
+
+        List<string> listaDisjuntorCaixaMonofasico = new List<string> { "40A", "50A", "70A" };
+        List<string> listaDisjuntorCaixaBifasicoTrifasico = new List<string> { "40A", "60A" };
 
         private void ListaModeloCaixa()
         {
@@ -27,9 +29,11 @@ namespace Laep.Views
 
         private void ListaDisjuntor()
         {
-            var listaDisjuntor = new List<string> { "40A", "50A", "60A", "70A" };
-                                                   
-            foreach (var item in listaDisjuntor)       
+            pickerDisjuntor1.Items.Clear();
+            pickerDisjuntor2.Items.Clear();
+            pickerDisjuntor3.Items.Clear();
+
+            foreach (var item in listaDisjuntorCaixaBifasicoTrifasico)
             {
                 pickerDisjuntor1.Items.Add(item);
                 pickerDisjuntor2.Items.Add(item);
@@ -37,5 +41,43 @@ namespace Laep.Views
             }
         }
 
+        private void PickerModeloCaixa1SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            pickerDisjuntor1.Items.Clear();
+
+            if (pickerModeloCaixa1.SelectedIndex == 0)
+                foreach (var item in listaDisjuntorCaixaMonofasico)
+                {
+                    pickerDisjuntor1.Items.Add(item);
+                }
+            else
+                ListaDisjuntor();
+        }
+
+        private void PickerModeloCaixa2SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            pickerDisjuntor2.Items.Clear();
+
+            if (pickerModeloCaixa2.SelectedItem.ToString() == "Monofasico")
+                foreach (var item in listaDisjuntorCaixaMonofasico)
+                {
+                    pickerDisjuntor2.Items.Add(item);
+                }
+            else
+                ListaDisjuntor();
+        }
+
+        private void PickerModeloCaixa3SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            pickerDisjuntor3.Items.Clear();
+
+            if (pickerModeloCaixa3.SelectedItem.ToString() == "Monofasico")
+                foreach (var item in listaDisjuntorCaixaMonofasico)
+                {
+                    pickerDisjuntor3.Items.Add(item);
+                }
+            else
+                ListaDisjuntor();
+        }
     }
 }

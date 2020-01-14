@@ -44,65 +44,13 @@
                         </Picker.Items>
                     </Picker>
 
-                    <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
-                        <!-- Inicio Picker -->
-                        <!-- Modelo de Caixa -->
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 1ª Caixa">
-                            <Picker.Items>
-                                <x:String>Monofasico</x:String>
-                                <x:String>Bifasico</x:String>
-                                <x:String>Trifasico</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <!-- Disjuntor -->
-                        <Picker Title="Disjuntor" Margin="0,0,0,20">
-                            <Picker.Items>
-                                <x:String>40A</x:String>
-                                <x:String>50A</x:String>
-                                <x:String>60A</x:String>
-                                <x:String>70A</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <!-- Modelo de Caixa -->
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 2ª Caixa">
-                            <Picker.Items>
-                                <x:String>Monofasico</x:String>
-                                <x:String>Bifasico</x:String>
-                                <x:String>Trifasico</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <!-- Disjuntor -->
-                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor">
-                            <Picker.Items>
-                                <x:String>40A</x:String>
-                                <x:String>50A</x:String>
-                                <x:String>60A</x:String>
-                                <x:String>70A</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <!-- Modelo de Caixa -->
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 3ª Caixa">
-                            <Picker.Items>
-                                <x:String>Monofasico</x:String>
-                                <x:String>Bifasico</x:String>
-                                <x:String>Trifasico</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <!-- Disjuntor -->
-                        <Picker Title="Disjuntor">
-                            <Picker.Items>
-                                <x:String>40A</x:String>
-                                <x:String>50A</x:String>
-                                <x:String>60A</x:String>
-                                <x:String>70A</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <!-- Fim Pickers -->
+                    <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">                        
+                        <Picker x:Name="pickerModeloCaixa1" Style="{StaticResource stylePicker}" Title="Modelo 1ª Caixa" />
+                        <Picker x:Name="pickerDisjuntor1" Title="Disjuntor" Margin="0,0,0,20" />
+                        <Picker x:Name="pickerModeloCaixa2" Style="{StaticResource stylePicker}" Title="Modelo 2ª Caixa" />
+                        <Picker x:Name="pickerDisjuntor2" Style="{StaticResource stylePicker}" Title="Disjuntor" />
+                        <Picker x:Name="pickerModeloCaixa3" Style="{StaticResource stylePicker}" Title="Modelo 3ª Caixa" />
+                        <Picker x:Name="pickerDisjuntor3" Title="Disjuntor" /> 
                     </FlexLayout>
 
                     <Button Style="{StaticResource styleBaseButton}"                            

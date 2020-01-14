@@ -8,7 +8,7 @@
     <TabBar>
         <Tab>
             <ShellContent Route="paginaInicial">
-                <Views:DimensionamentoView />
+                <Views:CaracteristicaPadraoView />
             </ShellContent>            
         </Tab>
 

@@ -47,31 +47,27 @@
                     <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
                         <Picker x:Name="pickerModeloCaixa1" 
                                 Style="{StaticResource stylePicker}" 
-                                Title="Modelo 1ª Caixa" 
-                                SelectedIndexChanged="PickerModeloCaixa1SelectedIndexChanged" />
-                        
-                        <Picker x:Name="pickerDisjuntor1" Title="Disjuntor" Margin="0,0,0,20" />
+                                Title="Modelo 1ª Caixa" />
+
+                        <Picker x:Name="pickerDisjuntor1" Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores}" />
                         
                         <Picker x:Name="pickerModeloCaixa2" 
                                 Style="{StaticResource stylePicker}" 
-                                Title="Modelo 2ª Caixa" 
-                                SelectedIndexChanged="PickerModeloCaixa2SelectedIndexChanged" />
-                        
-                        <Picker x:Name="pickerDisjuntor2" Style="{StaticResource stylePicker}" Title="Disjuntor" />
+                                Title="Modelo 2ª Caixa" />
+
+                        <Picker x:Name="pickerDisjuntor2" Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" />
                         
                         <Picker x:Name="pickerModeloCaixa3"
                                 Style="{StaticResource stylePicker}"
-                                Title="Modelo 3ª Caixa"
-                                SelectedIndexChanged="PickerModeloCaixa3SelectedIndexChanged" />
-                        
-                        <Picker x:Name="pickerDisjuntor3" Title="Disjuntor" /> 
+                                Title="Modelo 3ª Caixa" />
+
+                        <Picker x:Name="pickerDisjuntor3" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" /> 
                     </FlexLayout>
 
                     <Button Style="{StaticResource styleBaseButton}"                            
                             Text="Dimensionamento"
                             VerticalOptions="CenterAndExpand"
-                            Command="{Binding MostrarMensagemCommand}" 
-                            Clicked="ButtonDimensionamento" />
+                            Command="{Binding MostrarMensagemCommand}" />
                 </StackLayout>
             </Frame>
         </StackLayout>

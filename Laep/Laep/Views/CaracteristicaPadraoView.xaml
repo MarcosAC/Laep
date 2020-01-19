@@ -28,38 +28,21 @@
             <Frame Style="{StaticResource styleFrame}">
                 <StackLayout>
                     <!--Escolha da Tensão-->
-                    <Picker Title="Tensão">
-                        <Picker.Items>
-                            <x:String>Sistema Trifásico 127/220V</x:String>
-                            <x:String>Sistema Monofásico 120/240V</x:String>
-                        </Picker.Items>
-                    </Picker>
-
+                    <Picker Title="Tensão" ItemsSource="{Binding Tensao}" />
+                    
                     <!-- Qtd de Caixas-->
-                    <Picker Style="{StaticResource stylePicker}" Title="Quantidade de Caixas">
-                        <Picker.Items>
-                            <x:String>1</x:String>
-                            <x:String>2</x:String>
-                            <x:String>3</x:String>
-                        </Picker.Items>
-                    </Picker>
-
+                    <Picker Style="{StaticResource stylePicker}" Title="Quantidade de Caixas" ItemsSource="{Binding QuantidadeCaixas}" />
+                    
                     <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
-                        <Picker x:Name="pickerModeloCaixa1" 
-                                Style="{StaticResource stylePicker}" 
-                                Title="Modelo 1ª Caixa" />
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 1ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
 
-                        <Picker x:Name="pickerDisjuntor1" Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores}" />
+                        <Picker Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores}" />
                         
-                        <Picker x:Name="pickerModeloCaixa2" 
-                                Style="{StaticResource stylePicker}" 
-                                Title="Modelo 2ª Caixa" />
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 2ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
 
                         <Picker x:Name="pickerDisjuntor2" Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" />
                         
-                        <Picker x:Name="pickerModeloCaixa3"
-                                Style="{StaticResource stylePicker}"
-                                Title="Modelo 3ª Caixa" />
+                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 3ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
 
                         <Picker x:Name="pickerDisjuntor3" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" /> 
                     </FlexLayout>

@@ -18,24 +18,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado, value);
-                ListaDisjuntores.Clear();
-
-                if (Disjuntores != null)
-                    Disjuntores = null;
-
-                if (_modeloCaixaSelecionado == "Monofasico")
-                {
-                    ListaDisjuntores.Add("40A");
-                    ListaDisjuntores.Add("50A");
-                    ListaDisjuntores.Add("70A");
-                    Disjuntores = ListaDisjuntores;
-                }
-                else
-                {
-                    ListaDisjuntores.Add("40A");
-                    ListaDisjuntores.Add("60A");
-                    Disjuntores = ListaDisjuntores;
-                }
+                AmperagemDisjuntores(_modeloCaixaSelecionado);
             }
         }
 
@@ -44,6 +27,28 @@ namespace Laep.ViewModels
         {
             get => _disjuntores;
             set => SetProperty(ref _disjuntores, value);
+        }
+
+        private void AmperagemDisjuntores(string tipoCaixa)
+        {
+            ListaDisjuntores.Clear();
+
+            if (Disjuntores != null)
+                Disjuntores = null;
+
+            if (tipoCaixa == "Monofasico")
+            {
+                ListaDisjuntores.Add("40A");
+                ListaDisjuntores.Add("50A");
+                ListaDisjuntores.Add("70A");
+                Disjuntores = ListaDisjuntores;
+            }
+            else
+            {
+                ListaDisjuntores.Add("40A");
+                ListaDisjuntores.Add("60A");
+                Disjuntores = ListaDisjuntores;
+            }
         }
     }
 }

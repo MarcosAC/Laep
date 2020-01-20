@@ -28,23 +28,34 @@
             <Frame Style="{StaticResource styleFrame}">
                 <StackLayout>
                     <!--Escolha da Tensão-->
-                    <Picker Title="Tensão" ItemsSource="{Binding Tensao}" />
+                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" />
                     
                     <!-- Qtd de Caixas-->
-                    <Picker Style="{StaticResource stylePicker}" Title="Quantidade de Caixas" ItemsSource="{Binding QuantidadeCaixas}" />
+                    <Picker Style="{StaticResource stylePicker}"
+                            Title="Quantidade de Caixas" 
+                            ItemsSource="{Binding ListaQuantidadeCaixas}" />
                     
                     <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 1ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 1ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado}" />
 
                         <Picker Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores}" />
-                        
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 2ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
 
-                        <Picker x:Name="pickerDisjuntor2" Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" />
-                        
-                        <Picker Style="{StaticResource stylePicker}" Title="Modelo 3ª Caixa" ItemsSource="{Binding ModeloCaixas}" />
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 2ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado}" />
 
-                        <Picker x:Name="pickerDisjuntor3" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" /> 
+                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores}" />
+
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 3ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado}" />
+
+                        <Picker Title="Disjuntor" ItemsSource="{Binding Disjuntores}" /> 
                     </FlexLayout>
 
                     <Button Style="{StaticResource styleBaseButton}"                            

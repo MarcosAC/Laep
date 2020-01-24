@@ -11,6 +11,59 @@ namespace Laep.ViewModels
 
         readonly List<string> ListaDisjuntores = new List<string>();
 
+        private bool _visibleCaixa1 = false;
+        public bool VisibleCaixa1
+        {
+            get => _visibleCaixa1;
+            set => SetProperty(ref _visibleCaixa1, value);
+        }
+
+        private bool _visibleCaixa2 = false;
+        public bool VisibleCaixa2
+        {
+            get => _visibleCaixa2;
+            set => SetProperty(ref _visibleCaixa2, value);
+        }
+
+        private bool _visibleCaixa3 = false;
+        public bool VisibleCaixa3
+        {
+            get => _visibleCaixa3;
+            set => SetProperty(ref _visibleCaixa3, value);
+        }
+
+        private bool _visibleDisjuntores1 = false;
+        public bool VisibleDisjuntores1
+        {
+            get => _visibleDisjuntores1;
+            set => SetProperty(ref _visibleDisjuntores1, value);
+        }
+
+        private bool _visibleDisjuntores2 = false;
+        public bool VisibleDisjuntores2
+        {
+            get => _visibleDisjuntores2;
+            set => SetProperty(ref _visibleDisjuntores2, value);
+        }
+
+        private bool _visibleDisjuntores3 = false;
+        public bool VisibleDisjuntores3
+        {
+            get => _visibleDisjuntores3;
+            set => SetProperty(ref _visibleDisjuntores3, value);
+        }
+
+        private string _quantidadeCaixaSelecionado;
+        public string QuantidadeCaixaSelecionado
+        {
+            get => _quantidadeCaixaSelecionado;
+            set
+            {
+                SetProperty(ref _quantidadeCaixaSelecionado, value);
+                QuantidadeCaixa(QuantidadeCaixaSelecionado);
+            }
+        }
+
         private string _modeloCaixaSelecionado1;
         public string ModeloCaixaSelecionado1
         {
@@ -63,6 +116,42 @@ namespace Laep.ViewModels
         {
             get => _disjuntores3;
             set => SetProperty(ref _disjuntores3, value);
+        }
+
+        private void QuantidadeCaixa(string quantidade)
+        {
+            if (quantidade == "1")
+            {
+                VisibleCaixa1 = true;
+                VisibleCaixa2 = false;
+                VisibleCaixa3 = false;
+
+                VisibleDisjuntores1 = true;
+                VisibleDisjuntores2 = false;
+                VisibleDisjuntores3 = false;
+            }
+
+            if (quantidade == "2")
+            {
+                VisibleCaixa1 = true;
+                VisibleCaixa2 = true;
+                VisibleCaixa3 = false;
+
+                VisibleDisjuntores1 = true;
+                VisibleDisjuntores2 = true;
+                VisibleDisjuntores3 = false;
+            }
+
+            if (quantidade == "3")
+            {
+                VisibleCaixa1 = true;
+                VisibleCaixa2 = true;
+                VisibleCaixa3 = true;
+
+                VisibleDisjuntores1 = true;
+                VisibleDisjuntores2 = true;
+                VisibleDisjuntores3 = true;
+            }
         }
 
         private void AmperagemDisjuntores(string tipoCaixa, string disjuntor)

@@ -33,29 +33,69 @@
                     <!-- Qtd de Caixas-->
                     <Picker Style="{StaticResource stylePicker}"
                             Title="Quantidade de Caixas" 
-                            ItemsSource="{Binding ListaQuantidadeCaixas}" />
+                            ItemsSource="{Binding ListaQuantidadeCaixas}"
+                            SelectedItem="{Binding QuantidadeCaixaSelecionado}" />
                     
                     <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 1ª Caixa"
                                 ItemsSource="{Binding ListaModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado1}" />
+                                SelectedItem="{Binding ModeloCaixaSelecionado1}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa1}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
 
-                        <Picker Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores1}" />
+                        <Picker Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores1}" IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores1}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
 
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 2ª Caixa"
                                 ItemsSource="{Binding ListaModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado2}" />
+                                SelectedItem="{Binding ModeloCaixaSelecionado2}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa2}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
 
-                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores2}" />
+                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores2}" IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores2}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
 
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 3ª Caixa"
                                 ItemsSource="{Binding ListaModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado3}" />
+                                SelectedItem="{Binding ModeloCaixaSelecionado3}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa3}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
 
-                        <Picker Title="Disjuntor" ItemsSource="{Binding Disjuntores3}" /> 
+                        <Picker Title="Disjuntor" ItemsSource="{Binding Disjuntores3}" IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores3}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker> 
                     </FlexLayout>
 
                     <Button Style="{StaticResource styleBaseButton}"                            

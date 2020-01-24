@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Prodfy.ViewModels
+namespace Laep.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
-    {
+    public class BaseViewModel: INotifyPropertyChanged
+    {       
         public event PropertyChangedEventHandler PropertyChanged;
 
         string title = string.Empty;
@@ -20,7 +20,7 @@ namespace Prodfy.ViewModels
         public bool IsBusy
         {
             get => _isBusy;
-            set => SetProperty(ref _isBusy, value);            
+            set => SetProperty(ref _isBusy, value);
         }
 
         private bool _tabBarIsVisible;
@@ -40,6 +40,6 @@ namespace Prodfy.ViewModels
 
             storege = value;
             OnPropertyChanged(propertyName);
-        }        
+        }
     }
 }

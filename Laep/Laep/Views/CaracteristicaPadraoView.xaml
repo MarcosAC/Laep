@@ -101,7 +101,7 @@
                     <Button Style="{StaticResource styleBaseButton}"                            
                             Text="Dimensionamento"
                             VerticalOptions="CenterAndExpand"
-                            Command="{Binding MostrarMensagemCommand}" />
+                            Command="{Binding DimensionamentoCommand}" />
                 </StackLayout>
             </Frame>
         </StackLayout>

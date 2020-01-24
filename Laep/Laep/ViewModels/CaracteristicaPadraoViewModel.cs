@@ -1,5 +1,8 @@
 ﻿using Prodfy.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Laep.ViewModels
 {
@@ -11,6 +14,7 @@ namespace Laep.ViewModels
 
         readonly List<string> ListaDisjuntores = new List<string>();
 
+        #region Propriedades
         private bool _visibleCaixa1 = false;
         public bool VisibleCaixa1
         {
@@ -117,7 +121,15 @@ namespace Laep.ViewModels
             get => _disjuntores3;
             set => SetProperty(ref _disjuntores3, value);
         }
+        #endregion
 
+        private Command _dimensionamentoCommand;
+        public Command DimensionamentoCommand =>
+            _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand()));
+
+        private async Task ExecuteDimensionamentoCommand() => await Shell.Current.GoToAsync("//dimensionamento");
+
+        #region Métodos
         private void QuantidadeCaixa(string quantidade)
         {
             if (quantidade == "1")
@@ -238,5 +250,6 @@ namespace Laep.ViewModels
                 }
             }
         }
+        #endregion
     }
 }

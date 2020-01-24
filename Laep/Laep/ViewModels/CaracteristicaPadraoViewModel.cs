@@ -123,6 +123,7 @@ namespace Laep.ViewModels
         }
         #endregion
 
+        #region Commands
         private Command _dimensionamentoCommand;
         public Command DimensionamentoCommand =>
             _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand()));
@@ -134,6 +135,8 @@ namespace Laep.ViewModels
             _botaoVoltarTitleViewCommand ?? (_botaoVoltarTitleViewCommand = new Command(async () => await ExecuteBotaoVoltarTitleViewCommand()));
 
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//paginaInicial");
+
+        #endregion
 
         #region Métodos
         private void QuantidadeCaixa(string quantidade)

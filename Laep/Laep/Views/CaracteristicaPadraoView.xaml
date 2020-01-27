@@ -49,7 +49,12 @@
                             </Picker.Triggers>
                         </Picker>
 
-                        <Picker Title="Disjuntor" Margin="0,0,0,20" ItemsSource="{Binding Disjuntores1}" IsEnabled="False">
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Disjuntor" 
+                                Margin="0,0,0,20" 
+                                ItemsSource="{Binding Disjuntores1}"
+                                SelectedItem="{Binding Disjuntores1Selecionado}"
+                                IsEnabled="False">
                             <Picker.Triggers>
                                 <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores1}" Value="True">
                                     <Setter Property="IsEnabled" Value="True" />
@@ -69,7 +74,11 @@
                             </Picker.Triggers>
                         </Picker>
 
-                        <Picker Style="{StaticResource stylePicker}" Title="Disjuntor" ItemsSource="{Binding Disjuntores2}" IsEnabled="False">
+                        <Picker Style="{StaticResource stylePicker}" 
+                                Title="Disjuntor" 
+                                ItemsSource="{Binding Disjuntores2}"
+                                SelectedItem="{Binding Disjuntores2Selecionado}"
+                                IsEnabled="False">
                             <Picker.Triggers>
                                 <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores2}" Value="True">
                                     <Setter Property="IsEnabled" Value="True" />
@@ -89,7 +98,11 @@
                             </Picker.Triggers>
                         </Picker>
 
-                        <Picker Title="Disjuntor" ItemsSource="{Binding Disjuntores3}" IsEnabled="False">
+                        <Picker Style="{StaticResource stylePicker}" 
+                                Title="Disjuntor" 
+                                ItemsSource="{Binding Disjuntores3}"
+                                SelectedItem="{Binding Disjuntores3Selecionado}"
+                                IsEnabled="False">
                             <Picker.Triggers>
                                 <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores3}" Value="True">
                                     <Setter Property="IsEnabled" Value="True" />

@@ -119,14 +119,44 @@ namespace Laep.ViewModels
             get => _disjuntores3;
             set => SetProperty(ref _disjuntores3, value);
         }
+
+        private string _disjuntores1Selecionado;
+        public string Disjuntores1Selecionado
+        {
+            get => _disjuntores1Selecionado;
+            set => SetProperty(ref _disjuntores1Selecionado, value);
+        }
+
+        private string _disjuntores2Selecionado;
+        public string Disjuntores2Selecionado
+        {
+            get => _disjuntores2Selecionado;
+            set => SetProperty(ref _disjuntores2Selecionado, value);
+        }
+
+        private string _disjuntores3Selecionado;
+        public string Disjuntores3Selecionado
+        {
+            get => _disjuntores3Selecionado;
+            set => SetProperty(ref _disjuntores3Selecionado, value);
+        }
         #endregion
 
         #region Commands
         private Command _dimensionamentoCommand;
         public Command DimensionamentoCommand =>
-            _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand()));
+            _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand(Disjuntores1Selecionado, Disjuntores2Selecionado, Disjuntores3Selecionado)));
 
-        private async Task ExecuteDimensionamentoCommand() => await Shell.Current.GoToAsync("//dimensionamento");
+        private async Task ExecuteDimensionamentoCommand(string disjuntor1, string disjuntor2 = null, string disjuntor3 = null)
+        {
+            List<string> disjuntores = new List<string>();
+
+            disjuntores.Add(disjuntor1);
+            disjuntores.Add(disjuntor2);
+            disjuntores.Add(disjuntor3);
+
+            await Shell.Current.GoToAsync($"dimensionamento?disjuntor={disjuntores}");
+        }
 
         private Command _botaoVoltarTitleViewCommand;
         public Command BotaoVoltarTitleViewCommand =>

@@ -145,17 +145,13 @@ namespace Laep.ViewModels
         #region Commands
         private Command _dimensionamentoCommand;
         public Command DimensionamentoCommand =>
-            _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand(Disjuntores1Selecionado, Disjuntores2Selecionado, Disjuntores3Selecionado)));
+            _dimensionamentoCommand ?? (_dimensionamentoCommand = new Command(async () => await ExecuteDimensionamentoCommand()));
 
-        private async Task ExecuteDimensionamentoCommand(string disjuntor1, string disjuntor2 = null, string disjuntor3 = null)
+        private async Task ExecuteDimensionamentoCommand()
         {
-            List<string> disjuntores = new List<string>();
-
-            disjuntores.Add(disjuntor1);
-            disjuntores.Add(disjuntor2);
-            disjuntores.Add(disjuntor3);
-
-            await Shell.Current.GoToAsync($"dimensionamento?disjuntor={disjuntores}");
+            string amperagens = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}";
+             
+            await Shell.Current.GoToAsync($"//dimensionamento?amper={amperagens}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

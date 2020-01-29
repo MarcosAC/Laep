@@ -71,7 +71,7 @@
                     <Label Text="Número de Eletrodos:" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="0" />
                     <Label Text="Condutor do Aterramento:" Style="{StaticResource styleLabelGrid}" Grid.Row="4" Grid.Column="0" />
 
-                    <Label Text="10mm" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="2" />
+                    <Label Text="{Binding Amper}" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="2" />
                     <Label Text="32mm" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="2" />
                     <Label Text="25mm" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="2" />
                     <Label Text="3" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="2" />

@@ -4,14 +4,14 @@ using Xamarin.Forms;
 
 namespace Laep.ViewModels
 {
-    [QueryProperty("Amperes", "amper")]
+    [QueryProperty("Disjuntores", "disjuntores")]
     public class DimensionamentoViewModel : BaseViewModel
     {
         private Command _botaoVoltarTitleViewCommand;
         public Command BotaoVoltarTitleViewCommand =>
             _botaoVoltarTitleViewCommand ?? (_botaoVoltarTitleViewCommand = new Command(async () => await ExecuteBotaoVoltarTitleViewCommand()));
 
-        public string Amperes
+        public string Disjuntores
         {            
             set
             {

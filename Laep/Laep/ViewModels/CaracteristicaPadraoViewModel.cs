@@ -149,9 +149,9 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            string amperagens = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}";
+            var disjuntores = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}";
              
-            await Shell.Current.GoToAsync($"//dimensionamento?amper={amperagens}");
+            await Shell.Current.GoToAsync($"//dimensionamento?disjuntores={disjuntores}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

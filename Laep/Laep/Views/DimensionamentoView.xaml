@@ -47,8 +47,8 @@
             <StackLayout>
                 <Label Text="Dimensionamento"  Style="{StaticResource styleLabelTitulo}" />
                 <BoxView Style="{StaticResource styleBoxView}" />
-                <Label Style="{StaticResource styleBaseLabel}" Text="Ramal de ligação aereo cabo multiplex Q16" />
-                <Label Style="{StaticResource styleBaseLabel}" Text="Ramal de entrada 3 fases de 6mm e um neutro de 10mm" />
+                <Label Style="{StaticResource styleBaseLabel}" Text="{Binding RamalLigacao}" />
+                <Label Style="{StaticResource styleBaseLabel}" Text="{Binding RamalEntrada}" />
                 <BoxView Style="{StaticResource styleBoxView}" />
                 
                 <Grid>
@@ -65,17 +65,17 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Proteção:" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="0" />
-                    <Label Text="Eletroduto PVC:" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="0" />
-                    <Label Text="Eletroduto Aço:" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="0" />
-                    <Label Text="Número de Eletrodos:" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="0" />
-                    <Label Text="Condutor do Aterramento:" Style="{StaticResource styleLabelGrid}" Grid.Row="4" Grid.Column="0" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="Proteção:"  Grid.Row="0" Grid.Column="0" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto PVC:"  Grid.Row="1" Grid.Column="0" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto Aço:"  Grid.Row="2" Grid.Column="0" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:"  Grid.Row="3" Grid.Column="0" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:"  Grid.Row="4" Grid.Column="0" />
 
-                    <Label Text="{Binding Amper}" Style="{StaticResource styleLabelGrid}" Grid.Row="0" Grid.Column="2" />
-                    <Label Text="32mm" Style="{StaticResource styleLabelGrid}" Grid.Row="1" Grid.Column="2" />
-                    <Label Text="25mm" Style="{StaticResource styleLabelGrid}" Grid.Row="2" Grid.Column="2" />
-                    <Label Text="3" Style="{StaticResource styleLabelGrid}" Grid.Row="3" Grid.Column="2" />
-                    <Label Text="16mm" Style="{StaticResource styleLabelGrid}" Grid.Row="4" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Amper}"  Grid.Row="0" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="32mm"  Grid.Row="1" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="25mm"  Grid.Row="2" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="3"  Grid.Row="3" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="16mm"  Grid.Row="4" Grid.Column="2" />
                 </Grid>
             </StackLayout>            
         </Frame>

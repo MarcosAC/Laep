@@ -28,7 +28,7 @@
             <Frame Style="{StaticResource styleFrame}">
                 <StackLayout>
                     <!--Escolha da Tensão-->
-                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" />
+                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}"/>
                     
                     <!-- Qtd de Caixas-->
                     <Picker Style="{StaticResource stylePicker}"

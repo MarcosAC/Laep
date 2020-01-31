@@ -71,11 +71,11 @@
                     <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:"  Grid.Row="3" Grid.Column="0" />
                     <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:"  Grid.Row="4" Grid.Column="0" />
 
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Amper}"  Grid.Row="0" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="32mm"  Grid.Row="1" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="25mm"  Grid.Row="2" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="3"  Grid.Row="3" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="16mm"  Grid.Row="4" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Protecao}"  Grid.Row="0" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoPvc}"  Grid.Row="1" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoAco}"  Grid.Row="2" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding NumeroDeEletrodos}"  Grid.Row="3" Grid.Column="2" />
+                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding CondutorDeAterramento}"  Grid.Row="4" Grid.Column="2" />
                 </Grid>
             </StackLayout>            
         </Frame>

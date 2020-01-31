@@ -55,6 +55,13 @@ namespace Laep.ViewModels
             set => SetProperty(ref _visibleDisjuntores3, value);
         }
 
+        private string _tensaoSelecionada;
+        public string TensaoSelecionada
+        {
+            get => _tensaoSelecionada;
+            set => SetProperty(ref _tensaoSelecionada, value);
+        }
+
         private string _quantidadeCaixaSelecionado;
         public string QuantidadeCaixaSelecionado
         {
@@ -149,7 +156,7 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            var disjuntores = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}";
+            var disjuntores = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}, {TensaoSelecionada}";
              
             await Shell.Current.GoToAsync($"//dimensionamento?disjuntores={disjuntores}");
         }

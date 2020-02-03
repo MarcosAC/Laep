@@ -156,9 +156,16 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            var disjuntores = $"{Disjuntores1Selecionado}, {Disjuntores2Selecionado}, {Disjuntores3Selecionado}, {TensaoSelecionada}";
+            var dadosDimensionamento = $"{TensaoSelecionada}," +
+                                       $"{QuantidadeCaixaSelecionado}," +
+                                       $"{ModeloCaixaSelecionado1}," +
+                                       $"{ModeloCaixaSelecionado2}," +
+                                       $"{ModeloCaixaSelecionado3}," +
+                                       $"{Disjuntores1Selecionado}," +
+                                       $"{Disjuntores2Selecionado}," +
+                                       $"{Disjuntores3Selecionado}";
              
-            await Shell.Current.GoToAsync($"//dimensionamento?disjuntores={disjuntores}");
+            await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

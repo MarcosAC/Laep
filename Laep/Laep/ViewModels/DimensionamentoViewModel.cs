@@ -8,8 +8,6 @@ namespace Laep.ViewModels
     public class DimensionamentoViewModel : BaseViewModel
     {
         string tensao = string.Empty;
-        //string tensaoTrifasico = string.Empty;
-        //string tensaoMonofasico = string.Empty;
 
         string quantidadeDeCaixa = string.Empty;
 
@@ -43,6 +41,7 @@ namespace Laep.ViewModels
             }
         }
 
+        #region Propriedades
         private string _ramalLigacao;
         public string RamalLigacao
         {
@@ -91,6 +90,7 @@ namespace Laep.ViewModels
             get => _condutorDeAterramento;
             set => SetProperty(ref _condutorDeAterramento, value);
         }
+        #endregion
 
         private Command _botaoVoltarTitleViewCommand;
         public Command BotaoVoltarTitleViewCommand =>
@@ -112,80 +112,343 @@ namespace Laep.ViewModels
 
             if (tensao == "Sistema Trifásico 127/220V")
             {
-                if (quantidadeDeCaixa == "3" &&
-                    tipoCaixa1 == "Monofasico" &&
-                    tipoCaixa2 == "Monofasico" &&
-                    tipoCaixa2 == "Monofasico" &&
-                    amperDisjuntor1 == "40A" &&
-                    amperDisjuntor2 == "40A" &&
-                    amperDisjuntor3 == "40A")
+                switch (quantidadeDeCaixa)
                 {
-                    valorMultiplex = "Q16";
-                    valorEntrada = "3";
-                    valorFases = "6mm";
-                    valorNeutro = "10mm";
-                    protecao = "10mm";
-                    eletrodutoPcv = "32mm";
-                    eletrodutoAco = "25mm";
-                    numeroDeEletrodos = "3";
-                    condutorDeAterramento = "16mm";
+                    case "1":
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "40A" &&
+                            amperDisjuntor2 == "40A" &&
+                            amperDisjuntor3 == "40A")
+                        {
+                        }
+                        break;
 
-                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                    case "2":
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "40A" &&
+                            amperDisjuntor2 == "40A" &&
+                            amperDisjuntor3 == "40A")
+                        {
+                        }
+                        break;
 
-                    RamalLigacao = ramalDeLigacao;
-                    RamalEntrada = ramalDeEntrada;
-                    Protecao = protecao;
-                    EletrodutoPvc = eletrodutoPcv;
-                    EletrodutoAco = eletrodutoAco;
-                    NumeroDeEletrodos = numeroDeEletrodos;
-                    CondutorDeAterramento = condutorDeAterramento;
+                    case "3":
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "40A" &&
+                            amperDisjuntor2 == "40A" &&
+                            amperDisjuntor3 == "40A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "6mm";
+                            valorNeutro = "10mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
 
-                    OnPropertyChanged("RamalLigacao");
-                    OnPropertyChanged("RamalEntrada");
-                    OnPropertyChanged("Protecao");
-                    OnPropertyChanged("EletrodutoPvc");
-                    OnPropertyChanged("EletrodutoAco");
-                    OnPropertyChanged("Eletrodos");
-                    OnPropertyChanged("Condutor");
-                }
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
 
-                if (amperDisjuntor1 == "40A" && tensao == "Sistema Trifásico 127/220")
-                {
-                    valorMultiplex = "Q";
-                    valorEntrada = "1";
-                    valorFases = "10mm";
-                    valorNeutro = "10mm";
-                    protecao = "10mm";
-                    eletrodutoPcv = "32mm";
-                    eletrodutoAco = "25mm";
-                    numeroDeEletrodos = "1";
-                    condutorDeAterramento = "10mm";
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
 
-                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            return;
+                        }                        
+                        
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "50A" &&
+                            amperDisjuntor2 == "50A" &&
+                            amperDisjuntor3 == "50A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "10mm";
+                            valorNeutro = "16mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
 
-                    RamalLigacao = ramalDeLigacao;
-                    RamalEntrada = ramalDeEntrada;
-                    Protecao = protecao;
-                    EletrodutoPvc = eletrodutoPcv;
-                    EletrodutoAco = eletrodutoAco;
-                    NumeroDeEletrodos = numeroDeEletrodos;
-                    CondutorDeAterramento = condutorDeAterramento;
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
 
-                    OnPropertyChanged("RamalLigacao");
-                    OnPropertyChanged("RamalEntrada");
-                    OnPropertyChanged("Protecao");
-                    OnPropertyChanged("EletrodutoPvc");
-                    OnPropertyChanged("EletrodutoAco");
-                    OnPropertyChanged("Eletrodos");
-                    OnPropertyChanged("Condutor");
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }                        
+                       
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "70A" &&
+                            amperDisjuntor2 == "70A" &&
+                            amperDisjuntor3 == "70A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "40A" &&
+                            amperDisjuntor2 == "40A" &&
+                            amperDisjuntor3 == "50A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "10mm";
+                            valorNeutro = "16mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "50A" &&
+                            amperDisjuntor2 == "50A" &&
+                            amperDisjuntor3 == "40A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "10mm";
+                            valorNeutro = "16mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "40A" &&
+                            amperDisjuntor2 == "40A" &&
+                            amperDisjuntor3 == "70A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "50A" &&
+                            amperDisjuntor2 == "50A" &&
+                            amperDisjuntor3 == "70A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixa1 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            tipoCaixa2 == "Monofasico" &&
+                            amperDisjuntor1 == "70A" &&
+                            amperDisjuntor2 == "70A" &&
+                            amperDisjuntor3 == "40A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        break;
                 }
             }
 
             if (tensao == "Sistema Monofásico 120/240V")
             {
+                //if (quantidadeDeCaixa == "1" &&
+                //    tipoCaixa1 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    amperDisjuntor1 == "40A" &&
+                //    amperDisjuntor2 == "40A" &&
+                //    amperDisjuntor3 == "40A")
+                //{
 
+                //}
+
+                //if (quantidadeDeCaixa == "2" &&
+                //    tipoCaixa1 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    amperDisjuntor1 == "40A" &&
+                //    amperDisjuntor2 == "40A" &&
+                //    amperDisjuntor3 == "40A")
+                //{
+
+                //}
+
+                //if (quantidadeDeCaixa == "3" &&
+                //    tipoCaixa1 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    tipoCaixa2 == "Monofasico" &&
+                //    amperDisjuntor1 == "40A" &&
+                //    amperDisjuntor2 == "40A" &&
+                //    amperDisjuntor3 == "40A")
+                //{
+                //    valorMultiplex = "Q16";
+                //    valorEntrada = "3";
+                //    valorFases = "6mm";
+                //    valorNeutro = "10mm";
+                //    protecao = "10mm";
+                //    eletrodutoPcv = "32mm";
+                //    eletrodutoAco = "25mm";
+                //    numeroDeEletrodos = "3";
+                //    condutorDeAterramento = "16mm";
+
+                //    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                //    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                //    RamalLigacao = ramalDeLigacao;
+                //    RamalEntrada = ramalDeEntrada;
+                //    Protecao = protecao;
+                //    EletrodutoPvc = eletrodutoPcv;
+                //    EletrodutoAco = eletrodutoAco;
+                //    NumeroDeEletrodos = numeroDeEletrodos;
+                //    CondutorDeAterramento = condutorDeAterramento;
+
+                //    OnPropertyChanged("RamalLigacao");
+                //    OnPropertyChanged("RamalEntrada");
+                //    OnPropertyChanged("Protecao");
+                //    OnPropertyChanged("EletrodutoPvc");
+                //    OnPropertyChanged("EletrodutoAco");
+                //    OnPropertyChanged("Eletrodos");
+                //    OnPropertyChanged("Condutor");
+                //}
             }
         }
     }

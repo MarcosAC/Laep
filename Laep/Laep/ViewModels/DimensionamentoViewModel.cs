@@ -536,7 +536,7 @@ namespace Laep.ViewModels
                         }
                         #endregion
 
-                        #region Bifasico-> 40 40 - 60 60 | 40 60 | Monofasico->40 50 70 | 70 70
+                        #region Bifasico->40 40 - 60 60 | 40 60 | Monofasico->40 50 70 | 70 70
                         if (//Bifasico->40 40 | Monofasico->40
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
@@ -570,7 +570,7 @@ namespace Laep.ViewModels
                             tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Monofasico 70A")
                             {
-                            valorMultiplex = "Q35";
+                                valorMultiplex = "Q35";
                                 valorEntrada = "3";
                                 valorFases = "35mm";
                                 valorNeutro = "35mm";
@@ -595,7 +595,41 @@ namespace Laep.ViewModels
                             }
                         #endregion
 
-                        //To Do primeira opção disjuntor bipolar de 40 ou 60 e na 2º e 3º opçao dois disjuntores mono de 40 ou 50
+                        #region Bifasico->40 60 | Monofasico->40 50
+                        if (//Bifasico->40 | Monofasico-> 40 40
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||
+                            //Bifasico->60 | Monofasico->50 50
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 50A")
+                        {
+                            valorMultiplex = "Q35";
+                            valorEntrada = "3";
+                            valorFases = "25mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        #endregion
+
                         break;
                 }
             }

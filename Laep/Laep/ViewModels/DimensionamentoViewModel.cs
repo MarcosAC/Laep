@@ -10,7 +10,7 @@ namespace Laep.ViewModels
         string tensao = string.Empty;
         string quantidadeDeCaixa = string.Empty;
         string amperDisjuntor = string.Empty;
-        string tipoCaixa = string.Empty;
+        string tipoCaixaAmperDisjuntor = string.Empty;
 
         public string DadosDimensionamento
         {            
@@ -22,7 +22,9 @@ namespace Laep.ViewModels
                 {
                     tensao = arrayDadosDimensiomanemto[0];
                     quantidadeDeCaixa = arrayDadosDimensiomanemto[1];
-                    tipoCaixa = $"{arrayDadosDimensiomanemto[2]}, {arrayDadosDimensiomanemto[3]}, {arrayDadosDimensiomanemto[4]}";
+                    tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
+                                $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
+                                $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[6]}";
                     amperDisjuntor = $"{arrayDadosDimensiomanemto[5]}, {arrayDadosDimensiomanemto[6]}, {arrayDadosDimensiomanemto[7]}";
 
                     RelatorioDimensionamento();
@@ -116,7 +118,7 @@ namespace Laep.ViewModels
                         break;
 
                     case "3":
-                        switch (tipoCaixa)
+                        switch (tipoCaixaAmperDisjuntor)
                         {
                             case "Monofasico, Monofasico, Monofasico":
                                 if (amperDisjuntor == "40A, 40A, 40A")
@@ -347,183 +349,57 @@ namespace Laep.ViewModels
 
                                     return;
                                 }
-                                if (amperDisjuntor == "50A, 50A, 50A")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "10mm";
-                                    valorNeutro = "16mm";
-                                    protecao = "10mm";
-                                    eletrodutoPcv = "32mm";
-                                    eletrodutoAco = "25mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "70A, 70A, 70A")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "16mm";
-                                    valorNeutro = "25mm";
-                                    protecao = "16mm";
-                                    eletrodutoPcv = "40mm";
-                                    eletrodutoAco = "32mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "40A, 40A, 50A" || amperDisjuntor == "50A, 40A, 40A" || amperDisjuntor == "40A, 50A, 40A ")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "10mm";
-                                    valorNeutro = "16mm";
-                                    protecao = "10mm";
-                                    eletrodutoPcv = "32mm";
-                                    eletrodutoAco = "25mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "50A, 50A, 40A" || amperDisjuntor == "40A, 50A, 50A" || amperDisjuntor == "50A, 40A, 50A ")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "10mm";
-                                    valorNeutro = "16mm";
-                                    protecao = "10mm";
-                                    eletrodutoPcv = "32mm";
-                                    eletrodutoAco = "25mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "40A, 40A, 70A" || amperDisjuntor == "70A, 40A, 40A" || amperDisjuntor == "40A, 70A, 40A ")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "16mm";
-                                    valorNeutro = "25mm";
-                                    protecao = "16mm";
-                                    eletrodutoPcv = "40mm";
-                                    eletrodutoAco = "32mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "50A, 50A, 70A" || amperDisjuntor == "70A, 50A, 50A" || amperDisjuntor == "50A, 70A, 50A ")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "16mm";
-                                    valorNeutro = "25mm";
-                                    protecao = "16mm";
-                                    eletrodutoPcv = "40mm";
-                                    eletrodutoAco = "32mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
-                                if (amperDisjuntor == "70A, 70A, 40A" || amperDisjuntor == "40A, 70A, 70A" || amperDisjuntor == "70A, 40A, 70A ")
-                                {
-                                    valorMultiplex = "Q16";
-                                    valorEntrada = "3";
-                                    valorFases = "16mm";
-                                    valorNeutro = "25mm";
-                                    protecao = "16mm";
-                                    eletrodutoPcv = "40mm";
-                                    eletrodutoAco = "32mm";
-                                    numeroDeEletrodos = "3";
-                                    condutorDeAterramento = "16mm";
-
-                                    string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
-
-                                    RamalLigacao = ramalDeLigacao;
-                                    RamalEntrada = ramalDeEntrada;
-                                    Protecao = protecao;
-                                    EletrodutoPvc = eletrodutoPcv;
-                                    EletrodutoAco = eletrodutoAco;
-                                    NumeroDeEletrodos = numeroDeEletrodos;
-                                    CondutorDeAterramento = condutorDeAterramento;
-
-                                    return;
-                                }
                                 break;
                         }
+
+                        if (//Bipolar->40 60 mono->40 50
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Bifasico 60A" ||
+                            //Bipolar->40 mono->60 70
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Bifasico 60A")
+                            {
+                                valorMultiplex = "Q35";
+                                valorEntrada = "3";
+                                valorFases = "35mm";
+                                valorNeutro = "35mm";
+                                protecao = "35mm";
+                                eletrodutoPcv = "40mm";
+                                eletrodutoAco = "32mm";
+                                numeroDeEletrodos = "3";
+                                condutorDeAterramento = "16mm";
+
+                                string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                                RamalLigacao = ramalDeLigacao;
+                                RamalEntrada = ramalDeEntrada;
+                                Protecao = protecao;
+                                EletrodutoPvc = eletrodutoPcv;
+                                EletrodutoAco = eletrodutoAco;
+                                NumeroDeEletrodos = numeroDeEletrodos;
+                                CondutorDeAterramento = condutorDeAterramento;
+
+                                return;
+                            }                        
                         break;
                 }
             }

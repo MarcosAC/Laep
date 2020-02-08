@@ -194,6 +194,106 @@ namespace Laep.ViewModels
                             return;
                         }
                         #endregion
+
+                        #region Bifasico
+                        // Bifasico->40 40 - 60 60 | Bifasico->40 60
+                        if (tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A")
+                        {
+                            valorMultiplex = "T16";
+                            valorEntrada = "2";
+                            valorFases = "25mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "2";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        // Bifasico->40 60 | Monofasico->70
+                        if (//Bifasico->40 60 | Monofasico->70
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A" ||
+                            //Bifasico->40 | Monofasico->40 50
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A" ||
+                            //Bifasico->60 | Monofasico->40 50
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "2";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        // Bifasico->40 60 | Monofasico->70
+                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A")
+                        {
+                            valorMultiplex = "T16";
+                            valorEntrada = "2";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "2";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        #endregion
                         break;
 
                     case "3":

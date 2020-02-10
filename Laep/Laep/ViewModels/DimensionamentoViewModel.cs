@@ -187,6 +187,87 @@ namespace Laep.ViewModels
                             return;
                         }
                         #endregion
+
+                        #region Bifasico
+                        // Bifasico->40
+                        if (tipoCaixaAmperDisjuntor == "Bifasico 40A")
+                        {
+                            valorEntrada = "2";
+                            valorFases = "10mm";
+                            valorNeutro = "10mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "1";
+                            condutorDeAterramento = "10mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        if (tipoCaixaAmperDisjuntor == "Bifasico 60A")
+                        {
+                            valorEntrada = "2";
+                            valorFases = "16mm";
+                            valorNeutro = "16mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "1";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        #endregion
+
+                        #region Trifasico
+                        // Trifasico->60
+                        if (tipoCaixaAmperDisjuntor == "Trifasico 60A")
+                        {
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "16mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "2";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo quadruplex";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        #endregion
                         break;
 
                     case "2":

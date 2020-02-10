@@ -106,9 +106,87 @@ namespace Laep.ViewModels
                 switch (quantidadeDeCaixa)
                 {
                     case "1":
-                        if (amperDisjuntor == "40A, 40A, 40A")
+                        #region Monofasico
+                        // Monofasico->40
+                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A")
                         {
+                            valorMultiplex = "Q";
+                            valorEntrada = "1";
+                            valorFases = "6mm";
+                            valorNeutro = "6mm";
+                            protecao = "6mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "1";
+                            condutorDeAterramento = "10mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
                         }
+
+                        // Monofasico->50
+                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A")
+                        {
+                            valorMultiplex = "Q";
+                            valorEntrada = "1";
+                            valorFases = "10mm";
+                            valorNeutro = "10mm";
+                            protecao = "10mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "1";
+                            condutorDeAterramento = "10mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+
+                        // Monofasico->50
+                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A")
+                        {                            
+                            valorEntrada = "1";
+                            valorFases = "16mm";
+                            valorNeutro = "16mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
+                            numeroDeEletrodos = "1";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = $"Ramal de ligação aereo cabo duplex";
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            return;
+                        }
+                        #endregion
                         break;
 
                     case "2":

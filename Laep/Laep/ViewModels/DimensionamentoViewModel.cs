@@ -9,7 +9,6 @@ namespace Laep.ViewModels
     {
         string tensao = string.Empty;
         string quantidadeDeCaixa = string.Empty;
-        string amperDisjuntor = string.Empty;
         string tipoCaixaAmperDisjuntor = string.Empty;
 
         public string DadosDimensionamento
@@ -22,12 +21,34 @@ namespace Laep.ViewModels
                 {
                     tensao = arrayDadosDimensiomanemto[0];
                     quantidadeDeCaixa = arrayDadosDimensiomanemto[1];
-                    tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
-                                $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
-                                $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[6]}";
-                    amperDisjuntor = $"{arrayDadosDimensiomanemto[5]}, {arrayDadosDimensiomanemto[6]}, {arrayDadosDimensiomanemto[7]}";
 
-                    RelatorioDimensionamento();
+                    if (quantidadeDeCaixa == "1")
+                    {
+                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[3]}";
+
+                        RelatorioDimensionamento();
+
+                        return;
+                    }
+
+                    if (quantidadeDeCaixa == "2")
+                    {
+                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[4]}, " +
+                                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[5]}";
+
+                        RelatorioDimensionamento();
+
+                        return;
+                    }
+
+                    if (quantidadeDeCaixa == "3")
+                    {
+                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
+                                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
+                                                  $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[7]}";
+
+                        RelatorioDimensionamento();
+                    }                    
                 }
             }
         }

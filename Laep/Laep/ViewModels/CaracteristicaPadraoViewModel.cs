@@ -156,16 +156,41 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            var dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{ModeloCaixaSelecionado2}," +
-                                       $"{ModeloCaixaSelecionado3}," +
-                                       $"{Disjuntores1Selecionado}," +
-                                       $"{Disjuntores2Selecionado}," +
-                                       $"{Disjuntores3Selecionado}";
-             
-            await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            if (QuantidadeCaixaSelecionado == "1")
+            {
+                var dadosDimensionamento = $"{TensaoSelecionada}," +
+                                           $"{QuantidadeCaixaSelecionado}," +
+                                           $"{ModeloCaixaSelecionado1}," +
+                                           $"{Disjuntores1Selecionado}";
+
+                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            }
+
+            if (QuantidadeCaixaSelecionado == "2")
+            {
+                var dadosDimensionamento = $"{TensaoSelecionada}," +
+                                           $"{QuantidadeCaixaSelecionado}," +
+                                           $"{ModeloCaixaSelecionado1}," +
+                                           $"{ModeloCaixaSelecionado2}," +
+                                           $"{Disjuntores1Selecionado}," +
+                                           $"{Disjuntores2Selecionado}";
+
+                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            }
+
+            if (QuantidadeCaixaSelecionado == "3")
+            {
+                var dadosDimensionamento = $"{TensaoSelecionada}," +
+                                           $"{QuantidadeCaixaSelecionado}," +
+                                           $"{ModeloCaixaSelecionado1}," +
+                                           $"{ModeloCaixaSelecionado2}," +
+                                           $"{ModeloCaixaSelecionado3}," +
+                                           $"{Disjuntores1Selecionado}," +
+                                           $"{Disjuntores2Selecionado}," +
+                                           $"{Disjuntores3Selecionado}";
+
+                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            }
         }
 
         private Command _botaoVoltarTitleViewCommand;

@@ -1201,8 +1201,8 @@ namespace Laep.ViewModels
                             tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A" ||
-                            //Monofasico->70 70)
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A"
+                            //Monofasico->70 70
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A")
                         {
                             valorMultiplex = "T16";
                             valorEntrada = "2";

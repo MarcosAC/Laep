@@ -15,19 +15,43 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CadastroProjetoEletricoView.xaml.cs">
+      <DependentUpon>CadastroProjetoEletricoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CadastroProjetoPrevencaoIncendioView.xaml.cs">
+      <DependentUpon>CadastroProjetoPrevencaoIncendioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CadastroView.xaml.cs">
+      <DependentUpon>CadastroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CaracteristicaPadraoView.xaml.cs">
+      <DependentUpon>CaracteristicaPadraoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PaginaPrincipalView.xaml.cs">
+      <DependentUpon>PaginaPrincipalView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Cadastro.xaml">
+    <EmbeddedResource Update="Views\CadastroView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CadastroProjetoEletrico.xaml">
+    <EmbeddedResource Update="Views\CaracteristicaPadraoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CadastroProjetoPrevencaoIncendio.xaml">
+    <EmbeddedResource Update="Views\CadastroProjetoEletricoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PaginaPrincipal.xaml">
+    <EmbeddedResource Update="Views\CadastroProjetoPrevencaoIncendioView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DimensionamentoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PaginaPrincipalView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

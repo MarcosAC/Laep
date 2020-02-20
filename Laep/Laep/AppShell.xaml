@@ -8,20 +8,32 @@
     <TabBar>
         <Tab>
             <ShellContent Route="paginaInicial">
-                <Views:PaginaPrincipal />
+                <Views:PaginaPrincipalView />
             </ShellContent>            
         </Tab>
 
         <Tab>
             <ShellContent Route="cadastroProjetoEletrico">
-                <Views:CadastroProjetoEletrico />
+                <Views:CadastroProjetoEletricoView />
             </ShellContent>
         </Tab>
 
         <Tab>
             <ShellContent Route="cadastroProjetoPrevencaoIncendio">
-                <Views:CadastroProjetoPrevencaoIncendio />
+                <Views:CadastroProjetoPrevencaoIncendioView />
             </ShellContent>
         </Tab>
+        
+        <Tab>
+            <ShellContent Route="caracteriscaPadrao">
+                <Views:CaracteristicaPadraoView />
+            </ShellContent>
+        </Tab>
+
+        <Tab>
+            <ShellContent Route="dimensionamento">
+                <Views:DimensionamentoView />
+            </ShellContent>
+        </Tab>        
     </TabBar>
 </Shell>

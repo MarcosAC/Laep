@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Laep.Views
 {
-    public partial class CadastroProjetoPrevencaoIncendio : ContentPage
+    public partial class CadastroProjetoPrevencaoIncendioView : ContentPage
 	{
-		public CadastroProjetoPrevencaoIncendio ()
+		public CadastroProjetoPrevencaoIncendioView ()
 		{
 			InitializeComponent ();
 

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Laep.Views.CaracteristicaPadraoView"
+             Shell.TabBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker" x:Key="stylePicker">
+                <Setter Property="Margin" Value="0,0,0,20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Shell.TitleView>
+        <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
+            <ImageButton Source="btnVoltar.png" 
+                         BackgroundColor="Transparent" 
+                         Command="{Binding BotaoVoltarTitleViewCommand}" />
+
+            <Label Style="{StaticResource styleLabelTitleView}"                   
+                   Text="Caracteristica do Padrão" />            
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentView>
+        <StackLayout Padding="10">
+            <Frame Style="{StaticResource styleFrame}">
+                <StackLayout>
+                    <!--Escolha da Tensão-->
+                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}"/>
+                    
+                    <!-- Qtd de Caixas-->
+                    <Picker Style="{StaticResource stylePicker}"
+                            Title="Quantidade de Caixas" 
+                            ItemsSource="{Binding ListaQuantidadeCaixas}"
+                            SelectedItem="{Binding QuantidadeCaixaSelecionado}" />
+                    
+                    <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 1ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado1}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa1}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
+
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Disjuntor" 
+                                Margin="0,0,0,20" 
+                                ItemsSource="{Binding Disjuntores1}"
+                                SelectedItem="{Binding Disjuntores1Selecionado}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores1}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
+
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 2ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado2}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa2}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
+
+                        <Picker Style="{StaticResource stylePicker}" 
+                                Title="Disjuntor" 
+                                ItemsSource="{Binding Disjuntores2}"
+                                SelectedItem="{Binding Disjuntores2Selecionado}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores2}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
+
+                        <Picker Style="{StaticResource stylePicker}"
+                                Title="Modelo 3ª Caixa"
+                                ItemsSource="{Binding ListaModeloCaixas}"
+                                SelectedItem="{Binding ModeloCaixaSelecionado3}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa3}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker>
+
+                        <Picker Style="{StaticResource stylePicker}" 
+                                Title="Disjuntor" 
+                                ItemsSource="{Binding Disjuntores3}"
+                                SelectedItem="{Binding Disjuntores3Selecionado}"
+                                IsEnabled="False">
+                            <Picker.Triggers>
+                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores3}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Picker.Triggers>
+                        </Picker> 
+                    </FlexLayout>
+
+                    <Button Style="{StaticResource styleBaseButton}"                            
+                            Text="Dimensionamento"
+                            VerticalOptions="CenterAndExpand"
+                            Command="{Binding DimensionamentoCommand}" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView>
+    
+</ContentPage>

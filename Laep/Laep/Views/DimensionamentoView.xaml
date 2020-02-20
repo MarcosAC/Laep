@@ -42,7 +42,7 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <ContentView>
+    <ContentView>        
         <Frame Style="{StaticResource styleFrame}">
             <StackLayout>
                 <Label Text="Dimensionamento"  Style="{StaticResource styleLabelTitulo}" />

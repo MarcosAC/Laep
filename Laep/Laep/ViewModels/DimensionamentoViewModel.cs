@@ -68,6 +68,13 @@ namespace Laep.ViewModels
             set => SetProperty(ref _ramalEntrada, value);
         }
 
+        private string _valorFaseNeutro;
+        public string ValorFaseNeutro
+        {
+            get => _valorFaseNeutro;
+            set => SetProperty(ref _valorFaseNeutro, value);
+        }
+
         private string _protecao;
         public string Protecao
         {
@@ -141,11 +148,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -168,11 +177,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -194,11 +205,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo duplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -222,11 +235,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -247,11 +262,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -275,11 +292,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo quadruplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -300,11 +319,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo quadruplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -331,11 +352,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -358,11 +381,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -385,11 +410,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -417,11 +444,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -458,11 +487,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -485,11 +516,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -521,11 +554,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -555,11 +590,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -595,11 +632,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -626,11 +665,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -651,11 +692,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -676,11 +719,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -709,11 +754,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -748,11 +795,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -819,11 +868,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -878,11 +929,13 @@ namespace Laep.ViewModels
                                 numeroDeEletrodos = "3";
                                 condutorDeAterramento = "16mm";
 
-                                string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                                string ramalDeLigacao = valorMultiplex;
+                                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                                 RamalLigacao = ramalDeLigacao;
                                 RamalEntrada = ramalDeEntrada;
+                                ValorFaseNeutro = valorFaseNeutro;
                                 Protecao = protecao;
                                 EletrodutoPvc = eletrodutoPcv;
                                 EletrodutoAco = eletrodutoAco;
@@ -913,11 +966,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -963,11 +1018,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1006,11 +1063,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1044,11 +1103,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1071,11 +1132,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1097,11 +1160,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo duplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1125,11 +1190,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "10mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1150,11 +1217,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "1";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo triplex";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1181,11 +1250,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1214,11 +1285,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1259,11 +1332,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1301,11 +1376,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1326,11 +1403,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1351,11 +1430,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1379,11 +1460,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1409,11 +1492,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1444,11 +1529,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;
@@ -1487,11 +1574,13 @@ namespace Laep.ViewModels
                             numeroDeEletrodos = "3";
                             condutorDeAterramento = "16mm";
 
-                            string ramalDeLigacao = $"Ramal de ligação aereo cabo multiplex {valorMultiplex}";
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de {valorFases} e um neutro de {valorNeutro}";
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
                             RamalLigacao = ramalDeLigacao;
                             RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
                             Protecao = protecao;
                             EletrodutoPvc = eletrodutoPcv;
                             EletrodutoAco = eletrodutoAco;

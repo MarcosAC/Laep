@@ -19,7 +19,8 @@
             </Style>
 
             <Style TargetType="Label" x:Key="styleLabelGrid" BasedOn="{StaticResource styleBaseLabel}">
-                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             
             <Style TargetType="BoxView" x:Key="styleBoxView">
@@ -47,17 +48,17 @@
             <StackLayout>
                 <Label Text="Dimensionamento"  Style="{StaticResource styleLabelTitulo}" />
                 <BoxView Style="{StaticResource styleBoxView}" />
-                <Label Style="{StaticResource styleBaseLabel}" Text="{Binding RamalLigacao}" />
-                <Label Style="{StaticResource styleBaseLabel}" Text="{Binding RamalEntrada}" />
-                <BoxView Style="{StaticResource styleBoxView}" />
                 
-                <Grid>
+                <Grid ColumnSpacing="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />                        
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />                        
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -65,17 +66,68 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Style="{StaticResource styleLabelGrid}" Text="Proteção:"  Grid.Row="0" Grid.Column="0" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto PVC:"  Grid.Row="1" Grid.Column="0" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto Aço:"  Grid.Row="2" Grid.Column="0" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:"  Grid.Row="3" Grid.Column="0" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:"  Grid.Row="4" Grid.Column="0" />
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ramal de ligação aereo &#10;" />
+                                    <Span Text="cabo multiplex" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Frame>
 
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Protecao}"  Grid.Row="0" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoPvc}"  Grid.Row="1" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoAco}"  Grid.Row="2" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding NumeroDeEletrodos}"  Grid.Row="3" Grid.Column="2" />
-                    <Label Style="{StaticResource styleLabelGrid}" Text="{Binding CondutorDeAterramento}"  Grid.Row="4" Grid.Column="2" />
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalLigacao}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalEntrada}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorFaseNeutro}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="Proteção:" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto PVC:" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="4" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto Aço:" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Grid.Column="0" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Protecao}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoPvc}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}"  Grid.Row="4" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoAco}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding NumeroDeEletrodos}" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding CondutorDeAterramento}" />
+                    </Frame>
                 </Grid>
             </StackLayout>            
         </Frame>

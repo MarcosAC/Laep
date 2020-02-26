@@ -156,41 +156,63 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
+            string dadosDimensionamento = string.Empty;
+
             if (QuantidadeCaixaSelecionado == "1")
             {
-                var dadosDimensionamento = $"{TensaoSelecionada}," +
-                                           $"{QuantidadeCaixaSelecionado}," +
-                                           $"{ModeloCaixaSelecionado1}," +
-                                           $"{Disjuntores1Selecionado}";
-
-                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+                dadosDimensionamento = $"{TensaoSelecionada}," +
+                                       $"{QuantidadeCaixaSelecionado}," +
+                                       $"{ModeloCaixaSelecionado1}," +
+                                       $"{Disjuntores1Selecionado}";
             }
 
             if (QuantidadeCaixaSelecionado == "2")
             {
-                var dadosDimensionamento = $"{TensaoSelecionada}," +
-                                           $"{QuantidadeCaixaSelecionado}," +
-                                           $"{ModeloCaixaSelecionado1}," +
-                                           $"{ModeloCaixaSelecionado2}," +
-                                           $"{Disjuntores1Selecionado}," +
-                                           $"{Disjuntores2Selecionado}";
-
-                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+                dadosDimensionamento = $"{TensaoSelecionada}," +
+                                       $"{QuantidadeCaixaSelecionado}," +
+                                       $"{ModeloCaixaSelecionado1}," +
+                                       $"{ModeloCaixaSelecionado2}," +
+                                       $"{Disjuntores1Selecionado}," +
+                                       $"{Disjuntores2Selecionado}";
             }
 
             if (QuantidadeCaixaSelecionado == "3")
             {
-                var dadosDimensionamento = $"{TensaoSelecionada}," +
-                                           $"{QuantidadeCaixaSelecionado}," +
-                                           $"{ModeloCaixaSelecionado1}," +
-                                           $"{ModeloCaixaSelecionado2}," +
-                                           $"{ModeloCaixaSelecionado3}," +
-                                           $"{Disjuntores1Selecionado}," +
-                                           $"{Disjuntores2Selecionado}," +
-                                           $"{Disjuntores3Selecionado}";
-
-                await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+                dadosDimensionamento = $"{TensaoSelecionada}," +
+                                       $"{QuantidadeCaixaSelecionado}," +
+                                       $"{ModeloCaixaSelecionado1}," +
+                                       $"{ModeloCaixaSelecionado2}," +
+                                       $"{ModeloCaixaSelecionado3}," +
+                                       $"{Disjuntores1Selecionado}," +
+                                       $"{Disjuntores2Selecionado}," +
+                                       $"{Disjuntores3Selecionado}";                
             }
+
+            if (QuantidadeCaixaSelecionado == "2" || QuantidadeCaixaSelecionado == "3")
+            {
+                if (true)
+                {
+                    string[] arrayDadosDimensiomanemto = dadosDimensionamento.Split(',');
+
+                    List<string> listaDadosDimensionamento = new List<string>();
+
+                    foreach (var item in arrayDadosDimensiomanemto)
+                    {
+                        listaDadosDimensionamento.Add(item);
+                    }
+
+                    var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
+
+                    if (resultado.Count > 1)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
+                        return;
+                    }
+                }
+                
+            }                
+
+            await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

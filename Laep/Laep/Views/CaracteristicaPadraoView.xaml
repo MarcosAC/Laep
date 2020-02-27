@@ -28,7 +28,7 @@
             <Frame Style="{StaticResource styleFrame}">
                 <StackLayout>
                     <!--Escolha da Tensão-->
-                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}"/>
+                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}" />
                     
                     <!-- Qtd de Caixas-->
                     <Picker Style="{StaticResource stylePicker}"
@@ -39,7 +39,7 @@
                     <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 1ª Caixa"
-                                ItemsSource="{Binding ListaModeloCaixas}"
+                                ItemsSource="{Binding ModeloCaixas}"
                                 SelectedItem="{Binding ModeloCaixaSelecionado1}"
                                 IsEnabled="False">
                             <Picker.Triggers>
@@ -64,7 +64,7 @@
 
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 2ª Caixa"
-                                ItemsSource="{Binding ListaModeloCaixas}"
+                                ItemsSource="{Binding ModeloCaixas}"
                                 SelectedItem="{Binding ModeloCaixaSelecionado2}"
                                 IsEnabled="False">
                             <Picker.Triggers>
@@ -88,7 +88,7 @@
 
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 3ª Caixa"
-                                ItemsSource="{Binding ListaModeloCaixas}"
+                                ItemsSource="{Binding ModeloCaixas}"
                                 SelectedItem="{Binding ModeloCaixaSelecionado3}"
                                 IsEnabled="False">
                             <Picker.Triggers>

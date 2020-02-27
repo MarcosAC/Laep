@@ -8,8 +8,7 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        public List<string> ListaModeloCaixas { get; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
-
+        readonly List<string> ListaModeloCaixas = new List<string>();
         readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
@@ -59,7 +58,18 @@ namespace Laep.ViewModels
         public string TensaoSelecionada
         {
             get => _tensaoSelecionada;
-            set => SetProperty(ref _tensaoSelecionada, value);
+            set
+            {
+                SetProperty(ref _tensaoSelecionada, value);
+                DesabilitarModeloCaixa( _tensaoSelecionada);
+            }
+        }
+
+        private List<string> _modeloCaixas;
+        public List<string> ModeloCaixas
+        {
+            get => _modeloCaixas;
+            set => SetProperty(ref _modeloCaixas, value);
         }
 
         private string _quantidadeCaixaSelecionado;
@@ -70,6 +80,7 @@ namespace Laep.ViewModels
             {
                 SetProperty(ref _quantidadeCaixaSelecionado, value);
                 QuantidadeCaixa(QuantidadeCaixaSelecionado);
+                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado1, "disjuntor1");
             }
         }
 
@@ -80,7 +91,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado1, value);
-                AmperagemDisjuntores(_modeloCaixaSelecionado1, "disjuntor1");
+                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado1, "disjuntor1");
             }
         }
 
@@ -91,7 +102,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado2, value);
-                AmperagemDisjuntores(_modeloCaixaSelecionado2, "disjuntor2");
+                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado2, "disjuntor2");
             }
         }
 
@@ -102,7 +113,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado3, value);
-                AmperagemDisjuntores(_modeloCaixaSelecionado3, "disjuntor3");
+                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado3, "disjuntor3");
             }
         }
 
@@ -260,7 +271,56 @@ namespace Laep.ViewModels
             }
         }
 
-        private void AmperagemDisjuntores(string tipoCaixa, string disjuntor)
+        private void DesabilitarModeloCaixa(string modelo)
+        {
+            if (modelo == "Sistema Monofásico 120/240V")
+            {
+                ListaModeloCaixas.Clear();
+
+                if (ModeloCaixas != null)
+                {
+                    ModeloCaixas = null;
+
+                    ListaModeloCaixas.Add("Monofasico");
+                    ListaModeloCaixas.Add("Bifasico");
+
+                    ModeloCaixas = ListaModeloCaixas;
+                }
+                else
+                {
+                    ListaModeloCaixas.Add("Monofasico");
+                    ListaModeloCaixas.Add("Bifasico");
+
+                    ModeloCaixas = ListaModeloCaixas;
+                }
+            }
+
+            if (modelo == "Sistema Trifásico 127/220V")
+            {
+                ListaModeloCaixas.Clear();
+
+                if (ModeloCaixas != null)
+                {
+                    ModeloCaixas = null;
+
+                    ListaModeloCaixas.Add("Monofasico");
+                    ListaModeloCaixas.Add("Bifasico");
+                    ListaModeloCaixas.Add("Trifasico");
+
+                    ModeloCaixas = ListaModeloCaixas;
+                }
+                else
+                {
+                    ListaModeloCaixas.Add("Monofasico");
+                    ListaModeloCaixas.Add("Bifasico");
+                    ListaModeloCaixas.Add("Trifasico");
+
+                    ModeloCaixas = ListaModeloCaixas;
+                }
+            }
+        }
+
+        private void DesabilitarAmperagemDisjuntores(string tipoCaixa, string disjuntor)
         {
             if (tipoCaixa == "Monofasico")
             {
@@ -270,7 +330,7 @@ namespace Laep.ViewModels
 
                     ListaDisjuntores.Add("40A");
                     ListaDisjuntores.Add("50A");
-                    ListaDisjuntores.Add("70A");
+                    ListaDisjuntores.Add("70A");                    
                 }
 
                 if (disjuntor == "disjuntor1")

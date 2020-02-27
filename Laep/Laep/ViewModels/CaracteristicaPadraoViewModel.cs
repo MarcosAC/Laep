@@ -8,7 +8,7 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        readonly List<string> ListaModeloCaixas = new List<string>();
+        public List<string> ListaModeloCaixas { get; set; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
         readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
@@ -274,50 +274,26 @@ namespace Laep.ViewModels
         private void DesabilitarModeloCaixa(string modelo)
         {
             if (modelo == "Sistema Monofásico 120/240V")
-            {
-                ListaModeloCaixas.Clear();
-
-                if (ModeloCaixas != null)
+                if (ModeloCaixas != null || ModeloCaixas == null)
                 {
                     ModeloCaixas = null;
 
-                    ListaModeloCaixas.Add("Monofasico");
-                    ListaModeloCaixas.Add("Bifasico");
+                    ListaModeloCaixas.Remove("Trifasico");
 
                     ModeloCaixas = ListaModeloCaixas;
                 }
-                else
-                {
-                    ListaModeloCaixas.Add("Monofasico");
-                    ListaModeloCaixas.Add("Bifasico");
-
-                    ModeloCaixas = ListaModeloCaixas;
-                }
-            }
 
             if (modelo == "Sistema Trifásico 127/220V")
-            {
-                ListaModeloCaixas.Clear();
-
-                if (ModeloCaixas != null)
+                if (ModeloCaixas != null || ModeloCaixas == null)
                 {
-                    ModeloCaixas = null;
+                    if (ModeloCaixas != null)
+                        ModeloCaixas = null;
 
-                    ListaModeloCaixas.Add("Monofasico");
-                    ListaModeloCaixas.Add("Bifasico");
-                    ListaModeloCaixas.Add("Trifasico");
+                    if (ListaModeloCaixas.Count == 2)
+                        ListaModeloCaixas.Add("Trifasico");                    
 
                     ModeloCaixas = ListaModeloCaixas;
                 }
-                else
-                {
-                    ListaModeloCaixas.Add("Monofasico");
-                    ListaModeloCaixas.Add("Bifasico");
-                    ListaModeloCaixas.Add("Trifasico");
-
-                    ModeloCaixas = ListaModeloCaixas;
-                }
-            }
         }
 
         private void DesabilitarAmperagemDisjuntores(string tipoCaixa, string disjuntor)

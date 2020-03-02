@@ -5,7 +5,7 @@
              x:Class="Laep.Views.CadastroProjetoEletricoView"
              Shell.TabBarIsVisible="{Binding TabBarIsVisible}">
 
-    <!--<Shell.TitleView>
+    <Shell.TitleView>
         <StackLayout Style="{StaticResource styleStackLayoutTitleView}">
             <ImageButton Source="btnVoltar.png" 
                          BackgroundColor="Transparent" 
@@ -14,7 +14,7 @@
             <Label Style="{StaticResource styleLabelTitleView}"                   
                    Text="Projeto Elétrico" />
         </StackLayout>
-    </Shell.TitleView>-->
+    </Shell.TitleView>
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding BackCommand}"

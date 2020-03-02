@@ -11,6 +11,11 @@ namespace Laep.ViewModels
         public List<string> ListaModeloCaixas { get; set; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
         readonly List<string> ListaDisjuntores = new List<string>();
 
+        public CaracteristicaPadraoViewModel()
+        {
+            
+        }
+
         #region Propriedades
         private bool _visibleCaixa1 = false;
         public bool VisibleCaixa1

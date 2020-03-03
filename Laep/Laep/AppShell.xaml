@@ -7,23 +7,33 @@
 
     <TabBar>
         <Tab>
-            <ShellContent Route="paginaInicial" ContentTemplate="{DataTemplate Views:PaginaPrincipalView}" />
+            <ShellContent Route="paginaInicial">
+                <Views:PaginaPrincipalView />
+            </ShellContent>            
         </Tab>
 
         <Tab>
-            <ShellContent Route="cadastroProjetoEletrico" ContentTemplate="{DataTemplate Views:CadastroProjetoEletricoView}" />
+            <ShellContent Route="cadastroProjetoEletrico">
+                <Views:CadastroProjetoEletricoView />
+            </ShellContent>
         </Tab>
 
         <Tab>
-            <ShellContent Route="cadastroProjetoPrevencaoIncendio" ContentTemplate="{DataTemplate Views:CadastroProjetoPrevencaoIncendioView}" />
+            <ShellContent Route="cadastroProjetoPrevencaoIncendio">
+                <Views:CadastroProjetoPrevencaoIncendioView />
+            </ShellContent>
         </Tab>
         
         <Tab>
-            <ShellContent Route="caracteriscaPadrao" ContentTemplate="{DataTemplate Views:CaracteristicaPadraoView}" />
+            <ShellContent Route="caracteriscaPadrao">
+                <Views:CaracteristicaPadraoView />
+            </ShellContent>
         </Tab>
 
         <Tab>
-            <ShellContent Route="dimensionamento" ContentTemplate="{DataTemplate Views:DimensionamentoView}" />
+            <ShellContent Route="dimensionamento">
+                <Views:DimensionamentoView />
+            </ShellContent>
         </Tab>        
     </TabBar>
 </Shell>

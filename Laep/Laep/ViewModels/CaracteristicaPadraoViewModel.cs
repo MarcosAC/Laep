@@ -11,11 +11,6 @@ namespace Laep.ViewModels
         public List<string> ListaModeloCaixas { get; set; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
         readonly List<string> ListaDisjuntores = new List<string>();
 
-        public CaracteristicaPadraoViewModel()
-        {
-            
-        }
-
         #region Propriedades
         private bool _visibleCaixa1 = false;
         public bool VisibleCaixa1
@@ -236,6 +231,16 @@ namespace Laep.ViewModels
             _botaoVoltarTitleViewCommand ?? (_botaoVoltarTitleViewCommand = new Command(async () => await ExecuteBotaoVoltarTitleViewCommand()));
 
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//paginaInicial");
+
+        private Command _RefreshCommand;
+        public Command RefreshCommand => _RefreshCommand ?? (_RefreshCommand = new Command(() => RefreshCommandExecute()));
+
+        private void RefreshCommandExecute()
+        {
+            RefreshCommand.ChangeCanExecute();
+            //Index = -1;
+            //RefreshCommand.ChangeCanExecute();
+        }
 
         #endregion
 

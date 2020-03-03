@@ -11,5 +11,13 @@ namespace Laep.Views
 
             BindingContext = new CaracteristicaPadraoViewModel();
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            BindingContext = new CaracteristicaPadraoViewModel();
+            ((CaracteristicaPadraoViewModel)BindingContext).RefreshCommand.Execute(null);
+        }
     }
 }

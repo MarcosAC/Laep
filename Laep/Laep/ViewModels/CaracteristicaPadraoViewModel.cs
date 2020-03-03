@@ -208,25 +208,21 @@ namespace Laep.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Preencher todos os campos.", "Ok");
                     return;
                 }
-
             }
 
-            if (QuantidadeCaixaSelecionado == "2" || QuantidadeCaixaSelecionado == "3")
+            List<string> listaDadosDimensionamento = new List<string>();
+
+            foreach (var item in arrayDadosDimensiomanemto)
             {
-                List<string> listaDadosDimensionamento = new List<string>();
+                listaDadosDimensionamento.Add(item);
+            }
 
-                foreach (var item in arrayDadosDimensiomanemto)
-                {
-                    listaDadosDimensionamento.Add(item);
-                }
+            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
 
-                var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
-
-                if (resultado.Count > 1)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
-                    return;
-                }
+            if (resultado.Count > 1)
+            {
+                await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
+                return;
             }
 
             await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");

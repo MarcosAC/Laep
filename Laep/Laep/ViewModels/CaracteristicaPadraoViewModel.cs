@@ -167,7 +167,7 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            string dadosDimensionamento = string.Empty;
+            string dadosDimensionamento = string.Empty;            
 
             if (QuantidadeCaixaSelecionado == "1")
             {
@@ -199,29 +199,35 @@ namespace Laep.ViewModels
                                        $"{Disjuntores3Selecionado}";                
             }
 
+            string[] arrayDadosDimensiomanemto = dadosDimensionamento.Split(',');
+
+            foreach (var item in arrayDadosDimensiomanemto)
+            {
+                if (string.IsNullOrEmpty(item))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Alerta", "Preencher todos os campos.", "Ok");
+                    return;
+                }
+
+            }
+
             if (QuantidadeCaixaSelecionado == "2" || QuantidadeCaixaSelecionado == "3")
             {
-                if (true)
+                List<string> listaDadosDimensionamento = new List<string>();
+
+                foreach (var item in arrayDadosDimensiomanemto)
                 {
-                    string[] arrayDadosDimensiomanemto = dadosDimensionamento.Split(',');
-
-                    List<string> listaDadosDimensionamento = new List<string>();
-
-                    foreach (var item in arrayDadosDimensiomanemto)
-                    {
-                        listaDadosDimensionamento.Add(item);
-                    }
-
-                    var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
-
-                    if (resultado.Count > 1)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
-                        return;
-                    }
+                    listaDadosDimensionamento.Add(item);
                 }
-                
-            }                
+
+                var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
+
+                if (resultado.Count > 1)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
+                    return;
+                }
+            }
 
             await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
         }
@@ -238,8 +244,6 @@ namespace Laep.ViewModels
         private void RefreshCommandExecute()
         {
             RefreshCommand.ChangeCanExecute();
-            //Index = -1;
-            //RefreshCommand.ChangeCanExecute();
         }
 
         #endregion

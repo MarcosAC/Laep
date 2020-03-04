@@ -9,7 +9,7 @@ namespace Laep.ViewModels
     {
         string tensao = string.Empty;
         string quantidadeDeCaixa = string.Empty;
-        string tipoCaixaAmperDisjuntor = string.Empty;
+        string tipoCaixaAmperDisjuntor = string.Empty;        
 
         public string DadosDimensionamento
         {            
@@ -54,6 +54,20 @@ namespace Laep.ViewModels
         }
 
         #region Propriedades
+        private bool _visibleLabel = false;
+        public bool VisibleLabel
+        {
+            get => _visibleLabel;
+            set => SetProperty(ref _visibleLabel, value);
+        }
+
+        private bool _visibleGrid = false;
+        public bool VisibleGrid
+        {
+            get => _visibleGrid;
+            set => SetProperty(ref _visibleGrid, value);
+        }
+
         private string _ramalLigacao;
         public string RamalLigacao
         {
@@ -117,6 +131,7 @@ namespace Laep.ViewModels
 
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//caracteriscaPadrao");
 
+        #region Métodos
         private void RelatorioDimensionamento()
         {
             string valorMultiplex = string.Empty;
@@ -161,6 +176,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -190,6 +207,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -217,6 +236,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -248,6 +269,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -274,6 +297,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -305,6 +330,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -332,9 +359,13 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         #endregion
+
+                        IsVisible("Label");
                         break;
 
                     case "2":
@@ -365,6 +396,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -394,6 +427,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -422,6 +457,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -456,6 +493,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -500,6 +539,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -528,6 +569,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -567,6 +610,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -602,6 +647,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -645,9 +692,13 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         #endregion
+
+                        IsVisible("Label");
                         break;
 
                     case "3":
@@ -678,6 +729,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
@@ -705,6 +758,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
@@ -731,6 +786,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -766,6 +823,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -807,6 +866,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -881,6 +942,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         #endregion
@@ -942,7 +1005,9 @@ namespace Laep.ViewModels
                                 NumeroDeEletrodos = numeroDeEletrodos;
                                 CondutorDeAterramento = condutorDeAterramento;
 
-                                return;
+                                IsVisible("Grid");
+
+                            return;
                             }
                         #endregion
 
@@ -979,8 +1044,12 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
+
+                        IsVisible("Label");
                         #endregion
 
                         #region Trifasico
@@ -1031,8 +1100,10 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
-                        }
+                        }                        
                         #endregion
 
                         #region Trifasico->40 - 60 | Monofasico->40 - 50 
@@ -1076,10 +1147,13 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
+                        #endregion                        
                         #endregion
-                        #endregion
+                        IsVisible("Label");
                         break;
                 }
             }
@@ -1116,6 +1190,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -1145,6 +1221,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -1172,6 +1250,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1203,6 +1283,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
 
@@ -1230,9 +1312,13 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         #endregion
+
+                        IsVisible("Label");
                         break;
 
                     case "2":
@@ -1262,6 +1348,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1297,6 +1385,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1345,10 +1435,13 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
-                        
                         #endregion
+
+                        IsVisible("Label");
                         break;
 
                     case "3":
@@ -1389,6 +1482,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
@@ -1416,6 +1511,8 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
@@ -1442,6 +1539,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1472,6 +1571,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1504,6 +1605,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1541,6 +1644,8 @@ namespace Laep.ViewModels
                             EletrodutoAco = eletrodutoAco;
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
 
                             return;
                         }
@@ -1587,13 +1692,32 @@ namespace Laep.ViewModels
                             NumeroDeEletrodos = numeroDeEletrodos;
                             CondutorDeAterramento = condutorDeAterramento;
 
+                            IsVisible("Grid");
+
                             return;
                         }
                         #endregion
                         #endregion
+
+                        IsVisible("Label");
                         break;
                 }
             }
         }
+
+        private void IsVisible(string controle)
+        {
+            if (controle == "Grid")
+            {
+                VisibleGrid = true;
+                VisibleLabel = false;
+            }
+            else if (controle == "Label")
+            {
+                VisibleGrid = false;
+                VisibleLabel = true;
+            }
+        }
+        #endregion
     }
 }

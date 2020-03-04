@@ -43,13 +43,18 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <ContentView>        
+    <ContentView>
         <Frame Style="{StaticResource styleFrame}">
             <StackLayout>
-                <Label Text="Dimensionamento"  Style="{StaticResource styleLabelTitulo}" />
+                <Label Style="{StaticResource styleLabelTitulo}" Text="Dimensionamento" />
                 <BoxView Style="{StaticResource styleBoxView}" />
-                
-                <Grid ColumnSpacing="3">
+
+                <Label Style="{StaticResource styleLabelTitulo}"
+                       Text="Valores invalidos!" 
+                       VerticalOptions="CenterAndExpand"
+                       IsVisible="{Binding VisibleLabel}" />
+
+                <Grid ColumnSpacing="3" IsVisible="{Binding VisibleGrid}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -58,7 +63,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />                        
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -129,7 +134,7 @@
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding CondutorDeAterramento}" />
                     </Frame>
                 </Grid>
-            </StackLayout>            
+            </StackLayout>
         </Frame>
     </ContentView>
 </ContentPage>

@@ -433,7 +433,7 @@ namespace Laep.ViewModels
                         }
 
                         // Monofasico->40 70
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A")
+                        /*if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A")
                         {
                             valorMultiplex = "T16";
                             valorEntrada = "2";
@@ -442,6 +442,44 @@ namespace Laep.ViewModels
                             protecao = "16mm";
                             eletrodutoPcv = "40mm";
                             eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "2";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
+
+                            return;
+                        }*/
+
+                        // Monofasico->40 70 | Monofasico->50 70 | Monofasico->70 70
+                        if (// Monofasico->40 70
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A" || 
+                            // Monofasico->50 70
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A" || 
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A" ||
+                            // Monofasico->70 70
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A")
+                        {
+                            valorMultiplex = "T16";
+                            valorEntrada = "2";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "32mm";
+                            eletrodutoAco = "25mm";
                             numeroDeEletrodos = "2";
                             condutorDeAterramento = "16mm";
 
@@ -872,10 +910,49 @@ namespace Laep.ViewModels
                             return;
                         }
                         #endregion
-                        #endregion                       
 
+                        #region Monofasico->50 70 70
+                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Monofasico 70A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Monofasico 70A")
+                        {
+                            valorMultiplex = "Q35";
+                            valorEntrada = "3";
+                            valorFases = "16mm";
+                            valorNeutro = "25mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
+
+                            return;
+                        }
+                        #endregion
+                        #endregion
+
+                        #region Bifasico
                         #region Bifasico->40 40 40 - 60 60 60 / Bifasico->40 40 40 - 60 60 60| Monofasico->40 - 50 |Trifasico->40 - 60
                         if (tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Bifasico 60A" ||
                             //Trifasico->40 | Bifasico->40 | Monofasico->40
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 40A" ||
@@ -1050,6 +1127,7 @@ namespace Laep.ViewModels
                         }
 
                         IsVisible("Label");
+                        #endregion
                         #endregion
 
                         #region Trifasico

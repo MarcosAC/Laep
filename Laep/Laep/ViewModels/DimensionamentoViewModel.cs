@@ -599,6 +599,15 @@ namespace Laep.ViewModels
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
                             // Trifasico->40 | Bifasico->60
                             tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A" ||
+                            //Trifasico->40 40 - 60 60 | Bifasico->40 60
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A")
                         {
                             valorMultiplex = "Q16";
@@ -1117,10 +1126,9 @@ namespace Laep.ViewModels
                             {
                                 valorMultiplex = "Q35";
                                 valorEntrada = "3";
-                                valorFases = "35mm";
-                                valorNeutro = "35mm";
-                                protecao = "35mm";
-                                //protecao = "16mm"; -> Verificar se essa correção esta correta. Nota 1
+                                valorFases = "35mm"; // pode ser valor 25mm
+                                valorNeutro = "35mm"; // pode ser valor 25mm
+                                protecao = "16mm"; //-> Verificar se essa correção esta correta. Nota 1
                                 eletrodutoPcv = "40mm";
                                 eletrodutoAco = "32mm";
                                 numeroDeEletrodos = "3";

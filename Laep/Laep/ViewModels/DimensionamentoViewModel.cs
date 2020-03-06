@@ -586,18 +586,23 @@ namespace Laep.ViewModels
                         #endregion
 
                         #region Trifasico
-                        // Trifasico->40 40 - 60 60 | Bifasico->40 60
-                        if (tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
+                        // Trifasico->40 - 60 | Bifasico->40 60
+
+                        if (// Trifasico->40 | Bifasico->40
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A" ||
+                            // Trifasico->40 | Bifasico->60
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A" ||
+                            // Trifasico->60 | Bifasico->40
                             tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
+                            // Trifasico->40 | Bifasico->60
                             tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A")
                         {
                             valorMultiplex = "Q16";
-                            valorEntrada = "2";
+                            valorEntrada = "3"; // Antigo valor 2 -> Nota 2
                             valorFases = "25mm";
                             valorNeutro = "25mm";
                             protecao = "16mm";
@@ -1009,6 +1014,7 @@ namespace Laep.ViewModels
                         }
                         #endregion
                         #endregion
+                        #endregion
 
                         #region Bifasico
                         #region Bifasico->40 40 40 - 60 60 60 | Trifasico->40 - 60 | Monofasico->40 - 50
@@ -1114,6 +1120,7 @@ namespace Laep.ViewModels
                                 valorFases = "35mm";
                                 valorNeutro = "35mm";
                                 protecao = "35mm";
+                                //protecao = "16mm"; -> Verificar se essa correção esta correta. Nota 1
                                 eletrodutoPcv = "40mm";
                                 eletrodutoAco = "32mm";
                                 numeroDeEletrodos = "3";
@@ -1186,10 +1193,24 @@ namespace Laep.ViewModels
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Trifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 40A" ||
+                            //Trifasico->40 | Bifasico->40 60
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 40A" ||                            
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A, Bifasico 40A" ||
+                            //Trifasico->60 | Bifasico->40 60
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 40A" ||
                             //Trifasico->60 | Bifasico->60 60
                             tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 60A" ||
                             tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 60A" ||                            
                             //Trifasico->40 | Bifasico->40 | Monofasico->70
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 70A" ||
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Bifasico 40A" ||
@@ -1904,7 +1925,7 @@ namespace Laep.ViewModels
                 }
             }
         }
-
+       
         private void IsVisible(string controle)
         {
             if (controle == "Grid")

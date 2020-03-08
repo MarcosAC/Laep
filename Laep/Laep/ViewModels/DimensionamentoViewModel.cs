@@ -896,8 +896,8 @@ namespace Laep.ViewModels
                         }
                         #endregion
 
-                        #region Monofasico->40 50 70 | Trifasico->40 60
-                        if (//Monofasico->40 40 | Trifasico->40
+                        #region Monofasico->40 50 70 | Bifasico | Trifasico->40 60
+                        if (//Monofasico->40 40 | Trifasico->40  --> Verificar com Lucas
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
@@ -931,7 +931,7 @@ namespace Laep.ViewModels
                             valorMultiplex = "Q16";
                             valorEntrada = "3";
                             valorFases = "25mm";
-                            valorNeutro = "35mm";
+                            valorNeutro = "25mm"; // Valor antigo 35mmm
                             protecao = "16mm";
                             eletrodutoPcv = "40mm";
                             eletrodutoAco = "32mm";
@@ -1154,7 +1154,7 @@ namespace Laep.ViewModels
                         #endregion
 
                         #region Bifasico->40 60 | Monofasico->40 50
-                        if (//Bifasico->40 | Monofasico-> 40 40
+                        if (//Bifasico->40 | Monofasico-> 40 40  --> Verificar com Lucas
                             tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||

@@ -897,26 +897,7 @@ namespace Laep.ViewModels
                         #endregion
 
                         #region Monofasico->40 50 70 | Trifasico->40 60
-                        if (//Monofasico->40 40 | Trifasico->40  --> Verificar com Lucas
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
-                            //Monofasico->50 50 | Trifasico->40
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
-                            //Monofasico->40 40 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
-                            //Monofasico->50 50 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 50A" ||
-
-                            //-------------------------------------------------------------------------//
-
-                            //Monofasico->40 70 | Trifasico->40
+                        if (//Monofasico->40 70 | Trifasico->40
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Trifasico 40A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 70A" ||
                             tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Trifasico 40A" ||
@@ -934,7 +915,52 @@ namespace Laep.ViewModels
                             valorMultiplex = "Q16";
                             valorEntrada = "3";
                             valorFases = "25mm";
-                            valorNeutro = "25mm"; // Valor antigo 35mmm
+                            valorNeutro = "35mm";
+                            protecao = "16mm";
+                            eletrodutoPcv = "40mm";
+                            eletrodutoAco = "32mm";
+                            numeroDeEletrodos = "3";
+                            condutorDeAterramento = "16mm";
+
+                            string ramalDeLigacao = valorMultiplex;
+                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+                            RamalLigacao = ramalDeLigacao;
+                            RamalEntrada = ramalDeEntrada;
+                            ValorFaseNeutro = valorFaseNeutro;
+                            Protecao = protecao;
+                            EletrodutoPvc = eletrodutoPcv;
+                            EletrodutoAco = eletrodutoAco;
+                            NumeroDeEletrodos = numeroDeEletrodos;
+                            CondutorDeAterramento = condutorDeAterramento;
+
+                            IsVisible("Grid");
+
+                            return;
+                        }
+
+                        if (//Monofasico->40 40 | Trifasico->40
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
+                            //Monofasico->50 50 | Trifasico->40
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
+                            //Monofasico->40 40 | Trifasico->60
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
+                            //Monofasico->50 50 | Trifasico->60
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
+                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
+                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 50A")
+                        {
+                            valorMultiplex = "Q16";
+                            valorEntrada = "3";
+                            valorFases = "25mm";
+                            valorNeutro = "25mm";
                             protecao = "16mm";
                             eletrodutoPcv = "40mm";
                             eletrodutoAco = "32mm";

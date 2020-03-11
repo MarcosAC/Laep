@@ -15,6 +15,5 @@ namespace Laep.Models
         public string EletrodutoAco { get; set; }
         public string NumeroDeEletrodos { get; set; }
         public string CondutorDeAterramento { get; set; }
-        public string Tensao{ get; set; }
     }
 }

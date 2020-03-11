@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Laep.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -8,7 +9,6 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        public List<string> ListaModeloCaixas { get; set; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
         readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
@@ -282,15 +282,22 @@ namespace Laep.ViewModels
         }
 
         private void DesabilitarModeloCaixa(string modelo)
-        {
+        {   
             if (modelo == "Sistema Monofásico 120/240V")
                 if (ModeloCaixas != null || ModeloCaixas == null)
                 {
                     ModeloCaixas = null;
 
-                    ListaModeloCaixas.Remove("Trifasico");
+                    List<string> ListaModelosCaixas = new List<string>
+                    {
+                        "Monofasico 40A",
+                        "Monofasico 50A",
+                        "Monofasico 70A",
+                        "Bifasico 40A",
+                        "Bifasico 60A"
+                    };
 
-                    ModeloCaixas = ListaModeloCaixas;
+                    ModeloCaixas = ListaModelosCaixas;
                 }
 
             if (modelo == "Sistema Trifásico 127/220V")
@@ -299,10 +306,18 @@ namespace Laep.ViewModels
                     if (ModeloCaixas != null)
                         ModeloCaixas = null;
 
-                    if (ListaModeloCaixas.Count == 2)
-                        ListaModeloCaixas.Add("Trifasico");                    
+                    List<string> ListaModelosCaixas = new List<string>
+                    {
+                        "Monofasico 40A",
+                        "Monofasico 50A",
+                        "Monofasico 70A",
+                        "Bifasico 40A",
+                        "Bifasico 60A",
+                        "Trifasico 40A",
+                        "Trifasico 60A"
+                    };
 
-                    ModeloCaixas = ListaModeloCaixas;
+                    ModeloCaixas = ListaModelosCaixas;
                 }
         }
 

@@ -238,11 +238,11 @@ namespace Laep.ViewModels
 
                     List<string> ListaModelosCaixas = new List<string>
                     {
-                        "Monofasico 40A",
-                        "Monofasico 50A",
-                        "Monofasico 70A",
-                        "Bifasico 40A",
-                        "Bifasico 60A"
+                        "CM1 disjuntor 1x40",
+                        "CM1 disjuntor 1x50",
+                        "CM1 disjuntor 1x60",
+                        "CM2 disjuntor 2x40",
+                        "CM2 disjuntor 2x60"
                     };
 
                     ModeloCaixas = ListaModelosCaixas;
@@ -258,13 +258,13 @@ namespace Laep.ViewModels
 
                     List<string> ListaModelosCaixas = new List<string>
                     {
-                        "Monofasico 40A",
-                        "Monofasico 50A",
-                        "Monofasico 70A",
-                        "Bifasico 40A",
-                        "Bifasico 60A",
-                        "Trifasico 40A",
-                        "Trifasico 60A"
+                        "CM1 disjuntor 1x40",
+                        "CM1 disjuntor 1x50",
+                        "CM1 disjuntor 1x60",
+                        "CM2 disjuntor 2x40",
+                        "CM2 disjuntor 2x60",
+                        "CM3 disjuntor 3x40",
+                        "CM3 disjuntor 3x60"
                     };
 
                     ModeloCaixas = ListaModelosCaixas;

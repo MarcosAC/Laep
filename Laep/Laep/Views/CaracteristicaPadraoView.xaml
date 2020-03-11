@@ -36,27 +36,13 @@
                             ItemsSource="{Binding ListaQuantidadeCaixas}"
                             SelectedItem="{Binding QuantidadeCaixaSelecionado}" />
                     
-                    <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
-                        <Picker Style="{StaticResource stylePicker}"
-                                Title="Modelo 1ª Caixa"
-                                ItemsSource="{Binding ModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado1}"
-                                IsEnabled="False">
+                    <Picker Style="{StaticResource stylePicker}"
+                            Title="Modelo 1ª Caixa"
+                            ItemsSource="{Binding ModeloCaixas}"
+                            SelectedItem="{Binding ModeloCaixaSelecionado1}"
+                            IsEnabled="False">
                             <Picker.Triggers>
                                 <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa1}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker>
-
-                        <Picker Style="{StaticResource stylePicker}"
-                                Title="Disjuntor" 
-                                Margin="0,0,0,20" 
-                                ItemsSource="{Binding Disjuntores1}"
-                                SelectedItem="{Binding Disjuntores1Selecionado}"
-                                IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores1}" Value="True">
                                     <Setter Property="IsEnabled" Value="True" />
                                 </DataTrigger>
                             </Picker.Triggers>
@@ -74,18 +60,6 @@
                             </Picker.Triggers>
                         </Picker>
 
-                        <Picker Style="{StaticResource stylePicker}" 
-                                Title="Disjuntor" 
-                                ItemsSource="{Binding Disjuntores2}"
-                                SelectedItem="{Binding Disjuntores2Selecionado}"
-                                IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores2}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker>
-
                         <Picker Style="{StaticResource stylePicker}"
                                 Title="Modelo 3ª Caixa"
                                 ItemsSource="{Binding ModeloCaixas}"
@@ -97,19 +71,6 @@
                                 </DataTrigger>
                             </Picker.Triggers>
                         </Picker>
-
-                        <Picker Style="{StaticResource stylePicker}" 
-                                Title="Disjuntor" 
-                                ItemsSource="{Binding Disjuntores3}"
-                                SelectedItem="{Binding Disjuntores3Selecionado}"
-                                IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleDisjuntores3}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker> 
-                    </FlexLayout>
 
                     <Button Style="{StaticResource styleBaseButton}"                            
                             Text="Dimensionamento"

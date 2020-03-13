@@ -1,4 +1,7 @@
-﻿namespace Laep.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Laep.Models
 {
     public class Dimensionamento
     {     
@@ -24,7 +27,7 @@
                 return false;
             }
             return false;
-        }
+            }
 
         public override int GetHashCode()
         {

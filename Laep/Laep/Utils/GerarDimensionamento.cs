@@ -1,5 +1,6 @@
 ﻿using Laep.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Laep.Utils
 {
@@ -21,28 +22,21 @@ namespace Laep.Utils
             string numeroDeEletrodos = string.Empty;
             string condutorDeAterramento = string.Empty;
 
-            var dadosDimencionamento = dimensionamento;
+            List<Dimensionamento> lista = new List<Dimensionamento>();
 
-            Dimensionamento teste = new Dimensionamento
+            foreach (var item in ResultadosDimensionamento.CM1_1x40)
             {
-                Tensao = "Sistema Trifásico 127/220V",
-                QuantidadeCaixa = "1",
-                ModeloCaixa1 = "CM1 disjuntor 1x40"
-            };
+                lista.Add(item);
+            }
 
-            Dimensionamento teste2 = new Dimensionamento
-            {
-                Tensao = "Sistema Trifásico 127/220V",
-                QuantidadeCaixa = "1",
-                ModeloCaixa1 = "CM1 disjuntor 1x50"
-            };
+            Dimensionamento _teste = lista.Find(x => x.ModeloCaixa1.Contains(dimensionamento.ModeloCaixa1 = "1x40"));
 
             if (dimensionamento.Tensao == "Sistema Trifásico 127/220V")
             {
                 switch (dimensionamento.QuantidadeCaixa)
                 {
                     case "1":
-                        if (dimensionamento.Equals(teste))
+                        if (dimensionamento.Equals(_teste))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";
@@ -61,7 +55,7 @@ namespace Laep.Utils
                             return;
                         }
 
-                        if (dadosDimencionamento.Equals(teste2))
+                        if (dimensionamento.Equals(_teste))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";

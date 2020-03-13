@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Laep.Models;
+using Laep.Utils;
+using Laep.Views;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -8,7 +11,7 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        readonly List<string> ListaDisjuntores = new List<string>();
+        //readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
         private bool _visibleCaixa1 = false;
@@ -120,33 +123,33 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            string dadosDimensionamento = string.Empty;            
+            string recebeDadosDimensionamento = string.Empty;
 
             if (QuantidadeCaixaSelecionado == "1")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}";
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}";
             }
 
             if (QuantidadeCaixaSelecionado == "2")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{ModeloCaixaSelecionado2}";
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}," +
+                                             $"{ModeloCaixaSelecionado2}";
             }
 
             if (QuantidadeCaixaSelecionado == "3")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{ModeloCaixaSelecionado2}," +
-                                       $"{ModeloCaixaSelecionado3}";            
-            }
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}," +
+                                             $"{ModeloCaixaSelecionado2}," +
+                                             $"{ModeloCaixaSelecionado3}";
+            }            
 
-            string[] arrayDadosDimensiomanemto = dadosDimensionamento.Split(',');
+            string[] arrayDadosDimensiomanemto = recebeDadosDimensionamento.Split(',');
 
             foreach (var item in arrayDadosDimensiomanemto)
             {
@@ -164,7 +167,7 @@ namespace Laep.ViewModels
                 listaDadosDimensionamento.Add(item);
             }
 
-            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
+            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("3x"));
 
             if (resultado.Count > 1)
             {
@@ -172,7 +175,18 @@ namespace Laep.ViewModels
                 return;
             }
 
-            await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            var dadosDimensionamento = new Dimensionamento
+            {
+                Tensao = TensaoSelecionada,
+                QuantidadeCaixa = QuantidadeCaixaSelecionado,
+                ModeloCaixa1 = ModeloCaixaSelecionado1,
+                ModeloCaixa2 = ModeloCaixaSelecionado2,
+                ModeloCaixa3 = ModeloCaixaSelecionado3
+            };
+
+            GerarDimensionamento.Dimensionar(dadosDimensionamento);
+
+            //await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={listaDadosDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;
@@ -182,6 +196,7 @@ namespace Laep.ViewModels
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//paginaInicial");
 
         private Command _RefreshCommand;
+
         public Command RefreshCommand => _RefreshCommand ?? (_RefreshCommand = new Command(() => RefreshCommandExecute()));
 
         private void RefreshCommandExecute()
@@ -263,8 +278,8 @@ namespace Laep.ViewModels
                         "CM1 disjuntor 1x60",
                         "CM2 disjuntor 2x40",
                         "CM2 disjuntor 2x60",
-                        "CM3 disjuntor 3x40",
-                        "CM3 disjuntor 3x60"
+                        "CM2 disjuntor 3x40",
+                        "CM2 disjuntor 3x60"
                     };
 
                     ModeloCaixas = ListaModelosCaixas;

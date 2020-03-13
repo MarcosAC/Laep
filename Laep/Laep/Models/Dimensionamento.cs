@@ -1,19 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Laep.Models
+﻿namespace Laep.Models
 {
     public class Dimensionamento
-    {       
-        public string ValorMultiplex { get; set; }
-        public string ValorEntrada { get; set; }
-        public string ValorFases { get; set; }
-        public string ValorNeutro { get; set; }
-        public string Protecao { get; set; }
-        public string EletrodutoPcv { get; set; }
-        public string EletrodutoAco { get; set; }
-        public string NumeroDeEletrodos { get; set; }
-        public string CondutorDeAterramento { get; set; }
+    {     
+        public string Tensao { get; set; }
+        public string QuantidadeCaixa { get; set; }
+        public string ModeloCaixa1 { get; set; }
+        public string ModeloCaixa2 { get; set; }
+        public string ModeloCaixa3 { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Dimensionamento dimensionamento)
+            {
+                if (Tensao == dimensionamento.Tensao &&
+                    QuantidadeCaixa == dimensionamento.QuantidadeCaixa &&
+                    ModeloCaixa1 == dimensionamento.ModeloCaixa1 &&
+                    ModeloCaixa2 == dimensionamento.ModeloCaixa2 &&
+                    ModeloCaixa3 == dimensionamento.ModeloCaixa3)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

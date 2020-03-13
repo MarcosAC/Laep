@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Laep.Models;
+using Laep.Utils;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -7,49 +10,65 @@ namespace Laep.ViewModels
     [QueryProperty("DadosDimensionamento", "dadosDimensionamento")]
     public class DimensionamentoViewModel : BaseViewModel
     {
-        string tensao = string.Empty;
-        string quantidadeDeCaixa = string.Empty;
-        string tipoCaixaAmperDisjuntor = string.Empty;        
+        //string tensao = string.Empty;
+        //string quantidadeDeCaixa = string.Empty;
+        //string tipoCaixaAmperDisjuntor = string.Empty;        
 
         public string DadosDimensionamento
-        {            
+        {
+            
             set
             {
-                string[] arrayDadosDimensiomanemto = Uri.UnescapeDataString(value).Split(',');
+                var arrayDadosDimensiomanemto = Uri.UnescapeDataString(value).Split(',');
 
                 if (arrayDadosDimensiomanemto != null)
                 {
-                    tensao = arrayDadosDimensiomanemto[0];
-                    quantidadeDeCaixa = arrayDadosDimensiomanemto[1];
-
-                    if (quantidadeDeCaixa == "1")
+                    var dadosDimensionamento = new Dimensionamento
                     {
-                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[3]}";
+                        Tensao = arrayDadosDimensiomanemto[0],
+                        QuantidadeCaixa = arrayDadosDimensiomanemto[1],
+                        ModeloCaixa1 = arrayDadosDimensiomanemto[2],
+                        //ModeloCaixa2 = arrayDadosDimensiomanemto[3],
+                        //ModeloCaixa3 = arrayDadosDimensiomanemto[4]
+                    };
 
-                        RelatorioDimensionamento();
+                    RelatorioDimensionamento(dadosDimensionamento);
 
-                        return;
-                    }
-
-                    if (quantidadeDeCaixa == "2")
-                    {
-                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[4]}, " +
-                                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[5]}";
-
-                        RelatorioDimensionamento();
-
-                        return;
-                    }
-
-                    if (quantidadeDeCaixa == "3")
-                    {
-                        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
-                                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
-                                                  $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[7]}";
-
-                        RelatorioDimensionamento();
-                    }                    
                 }
+
+                //if (arrayDadosDimensiomanemto != null)
+                //{
+                //    tensao = arrayDadosDimensiomanemto[0];
+                //    quantidadeDeCaixa = arrayDadosDimensiomanemto[1];
+
+                //    if (quantidadeDeCaixa == "1")
+                //    {
+                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[3]}";
+
+                //        RelatorioDimensionamento();
+
+                //        return;
+                //    }
+
+                //    if (quantidadeDeCaixa == "2")
+                //    {
+                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[4]}, " +
+                //                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[5]}";
+
+                //        RelatorioDimensionamento();
+
+                //        return;
+                //    }
+
+                //    if (quantidadeDeCaixa == "3")
+                //    {
+                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
+                //                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
+                //                                  $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[7]}";
+
+                //        RelatorioDimensionamento();
+                //    }
+                //}
             }
         }
 
@@ -132,7 +151,7 @@ namespace Laep.ViewModels
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//caracteriscaPadrao");
 
         #region Métodos
-        private void RelatorioDimensionamento()
+        private void RelatorioDimensionamento(Dimensionamento dadosDimensionamento)
         {
             string valorMultiplex = string.Empty;
             string valorEntrada = string.Empty;
@@ -144,1844 +163,1848 @@ namespace Laep.ViewModels
             string numeroDeEletrodos = string.Empty;
             string condutorDeAterramento = string.Empty;
 
-            if (tensao == "Sistema Trifásico 127/220V")
-            {
-                switch (quantidadeDeCaixa)
-                {
-                    case "1":
-                        #region Monofasico
-                        // Monofasico->40
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A")
-                        {
-                            valorMultiplex = "Q";
-                            valorEntrada = "1";
-                            valorFases = "6mm";
-                            valorNeutro = "6mm";
-                            protecao = "6mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
+            var teste = dadosDimensionamento;
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            GerarDimensionamento.Dimensionar(teste);
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //if (dadosDimensionamento.Tensao == "Sistema Trifásico 127/220V")
+            //{
+            //    switch (dadosDimensionamento.QuantidadeCaixa)
+            //    {
+            //        case "1":
+            //            #region Monofasico
+            //            // Monofasico->40
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A")
+            //            {
+            //                valorMultiplex = "Q";
+            //                valorEntrada = "1";
+            //                valorFases = "6mm";
+            //                valorNeutro = "6mm";
+            //                protecao = "6mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        // Monofasico->50
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A")
-                        {
-                            valorMultiplex = "Q";
-                            valorEntrada = "1";
-                            valorFases = "10mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            // Monofasico->50
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q";
+            //                valorEntrada = "1";
+            //                valorFases = "10mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        // Monofasico->50
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A")
-                        {                            
-                            valorEntrada = "1";
-                            valorFases = "16mm";
-                            valorNeutro = "16mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "16mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            // Monofasico->50
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A")
+            //            {                            
+            //                valorEntrada = "1";
+            //                valorFases = "16mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
-                        #endregion
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        #region Bifasico
-                        // Bifasico->40
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 40A")
-                        {
-                            valorEntrada = "2";
-                            valorFases = "10mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
+            //            #endregion
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            #region Bifasico
+            //            // Bifasico->40
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A")
+            //            {
+            //                valorEntrada = "2";
+            //                valorFases = "10mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 60A")
-                        {
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "16mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "16mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A")
+            //            {
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
-                        #endregion
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        #region Trifasico
-                        // Trifasico->60
-                        if (tipoCaixaAmperDisjuntor == "Trifasico 60A")
-                        {
-                            valorEntrada = "3";
-                            valorFases = "16mm";
-                            valorNeutro = "16mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
+            //            #endregion
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            #region Trifasico
+            //            // Trifasico->60
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A")
+            //            {
+            //                valorEntrada = "3";
+            //                valorFases = "16mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        if (tipoCaixaAmperDisjuntor == "Trifasico 40A")
-                        {
-                            valorEntrada = "3";
-                            valorFases = "10mm";
-                            valorNeutro = "10mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A")
+            //            {
+            //                valorEntrada = "3";
+            //                valorFases = "10mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
-                        #endregion
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        IsVisible("Label");
-                        break;
+            //                IsVisible("Grid");
 
-                    case "2":
-                        #region Monofasico
-                        // Monofasico->40 40
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "6mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
+            //                return;
+            //            }
+            //            #endregion
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //            IsVisible("Label");
+            //            break;
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //        case "2":
+            //            #region Monofasico
+            //            // Monofasico->40 40
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "6mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
 
-                        // Monofasico->40 50
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A" || tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "10mm";
-                            valorNeutro = "16mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
+            //                IsVisible("Grid");
 
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+            //                return;
+            //            }
 
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
+            //            // Monofasico->40 50
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 50A" || dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "10mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
 
-                            IsVisible("Grid");
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
 
-                            return;
-                        }
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
 
                         
 
-                        // Monofasico->40 70 | Monofasico->50 70 | Monofasico->70 70
-                        if (// Monofasico->40 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A" || 
-                            // Monofasico->50 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A" || 
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A" ||
-                            // Monofasico->70 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico
-                        // Bifasico->40 40 - 60 60 | Bifasico->40 60
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Bifasico->40 60 | Monofasico->70
-                        if (//Bifasico->40 60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A" ||
-                            //Bifasico->40 | Monofasico->40 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A" ||
-                            //Bifasico->60 | Monofasico->40 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Bifasico->40 60 | Monofasico->70
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Trifasico
-                        // Trifasico->40 - 60 | Bifasico->40 60
-
-                        if (// Trifasico->40 | Bifasico->40
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A" ||
-                            // Trifasico->40 | Bifasico->60
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A" ||
-                            // Trifasico->60 | Bifasico->40
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
-                            // Trifasico->40 | Bifasico->60
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A" ||
-                            //Trifasico->40 40 - 60 60 | Bifasico->40 60
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3"; // Antigo valor 2 -> Nota 2
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Trifasico->40 40 - 60 60 | Bifasico->40 60
-                        if (tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "2";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Trifasico->40 60 |Monofasico->70 / Trifasico->40 60 | Monofasico->70
-                        if (// Trifasico->40 - 60 | Monofasico->70 
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A" ||
-                            //Trifasico->40 60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        IsVisible("Label");
-                        break;
-
-                    case "3":
-                        #region Monofasico
-                        #region Monofasico->40 40 40 | 50 50 50 | 70 70 70
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 40A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "6mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "10mm";
-                            valorNeutro = "16mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Monofasico->40 40 50 | 50 50 40
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Monofasico 40A "||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 40A" || 
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Monofasico 50A" || 
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Monofasico 50A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "10mm";
-                            valorNeutro = "16mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Monofasico->40 40 70 | 50 50 70 | 70 70 40
-                        if (//40 40 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Monofasico 40A" ||
-                            //50 50 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Monofasico 50A" ||
-                            //70 70 40
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Monofasico 70A ")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Monofasico->40 50 70 | Trifasico->40 60
-                        if (//Monofasico->40 70 | Trifasico->40
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Monofasico 40A" ||
-                            //Monofasico->40 70 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Monofasico 40A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "25mm";
-                            valorNeutro = "35mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        if (//Monofasico->40 40 | Trifasico->40
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
-                            //Monofasico->50 50 | Trifasico->40
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
-                            //Monofasico->40 40 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
-                            //Monofasico->50 50 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 50A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        #region Monofasico->40 50 70 | Bifasico 40 60 | Trifasico 40 60
-                            if (// Monofasico->40 70 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Monofasico 70A" ||
-                            // Monofasico->50 70 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Monofasico 70A" ||
-                            //Monofasico->40 | Bifasico->40 | Trifasico->40 
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Bifasico 40A" ||                            
-                            //Monofasico->40 | Bifasico->60 | Trifasico->60  |                                                         
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Bifasico 60A" ||
-                            //Monofasico->50 | Bifasico->40 |Trifasico->40                                                        
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Bifasico 40A" ||
-                            //Monofasico->50 | Bifasico->60 | Trifasico->60 
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Bifasico 60A")
-                        {
-                            valorMultiplex = "Q35";
-                            valorEntrada = "3";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-                        #endregion
-                        #endregion
-
-                        #region Bifasico
-                        #region Bifasico->40 40 40 - 60 60 60 | Trifasico->40 - 60 | Monofasico->40 - 50
-                        if (//Bifasico->40 40 40 - 60 60 60
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Bifasico 60A" ||                            
-                            //Trifasico->40 | Monofasico->70 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Monofasico 70A" ||
-                            //Trifasico->40 | Monofasico->70 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Trifasico 40A" ||
-                            //Trifasico->40 | Monofasico->70 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Trifasico 40A" ||
-                            //Trifasico->60 | Monofasico->70 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Trifasico 60A" ||
-                            //Trifasico->60 | Monofasico->70 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Trifasico 60A")
-                        {
-                            valorMultiplex = "Q35";
-                            valorEntrada = "3";
-                            valorFases = "35mm";
-                            valorNeutro = "35mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico->40 40 - 60 60 | 40 60 | Monofasico->40 50 70 | 70 70
-                        if (//Bifasico->40 40 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Bifasico 40A" ||
-                            //Bifasico->40 40 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Bifasico 40A" ||
-                            //Bifasico->60 60 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Bifasico 60A" ||
-                            //Bifasico->60 60 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Bifasico 60A" ||
-                            //Bifasico->40 40 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
-                            //Bifasico->60 60 | Monofasico->50                            
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Bifasico 60A" ||
-                            //Bifasico->40 | Monofasico->70 70)
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Monofasico 70A" ||
-                            //Bifasico->60 | Monofasico->70 70))
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Monofasico 70A")
-                            {
-                                valorMultiplex = "Q35";
-                                valorEntrada = "3";
-                                valorFases = "35mm"; // pode ser valor 25mm
-                                valorNeutro = "35mm"; // pode ser valor 25mm
-                                protecao = "16mm"; //-> Verificar se essa correção esta correta. Nota 1
-                                eletrodutoPcv = "40mm";
-                                eletrodutoAco = "32mm";
-                                numeroDeEletrodos = "3";
-                                condutorDeAterramento = "16mm";
-
-                                string ramalDeLigacao = valorMultiplex;
-                                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                                RamalLigacao = ramalDeLigacao;
-                                RamalEntrada = ramalDeEntrada;
-                                ValorFaseNeutro = valorFaseNeutro;
-                                Protecao = protecao;
-                                EletrodutoPvc = eletrodutoPcv;
-                                EletrodutoAco = eletrodutoAco;
-                                NumeroDeEletrodos = numeroDeEletrodos;
-                                CondutorDeAterramento = condutorDeAterramento;
-
-                                IsVisible("Grid");
-
-                            return;
-                            }
-                        #endregion
-
-                        #region Bifasico->40 60 | Monofasico->40 50
-                        if (//Bifasico->40 | Monofasico-> 40 40  --> Verificar com Lucas
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||
-                            //Bifasico->60 | Monofasico->50 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 50A")
-                        {
-                            valorMultiplex = "Q35";
-                            valorEntrada = "3";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        IsVisible("Label");
-                        #endregion
-                        #endregion
-
-                        #region Trifasico
-                        #region Trifasico->40 - 60 | Bifasico->40 40 - 60 60
-                        if (//Trifasico->40 | Bifasico->40 40
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 40A" ||
-                            //Trifasico->40 | Bifasico->40 60
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 40A" ||                            
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A, Bifasico 40A" ||
-                            //Trifasico->60 | Bifasico->40 60
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 40A" ||
-                            //Trifasico->60 | Bifasico->60 60
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 60A" ||                            
-                            //Trifasico->40 | Bifasico->40 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Bifasico 40A" ||
-                            //Trifasico->60 | Bifasico->60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Bifasico 60A" ||
-                            //Bifasico->40 | Bifasico->60 | Trifasico->40
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 60A" ||
-                            //Bifasico->40 | Bifasico->60 | Trifasico->60
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A, Bifasico 60A")
-                        {
-                            valorMultiplex = "Q35";
-                            valorEntrada = "3";
-                            valorFases = "50mm";
-                            valorNeutro = "50mm";
-                            protecao = "25mm";
-                            eletrodutoPcv = "50mm";
-                            eletrodutoAco = "40mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Trifasico->40 | Bifasico->40 | Monofasico->70
-                        if (//Trifasico->40 | Bifasico->40 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Bifasico 40A" ||
-                            //Trifasico->60 | Bifasico->60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Bifasico 60A")
-                        {
-                            valorMultiplex = "Q35";
-                            valorEntrada = "3";
-                            valorFases = "50mm";
-                            valorNeutro = "50mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "50mm";
-                            eletrodutoAco = "40mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Trifasico->40 - 60 | Bifasico 40 -60 | Monofasico->40 - 50 
-                        if (//Trifasico->40 | Monofasico->40 40
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
-                            //Trifasico->40 | Monofasico->50 50
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
-                            //Trifasico->40 | Monofasico->40 50 ou 50 40 
-                            tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Trifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Trifasico 40A" ||
-                            //Trifasico->60 | Monofasico->40 50 ou 50 40
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 40A" ||                            
-                            //Trifasico->60 | Monofasico->40 40
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
-                            //Trifasico->60 | Monofasico->50 50
-                            tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
-                            //Bifasico 40 | Monofasico->40 40
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||
-                            //Bifasico 40 | Monofasico->40 50 ou 50 40
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 50A" ||                            
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Monofasico 40A" ||
-                            //Bifasico 40| Monofasico->50 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Monofasico 50A" ||
-                            //Bifasico 60 | Monofasico->40 40
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Monofasico 40A" ||
-                            //Bifasico 60 | Monofasico->50 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 50A" ||
-                            //Bifasico 60 | Monofasico->40 50 ou 50 40
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 40A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "3";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion                        
-                        #endregion
-                        IsVisible("Label");
-                        break;
-                }
-            }
-
-            if (tensao == "Sistema Monofásico 120/240V")
-            {
-                switch (quantidadeDeCaixa)
-                {
-                    case "1":
-                        #region Monofasico
-                        // Monofasico->40
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A")
-                        {
-                            valorMultiplex = "Q";
-                            valorEntrada = "1";
-                            valorFases = "6mm";
-                            valorNeutro = "6mm";
-                            protecao = "6mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Monofasico->50
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A")
-                        {
-                            valorMultiplex = "Q";
-                            valorEntrada = "1";
-                            valorFases = "10mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Monofasico->70
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A")
-                        {
-                            valorEntrada = "1";
-                            valorFases = "16mm";
-                            valorNeutro = "16mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico
-                        // Bifasico->40
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 40A")
-                        {
-                            valorEntrada = "2";
-                            valorFases = "10mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "10mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 60A")
-                        {
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "16mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "1";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        IsVisible("Label");
-                        break;
-
-                    case "2":
-                        #region Monofasico
-                        // Monofasico->40 40
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "6mm";
-                            valorNeutro = "10mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-
-                        // Monofasico->40 50 70
-                        if (//Monofasico->40 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || 
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A" ||
-                            //Monofasico->70 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico
-                        // Monofasico->40 60
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 60A, Monofasico 60A" ||
-                            //Bifasico->40 60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A" ||
-                            //Bifasico->40 | Monofasico->40 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A" ||
-                            //Bifasico->60 | Monofasico->40 50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "25mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "2";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        IsVisible("Label");
-                        break;
-
-                    case "3":
-                        #region Monofasico
-                        #region Monofasico->40 40 40 | 50 50 50 | 70 70 70
-                        if (//Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 40A" || 
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A" ||
-                            //Monofasico->50 50 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Monofasico 40A" ||
-                            //Monofasico->50 50 70
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Monofasico 50A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "2";
-                            valorFases = "10mm";
-                            valorNeutro = "16mm";
-                            protecao = "10mm";
-                            eletrodutoPcv = "32mm";
-                            eletrodutoAco = "25mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
-                        {
-                            valorMultiplex = "Q16";
-                            valorEntrada = "2";
-                            valorFases = "16mm";
-                            valorNeutro = "25mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Monofasico->70 70 70
-                        if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
-                        {
-                            valorMultiplex = "T35";
-                            valorEntrada = "2";
-                            valorFases = "35mm";
-                            valorNeutro = "35mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-                        #endregion
-
-                        #region Bifasico
-                        #region Bifasico->60 60 60
-                        if (tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Bifasico 60A")
-                        {
-                            valorMultiplex = "70";
-                            valorEntrada = "3";
-                            valorFases = "50mm";
-                            valorNeutro = "50mm";
-                            protecao = "25mm";
-                            eletrodutoPcv = "50mm";
-                            eletrodutoAco = "40mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico->40 40 - 60 60 | Monofasico->70
-                        if (//Bifasico->40 40 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
-                            //Bifasico->60 60 | Monofasico->70
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Bifasico 70A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Bifasico 60A")
-                        {
-                            valorMultiplex = "T70";
-                            valorEntrada = "2";
-                            valorFases = "50mm";
-                            valorNeutro = "50mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "50mm";
-                            eletrodutoAco = "40mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-
-                        #region Bifasico->40 60 | Monofasico->40 50
-                        if (//Bifasico->40 40 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Bifasico 40A" ||
-                            //Bifasico->40 40 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Bifasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Bifasico 40A" ||
-                            //Bifasico->60 60 | Monofasico->40
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 40A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Bifasico 60A" ||
-                            //Bifasico->60 60 | Monofasico->50
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 50A" ||
-                            tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Bifasico 60A" ||
-                            tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Bifasico 60A")
-                        {
-                            valorMultiplex = "T16";
-                            valorEntrada = "2";
-                            valorFases = "35mm";
-                            valorNeutro = "35mm";
-                            protecao = "16mm";
-                            eletrodutoPcv = "40mm";
-                            eletrodutoAco = "32mm";
-                            numeroDeEletrodos = "3";
-                            condutorDeAterramento = "16mm";
-
-                            string ramalDeLigacao = valorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
-
-                            RamalLigacao = ramalDeLigacao;
-                            RamalEntrada = ramalDeEntrada;
-                            ValorFaseNeutro = valorFaseNeutro;
-                            Protecao = protecao;
-                            EletrodutoPvc = eletrodutoPcv;
-                            EletrodutoAco = eletrodutoAco;
-                            NumeroDeEletrodos = numeroDeEletrodos;
-                            CondutorDeAterramento = condutorDeAterramento;
-
-                            IsVisible("Grid");
-
-                            return;
-                        }
-                        #endregion
-                        #endregion
-
-                        IsVisible("Label");
-                        break;
-                }
-            }
+            //            // Monofasico->40 70 | Monofasico->50 70 | Monofasico->70 70
+            //            if (// Monofasico->40 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A" ||
+            //                // Monofasico->50 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 50A" ||
+            //                // Monofasico->70 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico
+            //            // Bifasico->40 40 - 60 60 | Bifasico->40 60
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 40A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Bifasico->40 60 | Monofasico->70
+            //            if (//Bifasico->40 60 | Monofasico->70
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Bifasico 60A" ||
+            //                //Bifasico->40 | Monofasico->40 50
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 40A" ||
+            //                //Bifasico->60 | Monofasico->40 50
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Bifasico->40 60 | Monofasico->70
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A" || dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Trifasico
+            //            // Trifasico->40 - 60 | Bifasico->40 60
+
+            //            if (// Trifasico->40 | Bifasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 40A" ||
+            //                // Trifasico->40 | Bifasico->60
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 40A" ||
+            //                // Trifasico->60 | Bifasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 60A" ||
+            //                // Trifasico->40 | Bifasico->60
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 60A" ||
+            //                //Trifasico->40 40 - 60 60 | Bifasico->40 60
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 60A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3"; // Antigo valor 2 -> Nota 2
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Trifasico->40 40 - 60 60 | Bifasico->40 60
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 60A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "2";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Trifasico->40 60 |Monofasico->70 / Trifasico->40 60 | Monofasico->70
+            //            if (// Trifasico->40 - 60 | Monofasico->70 
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 60A" ||
+            //                //Trifasico->40 60 | Monofasico->70
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 60A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            IsVisible("Label");
+            //            break;
+
+            //        case "3":
+            //            #region Monofasico
+            //            #region Monofasico->40 40 40 | 50 50 50 | 70 70 70
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "6mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "10mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Monofasico->40 40 50 | 50 50 40
+            //            if (dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 50A, Monofasico 40A "||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 50A, Monofasico 40A" || 
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 50A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 40A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "10mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Monofasico->40 40 70 | 50 50 70 | 70 70 40
+            //            if (//40 40 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Monofasico 40A" ||
+            //                //50 50 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 50A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 50A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 70A, Monofasico 50A" ||
+            //                //70 70 40
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Monofasico 70A ")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Monofasico->40 50 70 | Trifasico->40 60
+            //            if (//Monofasico->40 70 | Trifasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 70A, Monofasico 40A" ||
+            //                //Monofasico->40 70 | Trifasico->60
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 60A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 70A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "25mm";
+            //                valorNeutro = "35mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            if (//Monofasico->40 40 | Trifasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
+            //                //Monofasico->50 50 | Trifasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
+            //                //Monofasico->40 40 | Trifasico->60
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
+            //                //Monofasico->50 50 | Trifasico->60
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 50A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            #region Monofasico->40 50 70 | Bifasico 40 60 | Trifasico 40 60
+            //                if (// Monofasico->40 70 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Monofasico 70A" ||
+            //                // Monofasico->50 70 70
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 50A, Monofasico 70A" ||
+            //                //Monofasico->40 | Bifasico->40 | Trifasico->40 
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 40A, Bifasico 40A" ||                            
+            //                //Monofasico->40 | Bifasico->60 | Trifasico->60  |                                                         
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 60A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Trifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 40A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 40A, Bifasico 60A" ||
+            //                //Monofasico->50 | Bifasico->40 |Trifasico->40                                                        
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 40A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Trifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 50A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Bifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 50A, Bifasico 40A" ||
+            //                //Monofasico->50 | Bifasico->60 | Trifasico->60 
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 60A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Trifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 50A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Trifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Bifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 50A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "Q35";
+            //                valorEntrada = "3";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+            //            #endregion
+            //            #endregion
+
+            //            #region Bifasico
+            //            #region Bifasico->40 40 40 - 60 60 60 | Trifasico->40 - 60 | Monofasico->40 - 50
+            //            if (//Bifasico->40 40 40 - 60 60 60
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 60A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 60A, Bifasico 60A" ||                            
+            //                //Trifasico->40 | Monofasico->70 | Monofasico->70
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Trifasico 60A, Monofasico 70A" ||
+            //                //Trifasico->40 | Monofasico->70 | Monofasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 70A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Trifasico 40A" ||
+            //                //Trifasico->40 | Monofasico->70 | Monofasico->50
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 70A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 40A, Monofasico 50A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 70A, Trifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 50A, Trifasico 40A" ||
+            //                //Trifasico->60 | Monofasico->70 | Monofasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 70A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Monofasico 70A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 40A, Trifasico 60A" ||
+            //                //Trifasico->60 | Monofasico->70 | Monofasico->50
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 70A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Trifasico 60A, Monofasico 50A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Monofasico 70A, Trifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 50A, Trifasico 60A")
+            //            {
+            //                valorMultiplex = "Q35";
+            //                valorEntrada = "3";
+            //                valorFases = "35mm";
+            //                valorNeutro = "35mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico->40 40 - 60 60 | 40 60 | Monofasico->40 50 70 | 70 70
+            //            if (//Bifasico->40 40 | Monofasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 40A, Bifasico 40A" ||
+            //                //Bifasico->40 40 | Monofasico->50
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 50A, Bifasico 40A" ||
+            //                //Bifasico->60 60 | Monofasico->40
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 60A, Monofasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 40A, Bifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 40A, Bifasico 60A" ||
+            //                //Bifasico->60 60 | Monofasico->50
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Bifasico 60A, Monofasico 50A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 50A, Bifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 50A, Bifasico 60A" ||
+            //                //Bifasico->40 40 | Monofasico->70
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
+            //                //Bifasico->60 60 | Monofasico->50                            
+            //                dadosDimensionamento.ModeloCaixa1== "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1== "Monofasico 70A, Bifasico 60A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 70A, Bifasico 60A" ||
+            //                //Bifasico->40 | Monofasico->70 70)
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 40A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Bifasico 40A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Bifasico 40A, Monofasico 70A" ||
+            //                //Bifasico->60 | Monofasico->70 70))
+            //                dadosDimensionamento.ModeloCaixa1 == "Bifasico 60A, Monofasico 70A, Monofasico 70A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Monofasico 70A, Bifasico 60A" ||
+            //                dadosDimensionamento.ModeloCaixa1 == "Monofasico 70A, Bifasico 60A, Monofasico 70A")
+            //                {
+            //                    valorMultiplex = "Q35";
+            //                    valorEntrada = "3";
+            //                    valorFases = "35mm"; // pode ser valor 25mm
+            //                    valorNeutro = "35mm"; // pode ser valor 25mm
+            //                    protecao = "16mm"; //-> Verificar se essa correção esta correta. Nota 1
+            //                    eletrodutoPcv = "40mm";
+            //                    eletrodutoAco = "32mm";
+            //                    numeroDeEletrodos = "3";
+            //                    condutorDeAterramento = "16mm";
+
+            //                    string ramalDeLigacao = valorMultiplex;
+            //                    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                    string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                    RamalLigacao = ramalDeLigacao;
+            //                    RamalEntrada = ramalDeEntrada;
+            //                    ValorFaseNeutro = valorFaseNeutro;
+            //                    Protecao = protecao;
+            //                    EletrodutoPvc = eletrodutoPcv;
+            //                    EletrodutoAco = eletrodutoAco;
+            //                    NumeroDeEletrodos = numeroDeEletrodos;
+            //                    CondutorDeAterramento = condutorDeAterramento;
+
+            //                    IsVisible("Grid");
+
+            //                return;
+            //                }
+            //            #endregion
+
+            //            #region Bifasico->40 60 | Monofasico->40 50
+            //            if (//Bifasico->40 | Monofasico-> 40 40  --> Verificar com Lucas
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||
+            //                //Bifasico->60 | Monofasico->50 50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q35";
+            //                valorEntrada = "3";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            IsVisible("Label");
+            //            #endregion
+            //            #endregion
+
+            //            #region Trifasico
+            //            #region Trifasico->40 - 60 | Bifasico->40 40 - 60 60
+            //            if (//Trifasico->40 | Bifasico->40 40
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 40A" ||
+            //                //Trifasico->40 | Bifasico->40 60
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 60A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 40A" ||                            
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 40A, Bifasico 40A" ||
+            //                //Trifasico->60 | Bifasico->40 60
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 60A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 40A" ||
+            //                //Trifasico->60 | Bifasico->60 60
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Bifasico 60A" ||                            
+            //                //Trifasico->40 | Bifasico->40 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Bifasico 40A" ||
+            //                //Trifasico->60 | Bifasico->60 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Bifasico 60A" ||
+            //                //Bifasico->40 | Bifasico->60 | Trifasico->40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Bifasico 60A" ||
+            //                //Bifasico->40 | Bifasico->60 | Trifasico->60
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 60A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 40A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 40A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "Q35";
+            //                valorEntrada = "3";
+            //                valorFases = "50mm";
+            //                valorNeutro = "50mm";
+            //                protecao = "25mm";
+            //                eletrodutoPcv = "50mm";
+            //                eletrodutoAco = "40mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Trifasico->40 | Bifasico->40 | Monofasico->70
+            //            if (//Trifasico->40 | Bifasico->40 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Bifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 70A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Trifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 40A, Bifasico 40A" ||
+            //                //Trifasico->60 | Bifasico->60 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Bifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 70A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Trifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Trifasico 60A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "Q35";
+            //                valorEntrada = "3";
+            //                valorFases = "50mm";
+            //                valorNeutro = "50mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "50mm";
+            //                eletrodutoAco = "40mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Trifasico->40 - 60 | Bifasico 40 -60 | Monofasico->40 - 50 
+            //            if (//Trifasico->40 | Monofasico->40 40
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 40A" ||
+            //                //Trifasico->40 | Monofasico->50 50
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 50A" ||
+            //                //Trifasico->40 | Monofasico->40 50 ou 50 40 
+            //                tipoCaixaAmperDisjuntor == "Trifasico 40A, Monofasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Trifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Trifasico 40A" ||
+            //                //Trifasico->60 | Monofasico->40 50 ou 50 40
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 40A" ||                            
+            //                //Trifasico->60 | Monofasico->40 40
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Trifasico 60A, Monofasico 40A" ||
+            //                //Trifasico->60 | Monofasico->50 50
+            //                tipoCaixaAmperDisjuntor == "Trifasico 60A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Trifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Trifasico 60A, Monofasico 50A" ||
+            //                //Bifasico 40 | Monofasico->40 40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 40A" ||
+            //                //Bifasico 40 | Monofasico->40 50 ou 50 40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Monofasico 50A" ||                            
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Monofasico 40A" ||
+            //                //Bifasico 40| Monofasico->50 50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Monofasico 50A" ||
+            //                //Bifasico 60 | Monofasico->40 40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Monofasico 40A" ||
+            //                //Bifasico 60 | Monofasico->50 50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 50A" ||
+            //                //Bifasico 60 | Monofasico->40 50 ou 50 40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 50A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "3";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion                        
+            //            #endregion
+            //            IsVisible("Label");
+            //            break;
+            //    }
+            //}
+
+            //if (tensao == "Sistema Monofásico 120/240V")
+            //{
+            //    switch (quantidadeDeCaixa)
+            //    {
+            //        case "1":
+            //            #region Monofasico
+            //            // Monofasico->40
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 40A")
+            //            {
+            //                valorMultiplex = "Q";
+            //                valorEntrada = "1";
+            //                valorFases = "6mm";
+            //                valorNeutro = "6mm";
+            //                protecao = "6mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Monofasico->50
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q";
+            //                valorEntrada = "1";
+            //                valorFases = "10mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Monofasico->70
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 70A")
+            //            {
+            //                valorEntrada = "1";
+            //                valorFases = "16mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico
+            //            // Bifasico->40
+            //            if (tipoCaixaAmperDisjuntor == "Bifasico 40A")
+            //            {
+            //                valorEntrada = "2";
+            //                valorFases = "10mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "10mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            if (tipoCaixaAmperDisjuntor == "Bifasico 60A")
+            //            {
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "1";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            IsVisible("Label");
+            //            break;
+
+            //        case "2":
+            //            #region Monofasico
+            //            // Monofasico->40 40
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "6mm";
+            //                valorNeutro = "10mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+
+            //            // Monofasico->40 50 70
+            //            if (//Monofasico->40 70
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A" || 
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A" ||
+            //                //Monofasico->70 70
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico
+            //            // Monofasico->40 60
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 60A, Monofasico 60A" ||
+            //                //Bifasico->40 60 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A" ||
+            //                //Bifasico->40 | Monofasico->40 50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A" ||
+            //                //Bifasico->60 | Monofasico->40 50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "25mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "2";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            IsVisible("Label");
+            //            break;
+
+            //        case "3":
+            //            #region Monofasico
+            //            #region Monofasico->40 40 40 | 50 50 50 | 70 70 70
+            //            if (//Monofasico->40
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 40A" || 
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A" ||
+            //                //Monofasico->50 50 70
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Monofasico 70A, Monofasico 40A" ||
+            //                //Monofasico->50 50 70
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 50A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 70A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 50A, Monofasico 50A, Monofasico 50A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "2";
+            //                valorFases = "10mm";
+            //                valorNeutro = "16mm";
+            //                protecao = "10mm";
+            //                eletrodutoPcv = "32mm";
+            //                eletrodutoAco = "25mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
+            //            {
+            //                valorMultiplex = "Q16";
+            //                valorEntrada = "2";
+            //                valorFases = "16mm";
+            //                valorNeutro = "25mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Monofasico->70 70 70
+            //            if (tipoCaixaAmperDisjuntor == "Monofasico 70A, Monofasico 70A, Monofasico 70A")
+            //            {
+            //                valorMultiplex = "T35";
+            //                valorEntrada = "2";
+            //                valorFases = "35mm";
+            //                valorNeutro = "35mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+            //            #endregion
+
+            //            #region Bifasico
+            //            #region Bifasico->60 60 60
+            //            if (tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "70";
+            //                valorEntrada = "3";
+            //                valorFases = "50mm";
+            //                valorNeutro = "50mm";
+            //                protecao = "25mm";
+            //                eletrodutoPcv = "50mm";
+            //                eletrodutoAco = "40mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico->40 40 - 60 60 | Monofasico->70
+            //            if (//Bifasico->40 40 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 70A, Bifasico 40A" ||
+            //                //Bifasico->60 60 | Monofasico->70
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 70A, Bifasico 60A, Bifasico 70A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 70A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "T70";
+            //                valorEntrada = "2";
+            //                valorFases = "50mm";
+            //                valorNeutro = "50mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "50mm";
+            //                eletrodutoAco = "40mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+
+            //            #region Bifasico->40 60 | Monofasico->40 50
+            //            if (//Bifasico->40 40 | Monofasico->40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 40A, Bifasico 40A" ||
+            //                //Bifasico->40 40 | Monofasico->50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Bifasico 40A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 40A, Bifasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 40A, Monofasico 50A, Bifasico 40A" ||
+            //                //Bifasico->60 60 | Monofasico->40
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 40A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 40A, Bifasico 60A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 40A, Bifasico 60A" ||
+            //                //Bifasico->60 60 | Monofasico->50
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Bifasico 60A, Monofasico 50A" ||
+            //                tipoCaixaAmperDisjuntor == "Monofasico 50A, Bifasico 60A, Bifasico 60A" ||
+            //                tipoCaixaAmperDisjuntor == "Bifasico 60A, Monofasico 50A, Bifasico 60A")
+            //            {
+            //                valorMultiplex = "T16";
+            //                valorEntrada = "2";
+            //                valorFases = "35mm";
+            //                valorNeutro = "35mm";
+            //                protecao = "16mm";
+            //                eletrodutoPcv = "40mm";
+            //                eletrodutoAco = "32mm";
+            //                numeroDeEletrodos = "3";
+            //                condutorDeAterramento = "16mm";
+
+            //                string ramalDeLigacao = valorMultiplex;
+            //                string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
+            //                string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+
+            //                RamalLigacao = ramalDeLigacao;
+            //                RamalEntrada = ramalDeEntrada;
+            //                ValorFaseNeutro = valorFaseNeutro;
+            //                Protecao = protecao;
+            //                EletrodutoPvc = eletrodutoPcv;
+            //                EletrodutoAco = eletrodutoAco;
+            //                NumeroDeEletrodos = numeroDeEletrodos;
+            //                CondutorDeAterramento = condutorDeAterramento;
+
+            //                IsVisible("Grid");
+
+            //                return;
+            //            }
+            //            #endregion
+            //            #endregion
+
+            //            IsVisible("Label");
+            //            break;
+            //    }
+            //}
         }
        
         private void IsVisible(string controle)

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Laep.Models
+﻿namespace Laep.Models
 {
     public class Dimensionamento
-    {     
+    {
+        public string Id { get; set; }
         public string Tensao { get; set; }
         public string QuantidadeCaixa { get; set; }
         public string ModeloCaixa1 { get; set; }

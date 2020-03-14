@@ -22,21 +22,16 @@ namespace Laep.Utils
             string numeroDeEletrodos = string.Empty;
             string condutorDeAterramento = string.Empty;
 
-            List<Dimensionamento> lista = new List<Dimensionamento>();
+            string id = string.Empty;
 
-            foreach (var item in ResultadosDimensionamento.CM1_1x40)
-            {
-                lista.Add(item);
-            }
-
-            Dimensionamento _teste = lista.Find(x => x.ModeloCaixa1.Contains(dimensionamento.ModeloCaixa1 = "1x40"));
+            var lista = new List<Dimensionamento>();
 
             if (dimensionamento.Tensao == "Sistema Trifásico 127/220V")
             {
                 switch (dimensionamento.QuantidadeCaixa)
                 {
                     case "1":
-                        if (dimensionamento.Equals(_teste))
+                        if (dimensionamento.Equals(ResultadosDimensionamento.Resultados("1")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";
@@ -55,7 +50,7 @@ namespace Laep.Utils
                             return;
                         }
 
-                        if (dimensionamento.Equals(_teste))
+                        if (dimensionamento.Equals(ResultadosDimensionamento.Resultados("2")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";

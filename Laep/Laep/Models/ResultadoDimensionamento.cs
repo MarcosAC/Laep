@@ -2,14 +2,17 @@
 {
     public class ResultadoDimensionamento
     {
-        public string valorMultiplex { get; set; }
-        public string valorEntrada { get; set; }
-        public string valorFases { get; set; }
-        public string valorNeutro { get; set; }
-        public string protecao { get; set; }
-        public string eletrodutoPcv { get; set; }
-        public string eletrodutoAco { get; set; }
-        public string numeroDeEletrodos { get; set; }
-        public string condutorDeAterramento { get; set; }
+        public string ValorMultiplex { get; set; }
+        public string ValorEntrada { get; set; }
+        public string ValorFases { get; set; }
+        public string ValorNeutro { get; set; }
+        public string Protecao { get; set; }
+        public string EletrodutoPcv { get; set; }
+        public string EletrodutoAco { get; set; }
+        public string NumeroDeEletrodos { get; set; }
+        public string CondutorDeAterramento { get; set; }
+        public string RamalDeLigacao { get; set; }
+        public string RamalDeEntrada { get; set; }
+        public string ValorFaseNeutro { get; set; }
     }
 }

@@ -7,32 +7,39 @@ using Xamarin.Forms;
 
 namespace Laep.ViewModels
 {
-    [QueryProperty("DadosDimensionamento", "dadosDimensionamento")]
+    [QueryProperty("ResultadoDimensionamento", "resultadoDimensionamento")]
     public class DimensionamentoViewModel : BaseViewModel
     {
         //string tensao = string.Empty;
         //string quantidadeDeCaixa = string.Empty;
         //string tipoCaixaAmperDisjuntor = string.Empty;        
 
-        public string DadosDimensionamento
+        public string ResultadoDimensionamento
         {
             
             set
             {
-                var arrayDadosDimensiomanemto = Uri.UnescapeDataString(value).Split(',');
+                var arrayResultadoDimensionamento = Uri.UnescapeDataString(value).Split(',');
 
-                if (arrayDadosDimensiomanemto != null)
+                if (arrayResultadoDimensionamento != null)
                 {
-                    var dadosDimensionamento = new ValoresDimensionamento
+                    var resultadoDimensionamento = new ResultadoDimensionamento
                     {
-                        Tensao = arrayDadosDimensiomanemto[0],
-                        QuantidadeCaixa = arrayDadosDimensiomanemto[1],
-                        ModeloCaixa1 = arrayDadosDimensiomanemto[2],
-                        //ModeloCaixa2 = arrayDadosDimensiomanemto[3],
-                        //ModeloCaixa3 = arrayDadosDimensiomanemto[4]
+                        ValorMultiplex = arrayResultadoDimensionamento[0],
+                        ValorEntrada = arrayResultadoDimensionamento[1],
+                        ValorFases = arrayResultadoDimensionamento[2],
+                        ValorNeutro = arrayResultadoDimensionamento[3],
+                        Protecao = arrayResultadoDimensionamento[4],
+                        EletrodutoPcv = arrayResultadoDimensionamento[5],
+                        EletrodutoAco = arrayResultadoDimensionamento[6],
+                        NumeroDeEletrodos = arrayResultadoDimensionamento[7],
+                        CondutorDeAterramento = arrayResultadoDimensionamento[8],
+                        RamalDeLigacao = arrayResultadoDimensionamento[9],
+                        RamalDeEntrada = arrayResultadoDimensionamento[10],
+                        ValorFaseNeutro = arrayResultadoDimensionamento[11],
                     };
 
-                    RelatorioDimensionamento(dadosDimensionamento);
+                    //RelatorioDimensionamento(resultado);
 
                 }
 

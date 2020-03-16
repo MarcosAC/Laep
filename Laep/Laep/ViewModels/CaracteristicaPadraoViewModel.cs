@@ -1,6 +1,7 @@
 ﻿using Laep.Models;
 using Laep.Utils;
 using Laep.Views;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -184,9 +185,9 @@ namespace Laep.ViewModels
                 ModeloCaixa3 = ModeloCaixaSelecionado3
             };
 
-            GerarDimensionamento.Dimensionar(dadosDimensionamento);
+            string resultadoDimensionamento = GerarDimensionamento.Dimensionar(dadosDimensionamento);
 
-            //await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={listaDadosDimensionamento}");
+            await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

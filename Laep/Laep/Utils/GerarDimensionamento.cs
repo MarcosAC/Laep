@@ -31,7 +31,7 @@ namespace Laep.Utils
                 switch (dimensionamento.QuantidadeCaixa)
                 {
                     case "1":
-                        if (dimensionamento.Equals(ResultadosDimensionamento.Resultados("1")))
+                        if (dimensionamento.Equals(DadosParaGerarDimensionamento.Resultados("Monofasico 40A", "1")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";
@@ -50,7 +50,7 @@ namespace Laep.Utils
                             return;
                         }
 
-                        if (dimensionamento.Equals(ResultadosDimensionamento.Resultados("2")))
+                        if (dimensionamento.Equals(DadosParaGerarDimensionamento.Resultados("Monofasico 50A", "2")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";

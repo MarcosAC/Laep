@@ -1,7 +1,6 @@
 ﻿using Laep.Models;
 using Laep.Utils;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -10,10 +9,6 @@ namespace Laep.ViewModels
     [QueryProperty("ResultadoDimensionamento", "resultadoDimensionamento")]
     public class DimensionamentoViewModel : BaseViewModel
     {
-        //string tensao = string.Empty;
-        //string quantidadeDeCaixa = string.Empty;
-        //string tipoCaixaAmperDisjuntor = string.Empty;        
-
         public string ResultadoDimensionamento
         {
             
@@ -22,60 +17,23 @@ namespace Laep.ViewModels
                 var arrayResultadoDimensionamento = Uri.UnescapeDataString(value).Split(',');
 
                 if (arrayResultadoDimensionamento != null)
-                {
-                    var resultadoDimensionamento = new ResultadoDimensionamento
-                    {
-                        ValorMultiplex = arrayResultadoDimensionamento[0],
-                        ValorEntrada = arrayResultadoDimensionamento[1],
-                        ValorFases = arrayResultadoDimensionamento[2],
-                        ValorNeutro = arrayResultadoDimensionamento[3],
-                        Protecao = arrayResultadoDimensionamento[4],
-                        EletrodutoPcv = arrayResultadoDimensionamento[5],
-                        EletrodutoAco = arrayResultadoDimensionamento[6],
-                        NumeroDeEletrodos = arrayResultadoDimensionamento[7],
-                        CondutorDeAterramento = arrayResultadoDimensionamento[8],
-                        RamalDeLigacao = arrayResultadoDimensionamento[9],
-                        RamalDeEntrada = arrayResultadoDimensionamento[10],
-                        ValorFaseNeutro = arrayResultadoDimensionamento[11],
-                    };
+                { 
+                    ValorFaseNeutro = arrayResultadoDimensionamento[3];
+                    Protecao = arrayResultadoDimensionamento[4];
+                    EletrodutoPvc = arrayResultadoDimensionamento[5];
+                    EletrodutoAco = arrayResultadoDimensionamento[6];
+                    NumeroDeEletrodos = arrayResultadoDimensionamento[7];
+                    CondutorDeAterramento = arrayResultadoDimensionamento[8];
+                    RamalLigacao = arrayResultadoDimensionamento[9];
+                    RamalEntrada = arrayResultadoDimensionamento[10];
+                    ValorFaseNeutro = arrayResultadoDimensionamento[11];
 
-                    //RelatorioDimensionamento(resultado);
-
+                    IsVisible("Grid");
                 }
-
-                //if (arrayDadosDimensiomanemto != null)
-                //{
-                //    tensao = arrayDadosDimensiomanemto[0];
-                //    quantidadeDeCaixa = arrayDadosDimensiomanemto[1];
-
-                //    if (quantidadeDeCaixa == "1")
-                //    {
-                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[3]}";
-
-                //        RelatorioDimensionamento();
-
-                //        return;
-                //    }
-
-                //    if (quantidadeDeCaixa == "2")
-                //    {
-                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[4]}, " +
-                //                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[5]}";
-
-                //        RelatorioDimensionamento();
-
-                //        return;
-                //    }
-
-                //    if (quantidadeDeCaixa == "3")
-                //    {
-                //        tipoCaixaAmperDisjuntor = $"{arrayDadosDimensiomanemto[2]} {arrayDadosDimensiomanemto[5]}, " +
-                //                                  $"{arrayDadosDimensiomanemto[3]} {arrayDadosDimensiomanemto[6]}, " +
-                //                                  $"{arrayDadosDimensiomanemto[4]} {arrayDadosDimensiomanemto[7]}";
-
-                //        RelatorioDimensionamento();
-                //    }
-                //}
+                else
+                {
+                    IsVisible("Label");
+                }
             }
         }
 

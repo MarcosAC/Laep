@@ -1,6 +1,5 @@
 ﻿using Laep.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Laep.Utils
 {
@@ -66,6 +65,7 @@ namespace Laep.Utils
 
                             return resultadoDimensionamento;
                         }
+
                         //if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A", "2")))
                         //{
                         //    valorMultiplex = "Q";

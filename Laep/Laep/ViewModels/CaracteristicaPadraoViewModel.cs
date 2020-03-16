@@ -1,7 +1,5 @@
 ﻿using Laep.Models;
 using Laep.Utils;
-using Laep.Views;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -12,7 +10,6 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        //readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
         private bool _visibleCaixa1 = false;

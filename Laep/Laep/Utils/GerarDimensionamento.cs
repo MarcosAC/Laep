@@ -10,7 +10,7 @@ namespace Laep.Utils
         public string Tensao { get; set; }
         public List<string> ListaModeloCaixa { get; set; }
 
-        public static void Dimensionar(Dimensionamento dimensionamento)
+        public static void Dimensionar(ValoresDimensionamento dimensionamento)
         {
             string valorMultiplex = string.Empty;
             string valorEntrada = string.Empty;
@@ -24,14 +24,14 @@ namespace Laep.Utils
 
             string id = string.Empty;
 
-            var lista = new List<Dimensionamento>();
+            var lista = new List<ValoresDimensionamento>();
 
             if (dimensionamento.Tensao == "Sistema Trifásico 127/220V")
             {
                 switch (dimensionamento.QuantidadeCaixa)
                 {
                     case "1":
-                        if (dimensionamento.Equals(DadosParaGerarDimensionamento.Resultados("Monofasico 40A", "1")))
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A", "1")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";
@@ -50,7 +50,7 @@ namespace Laep.Utils
                             return;
                         }
 
-                        if (dimensionamento.Equals(DadosParaGerarDimensionamento.Resultados("Monofasico 50A", "2")))
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A", "2")))
                         {
                             valorMultiplex = "Q";
                             valorEntrada = "1";

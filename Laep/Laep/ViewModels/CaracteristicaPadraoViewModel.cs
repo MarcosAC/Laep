@@ -175,7 +175,7 @@ namespace Laep.ViewModels
                 return;
             }
 
-            var dadosDimensionamento = new Dimensionamento
+            var dadosDimensionamento = new ValoresDimensionamento
             {
                 Tensao = TensaoSelecionada,
                 QuantidadeCaixa = QuantidadeCaixaSelecionado,

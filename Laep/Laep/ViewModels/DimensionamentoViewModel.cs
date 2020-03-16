@@ -23,7 +23,7 @@ namespace Laep.ViewModels
 
                 if (arrayDadosDimensiomanemto != null)
                 {
-                    var dadosDimensionamento = new Dimensionamento
+                    var dadosDimensionamento = new ValoresDimensionamento
                     {
                         Tensao = arrayDadosDimensiomanemto[0],
                         QuantidadeCaixa = arrayDadosDimensiomanemto[1],
@@ -151,7 +151,7 @@ namespace Laep.ViewModels
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//caracteriscaPadrao");
 
         #region Métodos
-        private void RelatorioDimensionamento(Dimensionamento dadosDimensionamento)
+        private void RelatorioDimensionamento(ValoresDimensionamento dadosDimensionamento)
         {
             string valorMultiplex = string.Empty;
             string valorEntrada = string.Empty;

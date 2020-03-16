@@ -1,6 +1,6 @@
 ﻿namespace Laep.Models
 {
-    public class Dimensionamento
+    public class ValoresDimensionamento
     {
         public string Id { get; set; }
         public string Tensao { get; set; }
@@ -11,7 +11,7 @@
 
         public override bool Equals(object obj)
         {
-            if (obj is Dimensionamento dimensionamento)
+            if (obj is ValoresDimensionamento dimensionamento)
             {
                 if (Tensao == dimensionamento.Tensao &&
                     QuantidadeCaixa == dimensionamento.QuantidadeCaixa &&

@@ -149,6 +149,7 @@ namespace Laep.ViewModels
 
             string[] arrayDadosDimensiomanemto = recebeDadosDimensionamento.Split(',');
 
+            #region Verifica se todos os campos foram preenchidos
             foreach (var item in arrayDadosDimensiomanemto)
             {
                 if (string.IsNullOrEmpty(item))
@@ -157,7 +158,9 @@ namespace Laep.ViewModels
                     return;
                 }
             }
+            #endregion
 
+            #region Verifica se todos mais de uma caixa trifasica em um conjunto de 2 ou 3 caixas.
             List<string> listaDadosDimensionamento = new List<string>();
 
             foreach (var item in arrayDadosDimensiomanemto)
@@ -172,6 +175,7 @@ namespace Laep.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
                 return;
             }
+            #endregion
 
             var dadosDimensionamento = new ValoresDimensionamento
             {

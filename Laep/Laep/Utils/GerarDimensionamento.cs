@@ -50,24 +50,36 @@ namespace Laep.Utils
                             return resultadoDimensionamento;
                         }
 
-                        //if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A", "2")))
-                        //{
-                        //    valorMultiplex = "Q";
-                        //    valorEntrada = "1";
-                        //    valorFases = "10mm";
-                        //    valorNeutro = "10mm";
-                        //    protecao = "10mm";
-                        //    eletrodutoPcv = "32mm";
-                        //    eletrodutoAco = "25mm";
-                        //    numeroDeEletrodos = "1";
-                        //    condutorDeAterramento = "10mm";
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorMultiplex = "Q",
+                                ValorEntrada = "1",
+                                ValorFases = "10mm",
+                                ValorNeutro = "10mm",
+                                Protecao = "10mm",
+                                EletrodutoPcv = "32mm",
+                                EletrodutoAco = "25mm",
+                                NumeroDeEletrodos = "1",
+                                CondutorDeAterramento = "10mm"
+                            };
 
-                        //    string ramalDeLigacao = valorMultiplex;
-                        //    string ramalDeEntrada = $"Ramal de entrada {valorEntrada} fase/s de";
-                        //    string valorFaseNeutro = $"{valorFases} e um neutro de {valorNeutro}";
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
 
-                        //    return;
-                        //}
+                            return resultadoDimensionamento;
+                        }
                         break;
                     case "2":
                         break;

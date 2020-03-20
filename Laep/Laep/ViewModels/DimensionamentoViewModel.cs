@@ -116,21 +116,11 @@ namespace Laep.ViewModels
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//caracteriscaPadrao");
 
         #region Métodos
-        private void RelatorioDimensionamento(ValoresDimensionamento dadosDimensionamento)
+        private void RelatorioDimensionamento(ValoresDimensionamento valoresDimensionamento)
         {
-            string valorMultiplex = string.Empty;
-            string valorEntrada = string.Empty;
-            string valorFases = string.Empty;
-            string valorNeutro = string.Empty;
-            string protecao = string.Empty;
-            string eletrodutoPcv = string.Empty;
-            string eletrodutoAco = string.Empty;
-            string numeroDeEletrodos = string.Empty;
-            string condutorDeAterramento = string.Empty;
+            var valores = valoresDimensionamento;
 
-            var teste = dadosDimensionamento;
-
-            GerarDimensionamento.Dimensionar(teste);
+            GerarDimensionamento.Dimensionar(valores);
 
             //if (dadosDimensionamento.Tensao == "Sistema Trifásico 127/220V")
             //{

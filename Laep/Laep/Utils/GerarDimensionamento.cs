@@ -5,7 +5,6 @@ namespace Laep.Utils
 {
     public class GerarDimensionamento
     {
-
         public string Tensao { get; set; }
         public List<string> ListaModeloCaixa { get; set; }
 
@@ -22,18 +21,6 @@ namespace Laep.Utils
                     case "1":
                         if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A", "1")))
                         {
-                            var valoresDimensionamento = new ResultadoDimensionamento
-                            {
-                                ValorMultiplex = "Q",
-                                ValorEntrada = "1",
-                                ValorFases = "6mm",
-                                ValorNeutro = "6mm"
-                            };
-
-                            string ramalDeLigacao = valoresDimensionamento.ValorMultiplex;
-                            string ramalDeEntrada = $"Ramal de entrada {valoresDimensionamento.ValorEntrada} fase/s de";
-                            string valorFaseNeutro = $"{valoresDimensionamento.ValorFases} e um neutro de {valoresDimensionamento.ValorNeutro}";
-
                             var resultado = new ResultadoDimensionamento
                             {
                                 ValorMultiplex = "Q",
@@ -44,10 +31,7 @@ namespace Laep.Utils
                                 EletrodutoPcv = "32mm",
                                 EletrodutoAco = "25mm",
                                 NumeroDeEletrodos = "1",
-                                CondutorDeAterramento = "10mm",
-                                RamalDeLigacao = ramalDeLigacao,
-                                RamalDeEntrada = ramalDeEntrada,
-                                ValorFaseNeutro = valorFaseNeutro,
+                                CondutorDeAterramento = "10mm"
                             };                           
 
                             string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +

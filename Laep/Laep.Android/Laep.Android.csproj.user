@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>LENOVO K10a40</SelectedDevice>
     <DefaultDevice>Android_Accelerated_x86_Nougat</DefaultDevice>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

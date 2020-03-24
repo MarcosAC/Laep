@@ -80,6 +80,36 @@ namespace Laep.Utils
 
                             return resultadoDimensionamento;
                         }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 70A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorEntrada = "1",
+                                ValorFases = "16mm",
+                                ValorNeutro = "16mm",
+                                Protecao = "16mm",
+                                EletrodutoPcv = "32mm",
+                                EletrodutoAco = "25mm",
+                                NumeroDeEletrodos = "1",
+                                CondutorDeAterramento = "16mm",
+                        };
+
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," + 
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
+
+                            return resultadoDimensionamento;
+                        }
                         break;
                     case "2":
                         break;

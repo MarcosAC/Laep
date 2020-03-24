@@ -257,7 +257,7 @@ namespace Laep.ViewModels
                     {
                         "CM1 disjuntor 1x40",
                         "CM1 disjuntor 1x50",
-                        "CM1 disjuntor 1x60",
+                        "CM1 disjuntor 1x70",
                         "CM2 disjuntor 2x40",
                         "CM2 disjuntor 2x60"
                     };
@@ -277,7 +277,7 @@ namespace Laep.ViewModels
                     {
                         "CM1 disjuntor 1x40",
                         "CM1 disjuntor 1x50",
-                        "CM1 disjuntor 1x60",
+                        "CM1 disjuntor 1x70",
                         "CM2 disjuntor 2x40",
                         "CM2 disjuntor 2x60",
                         "CM2 disjuntor 3x40",

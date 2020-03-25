@@ -1,19 +1,11 @@
 ﻿using Laep.Models;
-using System.Collections.Generic;
 
 namespace Laep.Utils
 {
     public class GerarDimensionamento
     {
-        public string Tensao { get; set; }
-        public List<string> ListaModeloCaixa { get; set; }
-
         public static string Dimensionar(ValoresDimensionamento dimensionamento)
         {
-            string id = string.Empty;
-
-            var lista = new List<ValoresDimensionamento>();
-
             if (dimensionamento.Tensao == "Sistema Trifásico 127/220V")
             {
                 switch (dimensionamento.QuantidadeCaixa)
@@ -32,7 +24,7 @@ namespace Laep.Utils
                                 EletrodutoAco = "25mm",
                                 NumeroDeEletrodos = "1",
                                 CondutorDeAterramento = "10mm"
-                            };                           
+                            };
 
                             string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
                                                               $"{resultado.ValorEntrada}," +
@@ -93,9 +85,129 @@ namespace Laep.Utils
                                 EletrodutoAco = "25mm",
                                 NumeroDeEletrodos = "1",
                                 CondutorDeAterramento = "16mm",
-                        };
+                            };
 
-                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," + 
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
+
+                            return resultadoDimensionamento;
+                        }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 40A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorEntrada = "2",
+                                ValorFases = "10mm",
+                                ValorNeutro = "10mm",
+                                Protecao = "16mm",
+                                EletrodutoPcv = "32mm",
+                                EletrodutoAco = "25mm",
+                                NumeroDeEletrodos = "1",
+                                CondutorDeAterramento = "10mm",
+                            };
+
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
+
+                            return resultadoDimensionamento;
+                        }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 60A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorEntrada = "2",
+                                ValorFases = "16mm",
+                                ValorNeutro = "16mm",
+                                Protecao = "16mm",
+                                EletrodutoPcv = "32mm",
+                                EletrodutoAco = "25mm",
+                                NumeroDeEletrodos = "1",
+                                CondutorDeAterramento = "16mm",
+                            };
+
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
+
+                            return resultadoDimensionamento;
+                        }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Trifasico 40A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorEntrada = "3",
+                                ValorFases = "10mm",
+                                ValorNeutro = "10mm",
+                                Protecao = "16mm",
+                                EletrodutoPcv = "40mm",
+                                EletrodutoAco = "32mm",
+                                NumeroDeEletrodos = "2",
+                                CondutorDeAterramento = "16mm",
+                            };
+
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                              $"{resultado.ValorEntrada}," +
+                                                              $"{resultado.ValorFases}," +
+                                                              $"{resultado.ValorNeutro}," +
+                                                              $"{resultado.Protecao}," +
+                                                              $"{resultado.EletrodutoPcv}," +
+                                                              $"{resultado.EletrodutoAco}," +
+                                                              $"{resultado.NumeroDeEletrodos}," +
+                                                              $"{resultado.CondutorDeAterramento}," +
+                                                              $"{resultado.RamalDeLigacao}," +
+                                                              $"{resultado.RamalDeEntrada}," +
+                                                              $"{resultado.ValorFaseNeutro}";
+
+                            return resultadoDimensionamento;
+                        }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Trifasico 60A", "1")))
+                        {
+                            var resultado = new ResultadoDimensionamento
+                            {
+                                ValorEntrada = "3",
+                                ValorFases = "16mm",
+                                ValorNeutro = "16mm",
+                                Protecao = "16mm",
+                                EletrodutoPcv = "40mm",
+                                EletrodutoAco = "32mm",
+                                NumeroDeEletrodos = "2",
+                                CondutorDeAterramento = "16mm",
+                            };
+
+                            string resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
                                                               $"{resultado.ValorEntrada}," +
                                                               $"{resultado.ValorFases}," +
                                                               $"{resultado.ValorNeutro}," +

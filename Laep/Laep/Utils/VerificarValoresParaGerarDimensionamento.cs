@@ -67,7 +67,7 @@ namespace Laep.Utils
                             Id = "Trifasico 60A",
                             Tensao = "Sistema Trifásico 127/220V",
                             QuantidadeCaixa = "1",
-                            ModeloCaixa1 = "CM3 disjuntor 1x60"
+                            ModeloCaixa1 = "CM2 disjuntor 3x60"
                         }
                     };
                     break;

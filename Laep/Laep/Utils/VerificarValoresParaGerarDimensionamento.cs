@@ -107,7 +107,7 @@ namespace Laep.Utils
                             Tensao = "Sistema Trifásico 127/220V",
                             QuantidadeCaixa = "1",
                             ModeloCaixa1 = "CM1 disjuntor 1x50",
-                            ModeloCaixa2 = "CM1 disjuntor 1x70"
+                            ModeloCaixa2 = "CM1 disjuntor 1x50"
                         },
 
                         new ValoresDimensionamento
@@ -142,8 +142,8 @@ namespace Laep.Utils
                             Id = "Bifasico 40A, Bifasico 60A",
                             Tensao = "Sistema Trifásico 127/220V",
                             QuantidadeCaixa = "1",
-                            ModeloCaixa1 = "CM2 disjuntor 1x40",
-                            ModeloCaixa2 = "CM2 disjuntor 1x60"
+                            ModeloCaixa1 = "CM2 disjuntor 2x40",
+                            ModeloCaixa2 = "CM2 disjuntor 2x60"
                         },
 
                         new ValoresDimensionamento

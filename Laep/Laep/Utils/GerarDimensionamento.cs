@@ -103,7 +103,7 @@ namespace Laep.Utils
                         break;
 
                     case "2":
-                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 40A", "2")))
+                        if (dimensionamento.Equals(dimensionamento))
                         {
                             resultado.ValorMultiplex = "T16";
                             resultado.ValorEntrada = "2";
@@ -114,9 +114,22 @@ namespace Laep.Utils
                             resultado.EletrodutoAco = "25mm";
                             resultado.NumeroDeEletrodos = "2";
                             resultado.CondutorDeAterramento = "16mm";
+
+                            return resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                  $"{resultado.ValorEntrada}," +
+                                                  $"{resultado.ValorFases}," +
+                                                  $"{resultado.ValorNeutro}," +
+                                                  $"{resultado.Protecao}," +
+                                                  $"{resultado.EletrodutoPcv}," +
+                                                  $"{resultado.EletrodutoAco}," +
+                                                  $"{resultado.NumeroDeEletrodos}," +
+                                                  $"{resultado.CondutorDeAterramento}," +
+                                                  $"{resultado.RamalDeLigacao}," +
+                                                  $"{resultado.RamalDeEntrada}," +
+                                                  $"{resultado.ValorFaseNeutro}";
                         }
 
-                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 50A", "2")))
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("1", "2")))
                         {
                             resultado.ValorMultiplex = "T16";
                             resultado.ValorEntrada = "2";
@@ -127,6 +140,19 @@ namespace Laep.Utils
                             resultado.EletrodutoAco = "25mm";
                             resultado.NumeroDeEletrodos = "2";
                             resultado.CondutorDeAterramento = "16mm";
+
+                            return resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                                                  $"{resultado.ValorEntrada}," +
+                                                  $"{resultado.ValorFases}," +
+                                                  $"{resultado.ValorNeutro}," +
+                                                  $"{resultado.Protecao}," +
+                                                  $"{resultado.EletrodutoPcv}," +
+                                                  $"{resultado.EletrodutoAco}," +
+                                                  $"{resultado.NumeroDeEletrodos}," +
+                                                  $"{resultado.CondutorDeAterramento}," +
+                                                  $"{resultado.RamalDeLigacao}," +
+                                                  $"{resultado.RamalDeEntrada}," +
+                                                  $"{resultado.ValorFaseNeutro}";
                         }
 
                         if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 70A", "2")) ||
@@ -140,6 +166,36 @@ namespace Laep.Utils
                             resultado.Protecao = "16mm";
                             resultado.EletrodutoPcv = "32mm";
                             resultado.EletrodutoAco = "25mm";
+                            resultado.NumeroDeEletrodos = "2";
+                            resultado.CondutorDeAterramento = "16mm";
+                        }
+
+                        //* Verificar se o valor de entrada é 2 ou 3
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Bifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Bifasico 60A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A, Bifasico 60A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 70A, Bifasico 40A", "2")))
+                        {
+                            resultado.ValorMultiplex = "Q16";
+                            resultado.ValorEntrada = "3";
+                            resultado.ValorFases = "16mm";
+                            resultado.ValorNeutro = "25mm";
+                            resultado.Protecao = "16mm";
+                            resultado.EletrodutoPcv = "40mm";
+                            resultado.EletrodutoAco = "32mm";
+                            resultado.NumeroDeEletrodos = "2";
+                            resultado.CondutorDeAterramento = "16mm";
+                        }
+
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 70A", "2")))
+                        {
+                            resultado.ValorMultiplex = "T16";
+                            resultado.ValorEntrada = "2";
+                            resultado.ValorFases = "16mm";
+                            resultado.ValorNeutro = "25mm";
+                            resultado.Protecao = "16mm";
+                            resultado.EletrodutoPcv = "40mm";
+                            resultado.EletrodutoAco = "32mm";
                             resultado.NumeroDeEletrodos = "2";
                             resultado.CondutorDeAterramento = "16mm";
                         }
@@ -159,48 +215,39 @@ namespace Laep.Utils
                             resultado.CondutorDeAterramento = "16mm";
                         }
 
-                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 40A", "2")))
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 40A, Trifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 40A, Trifasico 60A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 60A, Trifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 60A, Trifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Bifasico 60A, Trifasico 60A", "2")))
                         {
-                            resultado.ValorMultiplex = "T16";
+                            resultado.ValorMultiplex = "Q16";
                             resultado.ValorEntrada = "2";
-                            resultado.ValorFases = "6mm";
-                            resultado.ValorNeutro = "10mm";
-                            resultado.Protecao = "10mm";
-                            resultado.EletrodutoPcv = "32mm";
-                            resultado.EletrodutoAco = "25mm";
+                            resultado.ValorFases = "25mm";
+                            resultado.ValorNeutro = "25mm";
+                            resultado.Protecao = "16mm";
+                            resultado.EletrodutoPcv = "40mm";
+                            resultado.EletrodutoAco = "32mm";
                             resultado.NumeroDeEletrodos = "2";
                             resultado.CondutorDeAterramento = "16mm";
                         }
 
-                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 40A", "2")))
+                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Trifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Trifasico 60A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A, Trifasico 40A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 50A, Trifasico 60A", "2")) ||
+                            dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 70A, Trifasico 60A", "2")))
                         {
-                            resultado.ValorMultiplex = "T16";
-                            resultado.ValorEntrada = "2";
-                            resultado.ValorFases = "6mm";
-                            resultado.ValorNeutro = "10mm";
-                            resultado.Protecao = "10mm";
-                            resultado.EletrodutoPcv = "32mm";
-                            resultado.EletrodutoAco = "25mm";
+                            resultado.ValorMultiplex = "Q16";
+                            resultado.ValorEntrada = "3";
+                            resultado.ValorFases = "25mm";
+                            resultado.ValorNeutro = "25mm";
+                            resultado.Protecao = "16mm";
+                            resultado.EletrodutoPcv = "40mm";
+                            resultado.EletrodutoAco = "32mm";
                             resultado.NumeroDeEletrodos = "2";
                             resultado.CondutorDeAterramento = "16mm";
                         }
-
-                        if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 40A", "2")))
-                        {
-                            resultado.ValorMultiplex = "T16";
-                            resultado.ValorEntrada = "2";
-                            resultado.ValorFases = "6mm";
-                            resultado.ValorNeutro = "10mm";
-                            resultado.Protecao = "10mm";
-                            resultado.EletrodutoPcv = "32mm";
-                            resultado.EletrodutoAco = "25mm";
-                            resultado.NumeroDeEletrodos = "2";
-                            resultado.CondutorDeAterramento = "16mm";
-                        }
-
-
-
-
 
                         break;
 
@@ -208,18 +255,18 @@ namespace Laep.Utils
                         break;
                 }
 
-                return resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
-                                                  $"{resultado.ValorEntrada}," +
-                                                  $"{resultado.ValorFases}," +
-                                                  $"{resultado.ValorNeutro}," +
-                                                  $"{resultado.Protecao}," +
-                                                  $"{resultado.EletrodutoPcv}," +
-                                                  $"{resultado.EletrodutoAco}," +
-                                                  $"{resultado.NumeroDeEletrodos}," +
-                                                  $"{resultado.CondutorDeAterramento}," +
-                                                  $"{resultado.RamalDeLigacao}," +
-                                                  $"{resultado.RamalDeEntrada}," +
-                                                  $"{resultado.ValorFaseNeutro}";
+                //return resultadoDimensionamento = $"{resultado.ValorMultiplex}," +
+                //                                  $"{resultado.ValorEntrada}," +
+                //                                  $"{resultado.ValorFases}," +
+                //                                  $"{resultado.ValorNeutro}," +
+                //                                  $"{resultado.Protecao}," +
+                //                                  $"{resultado.EletrodutoPcv}," +
+                //                                  $"{resultado.EletrodutoAco}," +
+                //                                  $"{resultado.NumeroDeEletrodos}," +
+                //                                  $"{resultado.CondutorDeAterramento}," +
+                //                                  $"{resultado.RamalDeLigacao}," +
+                //                                  $"{resultado.RamalDeEntrada}," +
+                //                                  $"{resultado.ValorFaseNeutro}";
             }
 
             return null;

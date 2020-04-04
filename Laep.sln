@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laep.Android", "Laep\Laep.Android\Laep.Android.csproj", "{72FBCF4D-EE25-4A10-B5E3-996E9691A919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laep", "Laep\Laep\Laep.csproj", "{D31620DF-C5E7-456D-B4B8-8CE7A9E53203}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Laep", "Laep\Laep\Laep.csproj", "{D31620DF-C5E7-456D-B4B8-8CE7A9E53203}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

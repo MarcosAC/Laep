@@ -497,15 +497,999 @@ namespace Laep.Data
 
                 #region 3 Caixas
                 #region Monofasico
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "6mm",
+                    ValorNeutro = "10mm",
+                    Protecao = "10mm",
+                    EletrodutoPcv = "32mm",
+                    EletrodutoAco = "25mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
 
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "10mm",
+                    ValorNeutro = "16mm",
+                    Protecao = "10mm",
+                    EletrodutoPcv = "32mm",
+                    EletrodutoAco = "25mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x70",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "10mm",
+                    ValorNeutro = "16mm",
+                    Protecao = "10mm",
+                    EletrodutoPcv = "32mm",
+                    EletrodutoAco = "25mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "10mm",
+                    ValorNeutro = "16mm",
+                    Protecao = "10mm",
+                    EletrodutoPcv = "32mm",
+                    EletrodutoAco = "25mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x70",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "10mm",
+                    ValorNeutro = "16mm",
+                    Protecao = "10mm",
+                    EletrodutoPcv = "32mm",
+                    EletrodutoAco = "25mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM2 disjuntor 3x60",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM2 disjuntor 3x60",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM2 disjuntor 3x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM1 disjuntor 1x50",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM2 disjuntor 3x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "16mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
                 #endregion
 
                 #region Bifasico
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 2x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
 
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM2 disjuntor 3x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM2 disjuntor 3x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 2x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
                 #endregion
 
                 #region Trifasico
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x70",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
 
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "35mm",
+                    ValorNeutro = "35mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 2x40",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 2x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM2 disjuntor 2x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM2 disjuntor 2x60",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "25mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM2 disjuntor 2x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM2 disjuntor 2x60",
+                    ModeloCaixa1 = "CM1 disjuntor 1x70",
+                    ValorMultiplex = "Q35",
+                    ValorEntrada = "3",
+                    ValorFases = "50mm",
+                    ValorNeutro = "50mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "50mm",
+                    EletrodutoAco = "40mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x40",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x40",
+                    ModeloCaixa1 = "CM1 disjuntor 1x40",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
+
+                realm.Add(new ResultadoDimensionamento
+                {
+                    Tensao = "Sistema Trifásico 127/220V",
+                    QuantidadeCaixa = "3",
+                    ModeloCaixa2 = "CM2 disjuntor 3x60",
+                    ModeloCaixa3 = "CM1 disjuntor 1x50",
+                    ModeloCaixa1 = "CM1 disjuntor 1x50",
+                    ValorMultiplex = "Q16",
+                    ValorEntrada = "3",
+                    ValorFases = "25mm",
+                    ValorNeutro = "25mm",
+                    Protecao = "16mm",
+                    EletrodutoPcv = "40mm",
+                    EletrodutoAco = "32mm",
+                    NumeroDeEletrodos = "3",
+                    CondutorDeAterramento = "16mm",
+                });
                 #endregion
                 #endregion
             });

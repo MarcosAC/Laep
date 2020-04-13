@@ -123,10 +123,7 @@ namespace Laep.Utils
                                                   $"{resultado.EletrodutoPcv}," +
                                                   $"{resultado.EletrodutoAco}," +
                                                   $"{resultado.NumeroDeEletrodos}," +
-                                                  $"{resultado.CondutorDeAterramento}," +
-                                                  $"{resultado.RamalDeLigacao}," +
-                                                  $"{resultado.RamalDeEntrada}," +
-                                                  $"{resultado.ValorFaseNeutro}";
+                                                  $"{resultado.CondutorDeAterramento}";
                         }
 
                         if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("1", "2")))
@@ -149,10 +146,7 @@ namespace Laep.Utils
                                                   $"{resultado.EletrodutoPcv}," +
                                                   $"{resultado.EletrodutoAco}," +
                                                   $"{resultado.NumeroDeEletrodos}," +
-                                                  $"{resultado.CondutorDeAterramento}," +
-                                                  $"{resultado.RamalDeLigacao}," +
-                                                  $"{resultado.RamalDeEntrada}," +
-                                                  $"{resultado.ValorFaseNeutro}";
+                                                  $"{resultado.CondutorDeAterramento}";
                         }
 
                         if (dimensionamento.Equals(VerificarValoresParaGerarDimensionamento.VerificarValores("Monofasico 40A, Monofasico 70A", "2")) ||

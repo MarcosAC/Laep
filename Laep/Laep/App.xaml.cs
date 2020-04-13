@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Laep.Data;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,6 +21,7 @@ namespace Laep
         protected override void OnStart()
         {
             // Handle when your app starts
+            DataResultadosDimensionamentos.Insert();
         }
 
         protected override void OnSleep()

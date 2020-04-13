@@ -21,7 +21,7 @@ namespace Laep
         protected override void OnStart()
         {
             // Handle when your app starts
-            DataResultadosDimensionamentos.Insert();
+            DataResultadosDimensionamentos.CriarBdResultados();
         }
 
         protected override void OnSleep()

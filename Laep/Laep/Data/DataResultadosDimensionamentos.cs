@@ -6,7 +6,7 @@ namespace Laep.Data
 {
     public class DataResultadosDimensionamentos
     {
-        public static void Insert()
+        public static void CriarBdResultados()
         {
             Realm realmDb = Realm.GetInstance();
 
@@ -1499,6 +1499,38 @@ namespace Laep.Data
                     #endregion
                 });
             }
+        }
+
+        public static string ObterResultado(ValoresDimensionamento valoresDimensionamento)
+        {
+            Realm realmDb = Realm.GetInstance();
+
+            var listaResultados = realmDb.All<ResultadoDimensionamento>().ToList();
+
+            var resultadoDimensionamento = from resultado in listaResultados
+                                           where resultado.Tensao == valoresDimensionamento.Tensao &&
+                                                 resultado.QuantidadeCaixa == valoresDimensionamento.QuantidadeCaixa && 
+                                                 resultado.ModeloCaixa1 == valoresDimensionamento.ModeloCaixa1 || 
+                                                 resultado.ModeloCaixa2 == valoresDimensionamento.ModeloCaixa2 ||
+                                                 resultado.ModeloCaixa3 == valoresDimensionamento.ModeloCaixa3
+                                           select resultado;
+
+            string dimensionamento = string.Empty;
+
+            foreach (var item in resultadoDimensionamento)
+            {
+                dimensionamento = $"{item.ValorMultiplex}," +
+                                  $"{item.ValorEntrada}," +
+                                  $"{item.ValorFases}," +
+                                  $"{item.ValorNeutro}," +
+                                  $"{item.Protecao}," +
+                                  $"{item.EletrodutoPcv}," +
+                                  $"{item.EletrodutoAco}," +
+                                  $"{item.NumeroDeEletrodos}," +
+                                  $"{item.CondutorDeAterramento}";
+            }
+
+            return dimensionamento;
         }
     }
 }

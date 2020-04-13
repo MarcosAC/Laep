@@ -1,4 +1,5 @@
-﻿using Laep.Models;
+﻿using Laep.Data;
+using Laep.Models;
 using Laep.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -186,7 +187,7 @@ namespace Laep.ViewModels
                 ModeloCaixa3 = ModeloCaixaSelecionado3
             };
 
-            string resultadoDimensionamento = GerarDimensionamento.Dimensionar(dadosDimensionamento);
+            string resultadoDimensionamento = DataResultadosDimensionamentos.ObterResultado(dadosDimensionamento);
 
             await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
         }

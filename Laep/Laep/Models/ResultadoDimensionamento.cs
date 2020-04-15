@@ -19,8 +19,5 @@ namespace Laep.Models
         public string EletrodutoAco { get; set; }
         public string NumeroDeEletrodos { get; set; }
         public string CondutorDeAterramento { get; set; }
-        //public string RamalDeLigacao { get { return ValorMultiplex; } set => RamalDeLigacao = value; }
-        //public string RamalDeEntrada { get { return $"Ramal de entrada {ValorEntrada} fase/s de"; } set => RamalDeEntrada = value; }
-        //public string ValorFaseNeutro { get { return $"{ValorFases} e um neutro de {ValorNeutro}"; } set => ValorFaseNeutro = value; }
     }
 }

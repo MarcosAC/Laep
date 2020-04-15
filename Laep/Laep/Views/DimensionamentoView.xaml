@@ -83,15 +83,28 @@
                     </Frame>
 
                     <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="1" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalLigacao}" />
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorMultiplex}" />
                     </Frame>
 
                     <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="0" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalEntrada}" />
+                        <Label Style="{StaticResource styleLabelGrid}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ValorEntrada, StringFormat='Ramal de entrada {0} fase/s de'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Frame>
 
                     <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="1" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorFaseNeutro}" />
+                        <Label Style="{StaticResource styleLabelGrid}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ValorFases, StringFormat='{0}'}" />
+                                    <Span Text="{Binding ValorNeutro, StringFormat=' e um neutro de {0}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Frame>
 
                     <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="0" Padding="10">

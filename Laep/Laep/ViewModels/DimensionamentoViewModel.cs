@@ -1,6 +1,4 @@
-﻿using Laep.Models;
-using Laep.Utils;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -16,16 +14,16 @@ namespace Laep.ViewModels
                 var arrayResultadoDimensionamento = Uri.UnescapeDataString(value).Split(',');
 
                 if (arrayResultadoDimensionamento != null)
-                { 
-                    ValorFaseNeutro = arrayResultadoDimensionamento[3];
+                {
+                    ValorMultiplex = arrayResultadoDimensionamento[0];
+                    ValorEntrada = arrayResultadoDimensionamento[1];
+                    ValorFases = arrayResultadoDimensionamento[2];
+                    ValorNeutro = arrayResultadoDimensionamento[3];
                     Protecao = arrayResultadoDimensionamento[4];
                     EletrodutoPvc = arrayResultadoDimensionamento[5];
                     EletrodutoAco = arrayResultadoDimensionamento[6];
                     NumeroDeEletrodos = arrayResultadoDimensionamento[7];
                     CondutorDeAterramento = arrayResultadoDimensionamento[8];
-                    RamalLigacao = arrayResultadoDimensionamento[9];
-                    RamalEntrada = arrayResultadoDimensionamento[10];
-                    ValorFaseNeutro = arrayResultadoDimensionamento[11];
 
                     IsVisible("Grid");
                 }
@@ -51,25 +49,32 @@ namespace Laep.ViewModels
             set => SetProperty(ref _visibleGrid, value);
         }
 
-        private string _ramalLigacao;
-        public string RamalLigacao
+        private string _valorMultiplex;
+        public string ValorMultiplex
         {
-            get => _ramalLigacao;
-            set => SetProperty(ref _ramalLigacao, value);
+            get => _valorMultiplex;
+            set => SetProperty(ref _valorMultiplex, value);
         }
 
-        private string _ramalEntrada;
-        public string RamalEntrada
+        private string _valorEntrada;
+        public string ValorEntrada
         {
-            get => _ramalEntrada;
-            set => SetProperty(ref _ramalEntrada, value);
+            get => _valorEntrada;
+            set => SetProperty(ref _valorEntrada, value);
         }
 
-        private string _valorFaseNeutro;
-        public string ValorFaseNeutro
+        private string _valorFases;
+        public string ValorFases
         {
-            get => _valorFaseNeutro;
-            set => SetProperty(ref _valorFaseNeutro, value);
+            get => _valorFases;
+            set => SetProperty(ref _valorFases, value);
+        }
+
+        private string _valorNeutro;
+        public string ValorNeutro
+        {
+            get => _valorNeutro;
+            set => SetProperty(ref _valorNeutro, value);
         }
 
         private string _protecao;
@@ -114,14 +119,6 @@ namespace Laep.ViewModels
 
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//caracteriscaPadrao");
 
-        #region Métodos
-        private void RelatorioDimensionamento(ValoresDimensionamento valoresDimensionamento)
-        {
-            //var valores = valoresDimensionamento;
-
-            //GerarDimensionamento.Dimensionar(valores);
-        }
-       
         private void IsVisible(string controle)
         {
             if (controle == "Grid")
@@ -135,6 +132,5 @@ namespace Laep.ViewModels
                 VisibleLabel = true;
             }
         }
-        #endregion
     }
 }

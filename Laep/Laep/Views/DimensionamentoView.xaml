@@ -16,7 +16,7 @@
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Margin" Value="0,20,0,0" />
             </Style>
 
             <Style TargetType="Label" x:Key="styleLabelGrid" BasedOn="{StaticResource styleBaseLabel}">
@@ -28,7 +28,7 @@
                 <Setter Property="WidthRequest" Value="1" />
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="Black" />
-                <Setter Property="Margin" Value="10,0,10,10" />
+                <Setter Property="Margin" Value="10,0,10,0" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -45,7 +45,9 @@
     </Shell.TitleView>
 
     <ContentView>
-        <Frame Style="{StaticResource styleFrame}" Margin="10" Padding="0">
+        <Frame Style="{StaticResource styleFrame}"
+               Margin="10"
+               Padding="0">
             <StackLayout>
                 <Label Style="{StaticResource styleLabelTitulo}" Text="Dimensionamento" />
                 <BoxView Style="{StaticResource styleBoxView}" />
@@ -60,14 +62,13 @@
                       VerticalOptions="CenterAndExpand"
                       HorizontalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="55" />                        
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>

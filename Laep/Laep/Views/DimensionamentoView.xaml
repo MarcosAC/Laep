@@ -10,7 +10,7 @@
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            
+
             <Style TargetType="Label" x:Key="styleLabelTitulo" BasedOn="{StaticResource styleBaseLabel}">
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="Large" />
@@ -22,7 +22,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-            
+
             <Style TargetType="BoxView" x:Key="styleBoxView">
                 <Setter Property="WidthRequest" Value="1" />
                 <Setter Property="HeightRequest" Value="1" />
@@ -64,7 +64,7 @@
                         <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
-                    </Grid.RowDefinitions>       
+                    </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180" />

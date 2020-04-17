@@ -35,7 +35,6 @@
                 <Setter Property="BorderColor" Value="#F7F7F7" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="BackgroundColor" Value="#F7F7F7" />
-                <Setter Property="Margin" Value="10" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

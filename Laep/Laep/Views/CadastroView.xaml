@@ -6,7 +6,7 @@
     
     <ContentView.Content>
         <ScrollView>
-            <Frame Style="{StaticResource styleFrame}">
+            <Frame Style="{StaticResource styleFrame}" Margin="10">
                 <StackLayout>
                     <Entry Placeholder="Nome" />
                     <Entry Placeholder="Telefone" />

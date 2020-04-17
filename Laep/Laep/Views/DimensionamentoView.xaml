@@ -16,6 +16,7 @@
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,10,0,0" />
             </Style>
 
             <Style TargetType="Label" x:Key="styleLabelGrid" BasedOn="{StaticResource styleBaseLabel}">
@@ -27,7 +28,7 @@
                 <Setter Property="WidthRequest" Value="1" />
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="Black" />
-                <Setter Property="Margin" Value="0,0,0,15" />
+                <Setter Property="Margin" Value="10,0,10,10" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -44,7 +45,7 @@
     </Shell.TitleView>
 
     <ContentView>
-        <Frame Style="{StaticResource styleFrame}">
+        <Frame Style="{StaticResource styleFrame}" Margin="10" Padding="0">
             <StackLayout>
                 <Label Style="{StaticResource styleLabelTitulo}" Text="Dimensionamento" />
                 <BoxView Style="{StaticResource styleBoxView}" />
@@ -54,7 +55,9 @@
                        VerticalOptions="CenterAndExpand"
                        IsVisible="{Binding VisibleLabel}" />
 
-                <Grid ColumnSpacing="3" IsVisible="{Binding VisibleGrid}">
+                <Grid ColumnSpacing="3" 
+                      IsVisible="{Binding VisibleGrid}" 
+                      HorizontalOptions="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
@@ -68,7 +71,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
 
                     <Frame Style="{StaticResource styleFrame}" Padding="10">

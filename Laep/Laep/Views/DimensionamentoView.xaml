@@ -27,7 +27,7 @@
                 <Setter Property="WidthRequest" Value="1" />
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="Black" />
-                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="Margin" Value="0,0,0,15" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -56,22 +56,22 @@
 
                 <Grid ColumnSpacing="3" IsVisible="{Binding VisibleGrid}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>       
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="140" />
                     </Grid.ColumnDefinitions>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -82,11 +82,11 @@
                         </Label>
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorMultiplex}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -107,23 +107,23 @@
                         </Label>
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Proteção:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto PVC:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="4" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="4" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto Aço:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:" />
                     </Frame>
 

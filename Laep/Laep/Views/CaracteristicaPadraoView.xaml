@@ -24,61 +24,58 @@
     </Shell.TitleView>
 
     <ContentView>
-        <StackLayout Padding="10">
-            <Frame Style="{StaticResource styleFrame}">
-                <StackLayout>
-                    <!--Escolha da Tensão-->
-                    <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}" />
-                    
-                    <!-- Qtd de Caixas-->
+        <Frame Style="{StaticResource styleFrame}">
+            <StackLayout>
+                <!--Escolha da Tensão-->
+                <Picker Title="Tensão" ItemsSource="{Binding ListaTensao}" SelectedItem="{Binding TensaoSelecionada}" />
+                
+                <!-- Qtd de Caixas-->
+                <Picker Style="{StaticResource stylePicker}"
+                        Title="Quantidade de Caixas" 
+                        ItemsSource="{Binding ListaQuantidadeCaixas}"
+                        SelectedItem="{Binding QuantidadeCaixaSelecionado}" />
+                
+                <Picker Style="{StaticResource stylePicker}"
+                        Title="Modelo 1ª Caixa"
+                        ItemsSource="{Binding ModeloCaixas}"
+                        SelectedItem="{Binding ModeloCaixaSelecionado1}"
+                        IsEnabled="False">
+                        <Picker.Triggers>
+                            <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa1}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Picker.Triggers>
+                    </Picker>
+
                     <Picker Style="{StaticResource stylePicker}"
-                            Title="Quantidade de Caixas" 
-                            ItemsSource="{Binding ListaQuantidadeCaixas}"
-                            SelectedItem="{Binding QuantidadeCaixaSelecionado}" />
-                    
-                    <Picker Style="{StaticResource stylePicker}"
-                            Title="Modelo 1ª Caixa"
+                            Title="Modelo 2ª Caixa"
                             ItemsSource="{Binding ModeloCaixas}"
-                            SelectedItem="{Binding ModeloCaixaSelecionado1}"
+                            SelectedItem="{Binding ModeloCaixaSelecionado2}"
                             IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa1}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker>
+                        <Picker.Triggers>
+                            <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa2}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Picker.Triggers>
+                    </Picker>
 
-                        <Picker Style="{StaticResource stylePicker}"
-                                Title="Modelo 2ª Caixa"
-                                ItemsSource="{Binding ModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado2}"
-                                IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa2}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker>
+                    <Picker Style="{StaticResource stylePicker}"
+                            Title="Modelo 3ª Caixa"
+                            ItemsSource="{Binding ModeloCaixas}"
+                            SelectedItem="{Binding ModeloCaixaSelecionado3}"
+                            IsEnabled="False">
+                        <Picker.Triggers>
+                            <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa3}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Picker.Triggers>
+                    </Picker>
 
-                        <Picker Style="{StaticResource stylePicker}"
-                                Title="Modelo 3ª Caixa"
-                                ItemsSource="{Binding ModeloCaixas}"
-                                SelectedItem="{Binding ModeloCaixaSelecionado3}"
-                                IsEnabled="False">
-                            <Picker.Triggers>
-                                <DataTrigger TargetType="Picker" Binding="{Binding VisibleCaixa3}" Value="True">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                </DataTrigger>
-                            </Picker.Triggers>
-                        </Picker>
-
-                    <Button Style="{StaticResource styleBaseButton}"                            
-                            Text="Dimensionamento"
-                            VerticalOptions="CenterAndExpand"
-                            Command="{Binding DimensionamentoCommand}" />
-                </StackLayout>
-            </Frame>
-        </StackLayout>
-    </ContentView>
-    
+                <Button Style="{StaticResource styleBaseButton}"                            
+                        Text="Dimensionamento"
+                        VerticalOptions="CenterAndExpand"
+                        Command="{Binding DimensionamentoCommand}" />
+            </StackLayout>
+        </Frame>
+    </ContentView>    
 </ContentPage>

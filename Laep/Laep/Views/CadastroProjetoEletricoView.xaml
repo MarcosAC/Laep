@@ -18,7 +18,7 @@
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding BackCommand}"
-                        IconOverride="btnVoltar.png" />
+                            IconOverride="btnVoltar.png" />
     </Shell.BackButtonBehavior>
 
     <Views:CadastroView />

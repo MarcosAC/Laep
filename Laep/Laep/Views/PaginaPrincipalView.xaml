@@ -23,20 +23,16 @@
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto Elétrico"
-                    Grid.Row="0" 
-                    Grid.Column="0" 
                     Command="{Binding ProjetoEletricoCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto de Prevenção e Combate a Incêndio"
-                    Grid.Row="1" 
-                    Grid.Column="0" 
+                    Grid.Row="1"
                     Command="{Binding ProjetoPrevecaoIncendioCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"
                     Grid.Row="2" 
-                    Grid.Column="0" 
                     Command="{Binding MostrarMensagemCommand}"/>
         </Grid>
     </ContentPage.Content>

@@ -16,13 +16,9 @@
                     <Entry Placeholder="No." />
                     <Entry Placeholder="Ponto de Referência" />
 
-                    <Button Style="{StaticResource styleBaseButton}"
-                            Text="Enviar"
-                            HeightRequest="60" />
+                    <Button Style="{StaticResource styleBaseButton}" Text="Enviar" />
 
-                    <Button Style="{StaticResource styleBaseButton}"
-                            Text="Cancelar"                                
-                            HeightRequest="60" />
+                    <Button Style="{StaticResource styleBaseButton}" Text="Cancelar" />
                 </StackLayout>                    
             </Frame>
         </ScrollView>        

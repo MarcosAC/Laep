@@ -7,33 +7,18 @@
              Shell.TabBarIsVisible="false">
   
     <ContentPage.Content>
-        <Grid Padding="15" 
-              VerticalOptions="Center" 
-              RowSpacing="15">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="60" />
-                <RowDefinition Height="60" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
+        <StackLayout VerticalOptions="Center" Padding="15,0,15,0">
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto Elétrico"
                     Command="{Binding ProjetoEletricoCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Projeto de Prevenção e Combate a Incêndio"
-                    Grid.Row="1"
                     Command="{Binding ProjetoPrevecaoIncendioCommand}" />
 
             <Button Style="{StaticResource styleBaseButton}" 
                     Text="Padrão CEMIG"
-                    Grid.Row="2" 
                     Command="{Binding MostrarMensagemCommand}"/>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

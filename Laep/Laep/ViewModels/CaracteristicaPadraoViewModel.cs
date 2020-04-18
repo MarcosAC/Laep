@@ -177,7 +177,7 @@ namespace Laep.ViewModels
             }
             #endregion
 
-            var dadosDimensionamento = new ValoresDimensionamento
+            var dadosDimensionamento = new ResultadoDimensionamento
             {
                 Tensao = TensaoSelecionada,
                 QuantidadeCaixa = QuantidadeCaixaSelecionado,

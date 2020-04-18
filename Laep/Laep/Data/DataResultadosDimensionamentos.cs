@@ -1501,7 +1501,7 @@ namespace Laep.Data
             }
         }
 
-        public static string ObterResultado(ValoresDimensionamento valoresDimensionamento)
+        public static string ObterResultado(ResultadoDimensionamento valoresDimensionamento)
         {
             Realm realmDb = Realm.GetInstance();
 

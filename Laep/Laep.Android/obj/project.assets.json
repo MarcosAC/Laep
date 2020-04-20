@@ -5,7 +5,7 @@
       "Fody/6.1.0": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Fody.targets": {}
         }
       },
       "Newtonsoft.Json/12.0.1": {
@@ -71,7 +71,7 @@
           "lib/netstandard2.0/Realm.dll": {}
         },
         "build": {
-          "build/_._": {}
+          "build/Realm.props": {}
         },
         "runtimeTargets": {
           "runtimes/linux-x64/native/librealm-wrappers.so": {
@@ -98,7 +98,7 @@
           "System.Management": "4.5.0"
         },
         "build": {
-          "build/_._": {}
+          "build/Realm.Fody.props": {}
         }
       },
       "Remotion.Linq/2.2.0": {
@@ -2411,6 +2411,7 @@
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v9.0": [
       "Laep >= 1.0.0",
+      "Realm >= 4.3.0",
       "Xamarin.Android.Support.Design >= 28.0.0.3",
       "Xamarin.Android.Support.v4 >= 28.0.0.3",
       "Xamarin.Android.Support.v7.AppCompat >= 28.0.0.3",
@@ -2461,6 +2462,10 @@
     "frameworks": {
       "monoandroid90": {
         "dependencies": {
+          "Realm": {
+            "target": "Package",
+            "version": "[4.3.0, )"
+          },
           "Xamarin.Android.Support.Design": {
             "target": "Package",
             "version": "[28.0.0.3, )"
@@ -2488,13 +2493,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Projetos\\Laep\\Laep\\Laep.Android\\obj\\Laep.Android.csproj.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

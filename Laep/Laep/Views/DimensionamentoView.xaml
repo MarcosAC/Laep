@@ -10,24 +10,30 @@
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            
+
             <Style TargetType="Label" x:Key="styleLabelTitulo" BasedOn="{StaticResource styleBaseLabel}">
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,20,0,0" />
             </Style>
 
             <Style TargetType="Label" x:Key="styleLabelGrid" BasedOn="{StaticResource styleBaseLabel}">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-            
+
             <Style TargetType="BoxView" x:Key="styleBoxView">
                 <Setter Property="WidthRequest" Value="1" />
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="Black" />
-                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="Margin" Value="10,0,10,0" />
+            </Style>
+
+            <Style TargetType="Frame" x:Key="styleFrameGrid" BasedOn="{StaticResource styleFrame}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="10" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -54,24 +60,26 @@
                        VerticalOptions="CenterAndExpand"
                        IsVisible="{Binding VisibleLabel}" />
 
-                <Grid ColumnSpacing="3" IsVisible="{Binding VisibleGrid}">
+                <Grid ColumnSpacing="3" 
+                      IsVisible="{Binding VisibleGrid}"
+                      VerticalOptions="CenterAndExpand"
+                      HorizontalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="55" />                        
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}">
                         <Label Style="{StaticResource styleLabelGrid}">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -82,55 +90,68 @@
                         </Label>
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="0" Grid.Column="1" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalLigacao}" />
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorMultiplex}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="0" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding RamalEntrada}" />
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ValorEntrada, StringFormat='Ramal de entrada {0} fase/s de'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="1" Grid.Column="1" Padding="10">
-                        <Label Style="{StaticResource styleLabelGrid}" Text="{Binding ValorFaseNeutro}" />
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="1" Grid.Column="1" Padding="10">
+                        <Label Style="{StaticResource styleLabelGrid}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ValorFases, StringFormat='{0}'}" />
+                                    <Span Text="{Binding ValorNeutro, StringFormat=' e um neutro de {0}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="2" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Proteção:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="3" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto PVC:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="4" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="4" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Eletroduto Aço:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="5" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Número de Eletrodos:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Grid.Column="0" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="6" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="Condutor do Aterramento:" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="2" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="2" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding Protecao}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="3" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="3" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoPvc}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}"  Grid.Row="4" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}"  Grid.Row="4" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding EletrodutoAco}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="5" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="5" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding NumeroDeEletrodos}" />
                     </Frame>
 
-                    <Frame Style="{StaticResource styleFrame}" Grid.Row="6" Grid.Column="1" Padding="10">
+                    <Frame Style="{StaticResource styleFrameGrid}" Grid.Row="6" Grid.Column="1" Padding="10">
                         <Label Style="{StaticResource styleLabelGrid}" Text="{Binding CondutorDeAterramento}" />
                     </Frame>
                 </Grid>

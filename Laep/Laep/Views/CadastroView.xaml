@@ -6,27 +6,21 @@
     
     <ContentView.Content>
         <ScrollView>
-            <StackLayout Padding="10">
-                <Frame Style="{StaticResource styleFrame}">
-                    <StackLayout>
-                        <Entry Placeholder="Nome" />
-                        <Entry Placeholder="Telefone" />
-                        <Entry Placeholder="E-mail" />
-                        <Entry Placeholder="Cidade" />
-                        <Entry Placeholder="Endereço" />
-                        <Entry Placeholder="No." />
-                        <Entry Placeholder="Ponto de Referência" />
+            <Frame Style="{StaticResource styleFrame}">
+                <StackLayout>
+                    <Entry Placeholder="Nome" />
+                    <Entry Placeholder="Telefone" />
+                    <Entry Placeholder="E-mail" />
+                    <Entry Placeholder="Cidade" />
+                    <Entry Placeholder="Endereço" />
+                    <Entry Placeholder="No." />
+                    <Entry Placeholder="Ponto de Referência" />
 
-                        <Button Style="{StaticResource styleBaseButton}"
-                                Text="Enviar"
-                                HeightRequest="60" />
+                    <Button Style="{StaticResource styleBaseButton}" Text="Enviar" />
 
-                        <Button Style="{StaticResource styleBaseButton}"
-                                Text="Cancelar"                                
-                                HeightRequest="60" />
-                    </StackLayout>                    
-                </Frame>
-            </StackLayout>
+                    <Button Style="{StaticResource styleBaseButton}" Text="Cancelar" />
+                </StackLayout>                    
+            </Frame>
         </ScrollView>        
     </ContentView.Content>
 </ContentView>

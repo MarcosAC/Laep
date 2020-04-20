@@ -8,14 +8,6 @@ namespace Laep.ViewModels
     {       
         public event PropertyChangedEventHandler PropertyChanged;
 
-        string title = string.Empty;
-
-        public string Title
-        {
-            get => title;
-            set => SetProperty(ref title, value);
-        }
-
         private bool _isBusy;
         public bool IsBusy
         {

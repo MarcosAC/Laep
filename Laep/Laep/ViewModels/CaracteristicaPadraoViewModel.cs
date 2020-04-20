@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Laep.Data;
+using Laep.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -8,8 +10,6 @@ namespace Laep.ViewModels
     { 
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
-        public List<string> ListaModeloCaixas { get; set; } = new List<string> { "Monofasico", "Bifasico", "Trifasico" };
-        readonly List<string> ListaDisjuntores = new List<string>();
 
         #region Propriedades
         private bool _visibleCaixa1 = false;
@@ -61,7 +61,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _tensaoSelecionada, value);
-                DesabilitarModeloCaixa( _tensaoSelecionada);
+                CarregarModeloCaixa( _tensaoSelecionada);
             }
         }
 
@@ -80,7 +80,6 @@ namespace Laep.ViewModels
             {
                 SetProperty(ref _quantidadeCaixaSelecionado, value);
                 QuantidadeCaixa(QuantidadeCaixaSelecionado);
-                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado1, "disjuntor1");
             }
         }
 
@@ -91,7 +90,6 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado1, value);
-                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado1, "disjuntor1");
             }
         }
 
@@ -102,7 +100,6 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado2, value);
-                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado2, "disjuntor2");
             }
         }
 
@@ -113,51 +110,8 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _modeloCaixaSelecionado3, value);
-                DesabilitarAmperagemDisjuntores(_modeloCaixaSelecionado3, "disjuntor3");
             }
-        }
-
-        private List<string> _disjuntores1;
-        public List<string> Disjuntores1
-        {
-            get => _disjuntores1;
-            set => SetProperty(ref _disjuntores1, value);
-        }
-
-        private List<string> _disjuntores2;
-        public List<string> Disjuntores2
-        {
-            get => _disjuntores2;
-            set => SetProperty(ref _disjuntores2, value);
-        }
-
-        private List<string> _disjuntores3;
-        public List<string> Disjuntores3
-        {
-            get => _disjuntores3;
-            set => SetProperty(ref _disjuntores3, value);
-        }
-
-        private string _disjuntores1Selecionado;
-        public string Disjuntores1Selecionado
-        {
-            get => _disjuntores1Selecionado;
-            set => SetProperty(ref _disjuntores1Selecionado, value);
-        }
-
-        private string _disjuntores2Selecionado;
-        public string Disjuntores2Selecionado
-        {
-            get => _disjuntores2Selecionado;
-            set => SetProperty(ref _disjuntores2Selecionado, value);
-        }
-
-        private string _disjuntores3Selecionado;
-        public string Disjuntores3Selecionado
-        {
-            get => _disjuntores3Selecionado;
-            set => SetProperty(ref _disjuntores3Selecionado, value);
-        }
+        }        
         #endregion
 
         #region Commands
@@ -167,40 +121,35 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            string dadosDimensionamento = string.Empty;            
+            string recebeDadosDimensionamento = string.Empty;
 
             if (QuantidadeCaixaSelecionado == "1")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{Disjuntores1Selecionado}";
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}";
             }
 
             if (QuantidadeCaixaSelecionado == "2")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{ModeloCaixaSelecionado2}," +
-                                       $"{Disjuntores1Selecionado}," +
-                                       $"{Disjuntores2Selecionado}";
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}," +
+                                             $"{ModeloCaixaSelecionado2}";
             }
 
             if (QuantidadeCaixaSelecionado == "3")
             {
-                dadosDimensionamento = $"{TensaoSelecionada}," +
-                                       $"{QuantidadeCaixaSelecionado}," +
-                                       $"{ModeloCaixaSelecionado1}," +
-                                       $"{ModeloCaixaSelecionado2}," +
-                                       $"{ModeloCaixaSelecionado3}," +
-                                       $"{Disjuntores1Selecionado}," +
-                                       $"{Disjuntores2Selecionado}," +
-                                       $"{Disjuntores3Selecionado}";                
-            }
+                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+                                             $"{QuantidadeCaixaSelecionado}," +
+                                             $"{ModeloCaixaSelecionado1}," +
+                                             $"{ModeloCaixaSelecionado2}," +
+                                             $"{ModeloCaixaSelecionado3}";
+            }            
 
-            string[] arrayDadosDimensiomanemto = dadosDimensionamento.Split(',');
+            string[] arrayDadosDimensiomanemto = recebeDadosDimensionamento.Split(',');
 
+            #region Verifica se todos os campos foram preenchidos
             foreach (var item in arrayDadosDimensiomanemto)
             {
                 if (string.IsNullOrEmpty(item))
@@ -209,7 +158,9 @@ namespace Laep.ViewModels
                     return;
                 }
             }
+            #endregion
 
+            #region Verifica se todos mais de uma caixa trifasica em um conjunto de 2 ou 3 caixas.
             List<string> listaDadosDimensionamento = new List<string>();
 
             foreach (var item in arrayDadosDimensiomanemto)
@@ -217,15 +168,27 @@ namespace Laep.ViewModels
                 listaDadosDimensionamento.Add(item);
             }
 
-            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("Trifasico"));
+            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("3x"));
 
             if (resultado.Count > 1)
             {
                 await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
                 return;
             }
+            #endregion
 
-            await Shell.Current.GoToAsync($"//dimensionamento?dadosDimensionamento={dadosDimensionamento}");
+            var dadosDimensionamento = new ResultadoDimensionamento
+            {
+                Tensao = TensaoSelecionada,
+                QuantidadeCaixa = QuantidadeCaixaSelecionado,
+                ModeloCaixa1 = ModeloCaixaSelecionado1,
+                ModeloCaixa2 = ModeloCaixaSelecionado2,
+                ModeloCaixa3 = ModeloCaixaSelecionado3
+            };
+
+            string resultadoDimensionamento = DataResultadosDimensionamentos.ObterResultado(dadosDimensionamento);
+
+            await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;
@@ -235,6 +198,7 @@ namespace Laep.ViewModels
         private async Task ExecuteBotaoVoltarTitleViewCommand() => await Shell.Current.GoToAsync("//paginaInicial");
 
         private Command _RefreshCommand;
+
         public Command RefreshCommand => _RefreshCommand ?? (_RefreshCommand = new Command(() => RefreshCommandExecute()));
 
         private void RefreshCommandExecute()
@@ -281,114 +245,48 @@ namespace Laep.ViewModels
             }
         }
 
-        private void DesabilitarModeloCaixa(string modelo)
-        {
+        private void CarregarModeloCaixa(string modelo)
+        {   
             if (modelo == "Sistema Monofásico 120/240V")
+            {
                 if (ModeloCaixas != null || ModeloCaixas == null)
                 {
                     ModeloCaixas = null;
 
-                    ListaModeloCaixas.Remove("Trifasico");
+                    List<string> ListaModelosCaixas = new List<string>
+                    {
+                        "CM1 disjuntor 1x40",
+                        "CM1 disjuntor 1x50",
+                        "CM1 disjuntor 1x70",
+                        "CM2 disjuntor 2x40",
+                        "CM2 disjuntor 2x60"
+                    };
 
-                    ModeloCaixas = ListaModeloCaixas;
+                    ModeloCaixas = ListaModelosCaixas;
                 }
+            }                
 
             if (modelo == "Sistema Trifásico 127/220V")
+            {
                 if (ModeloCaixas != null || ModeloCaixas == null)
                 {
                     if (ModeloCaixas != null)
                         ModeloCaixas = null;
 
-                    if (ListaModeloCaixas.Count == 2)
-                        ListaModeloCaixas.Add("Trifasico");                    
-
-                    ModeloCaixas = ListaModeloCaixas;
-                }
-        }
-
-        private void DesabilitarAmperagemDisjuntores(string tipoCaixa, string disjuntor)
-        {
-            if (tipoCaixa == "Monofasico")
-            {
-                if (ListaDisjuntores != null)
-                {
-                    ListaDisjuntores.Clear();
-
-                    ListaDisjuntores.Add("40A");
-                    ListaDisjuntores.Add("50A");
-                    ListaDisjuntores.Add("70A");                    
-                }
-
-                if (disjuntor == "disjuntor1")
-                {
-                    if (Disjuntores1 != null)
+                    List<string> ListaModelosCaixas = new List<string>
                     {
-                        Disjuntores1 = null;
-                    }
+                        "CM1 disjuntor 1x40",
+                        "CM1 disjuntor 1x50",
+                        "CM1 disjuntor 1x70",
+                        "CM2 disjuntor 2x40",
+                        "CM2 disjuntor 2x60",
+                        "CM2 disjuntor 3x40",
+                        "CM2 disjuntor 3x60"
+                    };
 
-                    Disjuntores1 = ListaDisjuntores;
-                }                    
-
-                if (disjuntor == "disjuntor2")
-                {
-                    if (Disjuntores2 != null)
-                    {
-                        Disjuntores2 = null;
-                    }
-
-                    Disjuntores2 = ListaDisjuntores;
-                }                    
-
-                if (disjuntor == "disjuntor3")
-                {
-                    if (Disjuntores3 != null)
-                    {
-                        Disjuntores3 = null;
-                    }
-
-                    Disjuntores3 = ListaDisjuntores;
+                    ModeloCaixas = ListaModelosCaixas;
                 }
-            }
-            else
-            {
-                if (ListaDisjuntores != null)
-                {
-                    ListaDisjuntores.Clear();
-
-                    ListaDisjuntores.Add("40A");
-                    ListaDisjuntores.Add("60A");
-                }
-
-                if (disjuntor == "disjuntor1")
-                {
-                    if (Disjuntores1 != null)
-                    {
-                        Disjuntores1 = null;
-                    }
-
-                    Disjuntores1 = ListaDisjuntores;
-                }
-
-                if (disjuntor == "disjuntor2")
-                {
-                    if (Disjuntores2 != null)
-                    {
-                        Disjuntores2 = null;
-                    }
-
-                    Disjuntores2 = ListaDisjuntores;
-                }
-
-                if (disjuntor == "disjuntor3")
-                {
-                    if (Disjuntores3 != null)
-                    {
-                        Disjuntores3 = null;
-                    }
-
-                   Disjuntores3 = ListaDisjuntores;
-                }
-            }
+            }                
         }
         #endregion
     }

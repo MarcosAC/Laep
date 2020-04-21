@@ -1,7 +1,4 @@
 ﻿using Laep.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -19,10 +16,8 @@ namespace Laep.Utils
                     await MensagemDeAlerta();
                     return false;
                 }
-            else
-                {
+                else
                     return true;
-                }
 
             if (campo.QuantidadeCaixa == "2")
                 if (string.IsNullOrEmpty(campo.Tensao) ||
@@ -34,9 +29,7 @@ namespace Laep.Utils
                     return false;
                 }
                 else
-                {
                     return true;
-                }
 
             if (campo.QuantidadeCaixa == "3")
                 if (string.IsNullOrEmpty(campo.Tensao) ||
@@ -49,9 +42,7 @@ namespace Laep.Utils
                     return false;
                 }
                 else
-                {
                     return true;
-                }
 
             await MensagemDeAlerta();
             return false;

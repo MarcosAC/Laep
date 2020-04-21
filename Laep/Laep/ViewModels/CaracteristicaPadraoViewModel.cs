@@ -1,5 +1,6 @@
 ﻿using Laep.Data;
 using Laep.Models;
+using Laep.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -121,62 +122,6 @@ namespace Laep.ViewModels
 
         private async Task ExecuteDimensionamentoCommand()
         {
-            string recebeDadosDimensionamento = string.Empty;
-
-            if (QuantidadeCaixaSelecionado == "1")
-            {
-                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
-                                             $"{QuantidadeCaixaSelecionado}," +
-                                             $"{ModeloCaixaSelecionado1}";
-            }
-
-            if (QuantidadeCaixaSelecionado == "2")
-            {
-                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
-                                             $"{QuantidadeCaixaSelecionado}," +
-                                             $"{ModeloCaixaSelecionado1}," +
-                                             $"{ModeloCaixaSelecionado2}";
-            }
-
-            if (QuantidadeCaixaSelecionado == "3")
-            {
-                recebeDadosDimensionamento = $"{TensaoSelecionada}," +
-                                             $"{QuantidadeCaixaSelecionado}," +
-                                             $"{ModeloCaixaSelecionado1}," +
-                                             $"{ModeloCaixaSelecionado2}," +
-                                             $"{ModeloCaixaSelecionado3}";
-            }            
-
-            string[] arrayDadosDimensiomanemto = recebeDadosDimensionamento.Split(',');
-
-            #region Verifica se todos os campos foram preenchidos
-            foreach (var item in arrayDadosDimensiomanemto)
-            {
-                if (string.IsNullOrEmpty(item))
-                {
-                    await Application.Current.MainPage.DisplayAlert("Alerta", "Preencher todos os campos.", "Ok");
-                    return;
-                }
-            }
-            #endregion
-
-            #region Verifica se todos mais de uma caixa trifasica em um conjunto de 2 ou 3 caixas.
-            List<string> listaDadosDimensionamento = new List<string>();
-
-            foreach (var item in arrayDadosDimensiomanemto)
-            {
-                listaDadosDimensionamento.Add(item);
-            }
-
-            var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("3x"));
-
-            if (resultado.Count > 1)
-            {
-                await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
-                return;
-            }
-            #endregion
-
             var dadosDimensionamento = new ResultadoDimensionamento
             {
                 Tensao = TensaoSelecionada,
@@ -186,9 +131,86 @@ namespace Laep.ViewModels
                 ModeloCaixa3 = ModeloCaixaSelecionado3
             };
 
-            string resultadoDimensionamento = DataResultadosDimensionamentos.ObterResultado(dadosDimensionamento);
+            //await ValidacaoCampos.Validar(dadosDimensionamento, QuantidadeCaixaSelecionado);
+            if (await ValidacaoCampos.Validar(dadosDimensionamento))
+            {
+                string resultadoDimensionamento = DataResultadosDimensionamentos.ObterResultado(dadosDimensionamento);
 
-            await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
+                await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
+            }
+
+            //string recebeDadosDimensionamento = string.Empty;
+
+            //if (QuantidadeCaixaSelecionado == "1")
+            //{
+            //    if (string.IsNullOrEmpty(dadosDimensionamento.Tensao) || 
+            //        string.IsNullOrEmpty(dadosDimensionamento.QuantidadeCaixa) || 
+            //        string.IsNullOrEmpty(dadosDimensionamento.ModeloCaixa1))
+            //    {
+            //        await Application.Current.MainPage.DisplayAlert("Alerta", "Preencher todos os campos.", "Ok");
+            //        return;
+            //    }
+            //}
+
+            //if (QuantidadeCaixaSelecionado == "2")
+            //{
+            //    recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+            //                                 $"{QuantidadeCaixaSelecionado}," +
+            //                                 $"{ModeloCaixaSelecionado1}," +
+            //                                 $"{ModeloCaixaSelecionado2}";
+            //}
+
+            //if (QuantidadeCaixaSelecionado == "3")
+            //{
+            //    recebeDadosDimensionamento = $"{TensaoSelecionada}," +
+            //                                 $"{QuantidadeCaixaSelecionado}," +
+            //                                 $"{ModeloCaixaSelecionado1}," +
+            //                                 $"{ModeloCaixaSelecionado2}," +
+            //                                 $"{ModeloCaixaSelecionado3}";
+            //}            
+
+            //string[] arrayDadosDimensiomanemto = recebeDadosDimensionamento.Split(',');
+
+            #region Verifica se todos os campos foram preenchidos
+            //foreach (var item in arrayDadosDimensiomanemto)
+            //{
+            //    if (string.IsNullOrEmpty(item))
+            //    {
+            //        await Application.Current.MainPage.DisplayAlert("Alerta", "Preencher todos os campos.", "Ok");
+            //        return;
+            //    }
+            //}
+            #endregion
+
+            #region Verifica se todos mais de uma caixa trifasica em um conjunto de 2 ou 3 caixas.
+            //List<string> listaDadosDimensionamento = new List<string>();
+
+            //foreach (var item in arrayDadosDimensiomanemto)
+            //{
+            //    listaDadosDimensionamento.Add(item);
+            //}
+
+            //var resultado = listaDadosDimensionamento.FindAll(d => d.Contains("3x"));
+
+            //if (resultado.Count > 1)
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Observação", "Só é possivel inserir 1 caixa trifásica em um conjunto de 2 ou 3 caixas!", "Ok");
+            //    return;
+            //}
+            #endregion
+
+            //var dadosDimensionamento = new ResultadoDimensionamento
+            //{
+            //    Tensao = TensaoSelecionada,
+            //    QuantidadeCaixa = QuantidadeCaixaSelecionado,
+            //    ModeloCaixa1 = ModeloCaixaSelecionado1,
+            //    ModeloCaixa2 = ModeloCaixaSelecionado2,
+            //    ModeloCaixa3 = ModeloCaixaSelecionado3
+            //};
+
+            //string resultadoDimensionamento = DataResultadosDimensionamentos.ObterResultado(dadosDimensionamento);
+
+            //await Shell.Current.GoToAsync($"//dimensionamento?resultadoDimensionamento={resultadoDimensionamento}");
         }
 
         private Command _botaoVoltarTitleViewCommand;

@@ -1579,7 +1579,7 @@ namespace Laep.Data
 
                     realmDb.Add(new ResultadoDimensionamento
                     {
-                        Tensao = "Sistema Trifásico 127/220V",
+                        Tensao = "Sistema Monofásico 120/240V",
                         QuantidadeCaixa = "1",
                         ModeloCaixa1 = "CM2 disjuntor 2x60",
                         ModeloCaixa2 = "",

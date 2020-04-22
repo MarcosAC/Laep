@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace Laep.ViewModels
 {
     public class CaracteristicaPadraoViewModel : BaseViewModel
-    { 
+    {
         public List<string> ListaQuantidadeCaixas { get; } = new List<string> { "1", "2", "3" };
         public List<string> ListaTensao { get; } = new List<string> { "Sistema Trifásico 127/220V", "Sistema Monofásico 120/240V" };
 
@@ -62,7 +62,7 @@ namespace Laep.ViewModels
             set
             {
                 SetProperty(ref _tensaoSelecionada, value);
-                CarregarModeloCaixa( _tensaoSelecionada);
+                CarregarModeloCaixa(_tensaoSelecionada);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Laep.ViewModels
             {
                 SetProperty(ref _modeloCaixaSelecionado3, value);
             }
-        }        
+        }
         #endregion
 
         #region Commands
@@ -194,47 +194,40 @@ namespace Laep.ViewModels
         }
 
         private void CarregarModeloCaixa(string modelo)
-        {   
+        {
+            if (ModeloCaixas != null)
+                ModeloCaixas.Clear();
+
+
             if (modelo == "Sistema Monofásico 120/240V")
             {
-                if (ModeloCaixas != null || ModeloCaixas == null)
+                List<string> ListaModelosCaixas = new List<string>
                 {
-                    ModeloCaixas = null;
+                    "CM1 disjuntor 1x40",
+                    "CM1 disjuntor 1x50",
+                    "CM1 disjuntor 1x70",
+                    "CM2 disjuntor 2x40",
+                    "CM2 disjuntor 2x60"
+                };
 
-                    List<string> ListaModelosCaixas = new List<string>
-                    {
-                        "CM1 disjuntor 1x40",
-                        "CM1 disjuntor 1x50",
-                        "CM1 disjuntor 1x70",
-                        "CM2 disjuntor 2x40",
-                        "CM2 disjuntor 2x60"
-                    };
-
-                    ModeloCaixas = ListaModelosCaixas;
-                }
-            }                
+                ModeloCaixas = ListaModelosCaixas;
+            }
 
             if (modelo == "Sistema Trifásico 127/220V")
             {
-                if (ModeloCaixas != null || ModeloCaixas == null)
+                List<string> ListaModelosCaixas = new List<string>
                 {
-                    if (ModeloCaixas != null)
-                        ModeloCaixas = null;
+                    "CM1 disjuntor 1x40",
+                    "CM1 disjuntor 1x50",
+                    "CM1 disjuntor 1x70",
+                    "CM2 disjuntor 2x40",
+                    "CM2 disjuntor 2x60",
+                    "CM2 disjuntor 3x40",
+                    "CM2 disjuntor 3x60"
+                };
 
-                    List<string> ListaModelosCaixas = new List<string>
-                    {
-                        "CM1 disjuntor 1x40",
-                        "CM1 disjuntor 1x50",
-                        "CM1 disjuntor 1x70",
-                        "CM2 disjuntor 2x40",
-                        "CM2 disjuntor 2x60",
-                        "CM2 disjuntor 3x40",
-                        "CM2 disjuntor 3x60"
-                    };
-
-                    ModeloCaixas = ListaModelosCaixas;
-                }
-            }                
+                ModeloCaixas = ListaModelosCaixas;
+            }
         }
         #endregion
     }
